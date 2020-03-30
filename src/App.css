@@ -1,0 +1,123 @@
+h2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+  color: white;
+  background-color: rgb(83, 81, 81);
+  /* text-shadow: 1px 1px 1px #ccc; */
+  /* padding; none; */
+  /* background-color: gray; */
+  /* font-family: "Arial", "Helvetica Neue", "Helvetica,sans-serif"; */
+}
+
+body {
+  color: white;
+  text-align: center;
+  color: black;
+  font-family: "Arial", "Helvetica Neue", "Helvetica,sans-serif";
+}
+h3 {
+  color: green;
+  margin: 0px;
+  padding: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+table.ploop {
+  width: 100%;
+  table-layout: fixed;
+  background-color: rgb(83, 81, 81);
+}
+
+h4 {
+  padding: 10px;
+  margin: 0px;
+}
+
+#options {
+  border-bottom: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin: 0px;
+  /* text-align: left; */
+  /* padding-left: 20px; */
+}
+
+#options:hover {
+  background-color: lightgray;
+}
+
+th.fun {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+th.fun:hover {
+  background-color: gray;
+}
+
+#entries,
+#math {
+  /* width: 50%; */
+  border-top: 1px solid lightgray;
+  float: left;
+}
+#entries {
+  width: 65%;
+}
+#math {
+  width: 35%;
+}
+
+#resultTitle,
+#resultValue {
+  width: 50%;
+  /* border-top: 1px solid lightgray; */
+  border-bottom: 1px solid lightgray;
+  float: left;
+  /* padding-bottom: 20px;
+  padding-top: 20px;
+  margin: 0px; */
+}
+
+#concretes {
+  border: 1px solid lightgray;
+
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin: 10px;
+}
+
+h4 {
+  text-decoration: underline;
+}
+/* #math {
+  float: right;
+} */
+/* #entries {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin: 0px;
+} */
+
+#totals {
+  border-bottom: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
+  text-align: right;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 30px;
+  /* margin: 20px; */
+}
+
+#bob {
+  text-align: center;
+}
