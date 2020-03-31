@@ -1,4 +1,5 @@
 import React from "react";
+// import math;
 import {
   BrowserRouter as Router,
   Switch,
@@ -231,9 +232,11 @@ class concrete extends React.Component {
 
       garageFloor: 0,
       garageFloorVal: 0,
+      garageFloorValCont: 0,
       squareFeet: null,
       finishType: "Broom",
       finishTypeVal: 0,
+      finishTypeValCont: 0,
 
       hscapeStyle: "Concrete",
 
@@ -249,20 +252,24 @@ class concrete extends React.Component {
       dType: "",
       dSquareFeet: 0,
       demoTypeVal: 0,
+      demoContractorTotal: 0,
       demoTotal: 0,
       // haul away
       haulSquareFeet: 0,
       haulAddSQF: 0,
+      haulContractorTotal: 0,
       haulTotal: 0,
 
       //exca
       excaSquareFeet: 0,
       excaAddSQF: 0,
+      excaContractorTotal: 0,
       excaTotal: 0,
       // base layer 1
       bType: "",
       baseCost: 0,
       baseDepth: 0,
+      bContractorTotal: 0,
       bTotal: 0,
 
       // concrete
@@ -270,6 +277,7 @@ class concrete extends React.Component {
       concDepth: null,
       psiVal: 168,
       concVal: 0,
+      concValCont: 0,
       // rebar: false,
 
       areas: 0,
@@ -305,9 +313,16 @@ class concrete extends React.Component {
     var laborPrice = db.regions[this.state.zip].finishLaborMPD;
     var laborSQF = db.regions[this.state.zip].finishLaborSQFMPD;
     if (this.state.finishType === "Salt") {
+      var typecalclab = (sqf / laborSQF) * laborPrice + sqf;
+      var typeContractor = typecalclab.toFixed(2);
+      this.setState({ finishTypeValCont: typeContractor });
       var finishTypeCalc =
         ((sqf / laborSQF) * laborPrice + sqf) / (1 - margin * 0.01);
     } else {
+      var typecalclab = (sqf / laborSQF) * laborPrice;
+      var typeContractor = typecalclab.toFixed(2);
+      this.setState({ finishTypeValCont: typeContractor });
+
       var finishTypeCalc =
         ((sqf / laborSQF) * laborPrice) / (1 - margin * 0.01);
     }
@@ -319,14 +334,12 @@ class concrete extends React.Component {
     console.log("psival: " + this.state.psiVal);
     var depth = parseInt(this.state.concDepth, 10);
     var cubicFeet = (depth / 12) * sqf;
-    // console.log("208.33: " + cubicFeet);
     var cubicYards = cubicFeet / 27;
-    // console.log("7.72: " + cubicYards);
     var conccost = cubicYards * this.state.psiVal + 200;
-    // console.log("$1,496.30: " + conccost);
+    var concCostCont = conccost.toFixed(2);
+    this.setState({ concValCont: concCostCont });
     var concPrice = conccost / (1 - margin * 0.01);
     var concPriceInput = concPrice.toFixed(2);
-    // console.log("$1,824.75: " + concPriceInput);
     this.setState({ concVal: concPriceInput });
     // var costpercubfoot = conccost / cubicFeet;
 
@@ -339,6 +352,9 @@ class concrete extends React.Component {
     // garageFloor
     var binFloor = parseInt(this.state.garageFloor, 10);
     var floorContract = binFloor * sqf * db.regions[this.state.zip].gFloor;
+    var floorContractRound = floorContract.toFixed(2);
+    this.setState({ garageFloorValCont: floorContractRound });
+
     var floorCust = floorContract / (1 - margin * 0.01);
     var floorCustF = floorCust.toFixed(2);
     this.setState({ garageFloorVal: floorCustF });
@@ -372,6 +388,8 @@ class concrete extends React.Component {
     var excaVolume = (excasquareFT * depth * 144) / 1728;
     var excaVolYards = excaVolume / 27;
     var excaLabCost = 90 * (excaVolYards + addexcasquareFT);
+    var excaLabTotal = excaLabCost.toFixed(2);
+    this.setState({ excaContractorTotal: excaLabTotal });
     var excaCost = excaLabCost / (1 - margin * 0.01);
     var excaTotals = excaCost.toFixed(2);
     this.setState({ excaTotal: excaTotals });
@@ -383,12 +401,18 @@ class concrete extends React.Component {
     var haulVolYards = haulVolume / 27;
     if (this.state.hscapeStyle === "Concrete") {
       if (excaLabCost) {
+        var haulConCost = 111 * (haulVolYards + addhaulsquareFT) - excaLabCost;
+        var haulConCostTotal = haulConCost.toFixed(2);
+        this.setState({ haulContractorTotal: haulConCostTotal });
         var haulCost =
           (111 * (haulVolYards + addhaulsquareFT) - excaLabCost) /
           (1 - margin * 0.01);
         var haulTotals = haulCost.toFixed(2);
         this.setState({ haulTotal: haulTotals });
       } else {
+        var haulConCost = 111 * (haulVolYards + addhaulsquareFT);
+        var haulConCostTotal = haulConCost.toFixed(2);
+        this.setState({ haulContractorTotal: haulConCostTotal });
         var haulCost =
           (111 * (haulVolYards + addhaulsquareFT)) / (1 - margin * 0.01);
         var haulTotals = haulCost.toFixed(2);
@@ -397,6 +421,37 @@ class concrete extends React.Component {
     }
 
     //base 1
+    var baseoneDepth = parseInt(this.state.baseDepth, 10);
+    var basestyle = parseInt(this.state.baseCost, 10);
+    var baseVolume = (baseoneDepth / 12) * sqf;
+    var unroundbaseVolumeYards = baseVolume / 27;
+    var baseVolumeYards = Math.round(unroundbaseVolumeYards);
+    var baseDelivery = unroundbaseVolumeYards * 10 + 150;
+    if (this.state.bType === "#2 Base Rock") {
+      var baselabCost = unroundbaseVolumeYards * basestyle + baseDelivery;
+    } else {
+      var baselabCost = baseVolumeYards * basestyle + 200;
+    }
+    var baselaborcost = baselabCost.toFixed(2);
+    this.setState({ bContractorTotal: baselaborcost });
+    var baseCosts = baselabCost / (1 - margin * 0.01);
+    var baseoneTotal = baseCosts.toFixed(2);
+    this.setState({ bTotal: baseoneTotal });
+
+    // base one total
+    var theTotal =
+        this.state.bTotal +
+        this.state.haulTotal +
+        this.state.excaTotal +
+        this.state.demoTotal +
+        this.state.permitTotal +
+        this.state.garageFloorVal +
+        this.state.locCalc +
+        this.state.concVal +
+        this.state.finishTypeVal +
+        this.state,
+      ergpCosts;
+    // this.setState({ total: theTotal });
   }
 
   show(obj) {
@@ -560,21 +615,21 @@ class concrete extends React.Component {
   };
   handleBase = event => {
     if (event.target.id === "2br") {
-      this.setState({ bType: "#2 Base Rock", baseCost: 1 });
+      this.setState({ bType: "#2 Base Rock", baseCost: 40 });
     } else if (event.target.id === "3cgran") {
-      this.setState({ bType: "3/4 Minus Crushed Granite", baseCost: 1 });
+      this.setState({ bType: "3/4 Minus Crushed Granite", baseCost: 45 });
     } else if (event.target.id === "5cgran") {
-      this.setState({ bType: "5/8 Minus Crushed Granite", baseCost: 1 });
+      this.setState({ bType: "5/8 Minus Crushed Granite", baseCost: 50 });
     } else if (event.target.id === "csand") {
-      this.setState({ bType: "Concrete Sand", baseCost: 1 });
+      this.setState({ bType: "Concrete Sand", baseCost: 35 });
     } else if (event.target.id === "dgray") {
-      this.setState({ bType: "DG Grey", baseCost: 1 });
+      this.setState({ bType: "DG Grey", baseCost: 55 });
     } else if (event.target.id === "dgrays") {
-      this.setState({ bType: "DG Grey Stabilized", baseCost: 1 });
+      this.setState({ bType: "DG Grey Stabilized", baseCost: 155 });
     } else if (event.target.id === "dgold") {
-      this.setState({ bType: "DG Gold", baseCost: 1 });
+      this.setState({ bType: "DG Gold", baseCost: 90 });
     } else if (event.target.id === "dgolds") {
-      this.setState({ bType: "DG Gold Stabilized", baseCost: 1 });
+      this.setState({ bType: "DG Gold Stabilized", baseCost: 190 });
     } else if (event.target.id === "bdepth") {
       this.setState({ baseDepth: event.target.value });
     }
@@ -1150,22 +1205,6 @@ class concrete extends React.Component {
               </div>
 
               <div id="options">
-                <label>Rebar Required? </label>
-
-                <input type="radio" id="yes" name="rebar" value="yes" />
-                <label htmlFor="yes"> Yes </label>
-
-                <input
-                  type="radio"
-                  id="no"
-                  name="rebar"
-                  value="no"
-                  defaultChecked
-                />
-                <label htmlFor="no"> No</label>
-              </div>
-
-              <div id="options">
                 <label>Additional Requests? </label>
 
                 <input
@@ -1188,6 +1227,21 @@ class concrete extends React.Component {
                 <label htmlFor="no"> No</label>
               </div>
               {/* v2 */}
+              <div id="options" style={stylesExtra}>
+                <label>Rebar Required? </label>
+
+                <input type="radio" id="yes" name="rebar" value="yes" />
+                <label htmlFor="yes"> Yes </label>
+
+                <input
+                  type="radio"
+                  id="no"
+                  name="rebar"
+                  value="no"
+                  defaultChecked
+                />
+                <label htmlFor="no"> No</label>
+              </div>
               <div id="options" style={stylesExtra}>
                 <label>Concrete Admixture Required? </label>
 
@@ -1438,10 +1492,8 @@ class concrete extends React.Component {
         <div id="math">
           <div id="concretes">
             <h4>Customer Price</h4>
-            {/* <div id="sides"> */}
-            {/* <div id="resultTitle"> */}
             <div id="totals">
-              <label>Full Customer Price: </label>${this.state.total}
+              <label>Full Customer Price: ${this.state.total}</label>
             </div>
             <div id="totals">
               <label id="bob">
@@ -1450,8 +1502,6 @@ class concrete extends React.Component {
               </label>
               <br></br>
               <br></br>
-
-              {/* <label id="bob">Hardscape Style - {this.state.hscapeStyle}</label> */}
               <label id="bob">
                 Ergeon Permit Acquisition Cost: ${this.state.ergpCosts}
               </label>
@@ -1493,6 +1543,75 @@ class concrete extends React.Component {
               <br></br>
               <label id="bob">
                 Garage Labor Costs: ${this.state.garageFloorVal}
+              </label>
+
+              <br></br>
+              <label id="bob">Project Size Delta: ${this.state.delta}</label>
+              <br></br>
+              <br></br>
+              <label id="bob">
+                Total Hardscape Price to Customer: ${this.state.total}
+              </label>
+              <br></br>
+              <label id="bob">
+                Total Hardscape Price Per Square Foot : $
+                {this.state.totalperSqf}
+              </label>
+            </div>
+          </div>
+          <div id="concretes">
+            <h4>Contractor Cost</h4>
+            <div id="totals">
+              <label>Full Contractor Cost: ${this.state.total}</label>
+            </div>
+            <div id="totals">
+              <label id="bob">
+                Description of {this.state.hscapeStyle} Area 1 -{" "}
+                {this.state.squareFeet} sq ft:
+              </label>
+              <br></br>
+              <br></br>
+              {/* <label id="bob">
+                Ergeon Permit Acquisition Cost: ${this.state.ergpCosts}
+              </label>
+              <br></br>
+              <label id="bob" style={stylesDisp}>
+                Municipal Permit Costs - {this.state.pType}: $
+                {this.state.permitTotal}
+              </label> */}
+              {/* <br></br> */}
+              <label id="bob" style={stylesDemo}>
+                Demo - {this.state.dSquareFeet} Square Feet - {this.state.dType}
+                : ${this.state.demoContractorTotal}
+              </label>
+              <label id="bob" style={stylesHaul}>
+                Haul - {this.state.haulSquareFeet} Square Feet: $
+                {this.state.haulContractorTotal}
+              </label>
+              <label id="bob" style={stylesExca}>
+                Exca - {this.state.excaSquareFeet} Square Feet: $
+                {this.state.excaContractorTotal}
+              </label>
+
+              {/* <br></br> */}
+              <label id="bob">
+                Finish Type - {this.state.finishType}: $
+                {this.state.finishTypeValCont}
+              </label>
+              <br></br>
+              <label id="bob" style={stylesBase}>
+                Base Layer 1 - {this.state.baseDepth} Inches -{this.state.bType}
+                : ${this.state.bContractorTotal}
+              </label>
+              <label id="bob">
+                Concrete Type - {this.state.concDepth} Inches -
+                {this.state.concType} PSI: ${this.state.concValCont}
+              </label>
+              <br></br>
+              <label id="bob">Back Yard Costs: ${this.state.locCalc}</label>
+              <br></br>
+              <label id="bob">
+                Garage Labor Costs: ${this.state.garageFloorValCont}
               </label>
 
               <br></br>
