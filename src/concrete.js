@@ -107,6 +107,7 @@ export default class concrete extends React.Component {
       conc5: true,
       conc5Disp: "none"
     };
+    document.title = "Concrete Calculator";
   }
 
   reload() {
@@ -123,6 +124,7 @@ export default class concrete extends React.Component {
       var typecalclab = (sqf / laborSQF) * laborPrice + sqf;
       var typeContractor = typecalclab.toFixed(2);
       this.setState({ finishTypeValCont: typeContractor });
+      this.setState({ total: this.state.total + this.state.finishTypeValCont });
       var finishTypeCalc =
         ((sqf / laborSQF) * laborPrice + sqf) / (1 - margin * 0.01);
     } else {
@@ -259,18 +261,33 @@ export default class concrete extends React.Component {
     }
 
     // base one total
-    var theTotal =
-        this.state.bTotal +
-        this.state.haulTotal +
-        this.state.excaTotal +
-        this.state.demoTotal +
-        this.state.permitTotal +
-        this.state.garageFloorVal +
-        this.state.locCalc +
-        this.state.concVal +
-        this.state.finishTypeVal +
-        this.state,
-      ergpCosts;
+    // if(isNaN(this.state.bTotal))
+
+    // var theTotal =
+    // parseInt(this.state.bTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10);
+    //   this.state.bTotal +
+    // this.state.haulTotal +
+    // this.state.excaTotal +
+    //   this.state.demoTotal +
+    //   this.state.permitTotal +
+    //   this.state.garageFloorVal +
+    //   this.state.locCalc +
+    //   this.state.concVal +
+    //   this.state.finishTypeVal +
+    //   this.state.ergpCosts +
+    //   this.state.zipPricing;
+
+    // console.log(theTotal);
     // this.setState({ total: theTotal });
   }
 
