@@ -82,7 +82,9 @@ export default class concrete extends React.Component {
 
       areas: 1,
       total: 0.0,
+      totalCont: 0,
       totalperSqf: 0,
+      totalContperSqf: 0,
       customDiv: ["div1"],
 
       // true means hidden
@@ -111,11 +113,13 @@ export default class concrete extends React.Component {
   }
 
   reload() {
-    // window.location.reload();
+    window.location.reload();
   }
   calc(e) {
     e.preventDefault();
     // Finish type value
+    this.setState({ total: 0, totalCont: 0 });
+    console.log(this.state.haulSquareFeet);
     var sqf = parseInt(this.state.squareFeet, 10);
     var margin = parseInt(this.state.margin, 10);
     var laborPrice = db.regions[this.state.zipRegion].finishLaborMPD;
@@ -123,51 +127,96 @@ export default class concrete extends React.Component {
     if (this.state.finishType === "Salt") {
       var typecalclab = (sqf / laborSQF) * laborPrice + sqf;
       var typeContractor = typecalclab.toFixed(2);
-      this.setState({ finishTypeValCont: typeContractor });
-      this.setState({ total: this.state.total + this.state.finishTypeValCont });
+      if (isNaN(typeContractor)) {
+        this.setState({ finishTypeValCont: 0 });
+      } else {
+        this.setState({ finishTypeValCont: typeContractor });
+      }
+
       var finishTypeCalc =
         ((sqf / laborSQF) * laborPrice + sqf) / (1 - margin * 0.01);
     } else {
       var typecalclab = (sqf / laborSQF) * laborPrice;
       var typeContractor = typecalclab.toFixed(2);
-      this.setState({ finishTypeValCont: typeContractor });
+      if (isNaN(typeContractor)) {
+        this.setState({ finishTypeValCont: 0 });
+      } else {
+        this.setState({ finishTypeValCont: typeContractor });
+      }
 
       var finishTypeCalc =
         ((sqf / laborSQF) * laborPrice) / (1 - margin * 0.01);
     }
 
     var theF = finishTypeCalc.toFixed(2);
-    this.setState({ finishTypeVal: theF });
+    if (isNaN(theF)) {
+      this.setState({ finishTypeVal: 0 });
+    } else {
+      this.setState({ finishTypeVal: theF });
+    }
+
+    var totalCont = typeContractor;
+    var totalCust = theF;
 
     // conc type val/depth value
-    console.log("psival: " + this.state.psiVal);
+    // console.log("psival: " + this.state.psiVal);
     var depth = parseInt(this.state.concDepth, 10);
     var cubicFeet = (depth / 12) * sqf;
     var cubicYards = cubicFeet / 27;
     var conccost = cubicYards * this.state.psiVal + 200;
     var concCostCont = conccost.toFixed(2);
-    this.setState({ concValCont: concCostCont });
+    if (isNaN(concCostCont)) {
+      this.setState({ concValCont: 0 });
+    } else {
+      this.setState({ concValCont: concCostCont });
+    }
+
     var concPrice = conccost / (1 - margin * 0.01);
     var concPriceInput = concPrice.toFixed(2);
-    this.setState({ concVal: concPriceInput });
-    // var costpercubfoot = conccost / cubicFeet;
+    if (isNaN(concPriceInput)) {
+      this.setState({ concVal: 0 });
+    } else {
+      this.setState({ concVal: concPriceInput });
+    }
+
+    totalCont = +totalCont + +concCostCont;
+    totalCust = +totalCust + +concPriceInput;
 
     // Location Costs
     var loc = parseInt(this.state.location, 10);
     var added = (loc * sqf) / (1 - margin * 0.01);
     var totAdded = added.toFixed(2);
-    this.setState({ locCalc: totAdded });
+    if (isNaN(totAdded)) {
+      this.setState({ locCalc: 0 });
+    } else {
+      this.setState({ locCalc: totAdded });
+    }
+
+    totalCust = +totalCust + +totAdded;
+    // totalCust = totalCust.toFixed(2);
+    // this.setState({ total: totalCust });
 
     // garageFloor
     var binFloor = parseInt(this.state.garageFloor, 10);
     var floorContract =
       binFloor * sqf * db.regions[this.state.zipRegion].gFloor;
     var floorContractRound = floorContract.toFixed(2);
-    this.setState({ garageFloorValCont: floorContractRound });
+    if (isNaN(floorContractRound)) {
+      this.setState({ garageFloorValCont: 0 });
+    } else {
+      this.setState({ garageFloorValCont: floorContractRound });
+    }
 
     var floorCust = floorContract / (1 - margin * 0.01);
     var floorCustF = floorCust.toFixed(2);
-    this.setState({ garageFloorVal: floorCustF });
+    if (isNaN(floorCustF)) {
+      this.setState({ garageFloorVal: 0 });
+    } else {
+      this.setState({ garageFloorVal: floorCustF });
+    }
+
+    totalCont = +totalCont + +floorContractRound;
+    totalCust = +totalCust + +floorCustF;
 
     //municipal permit costs
     var permitcosts = parseInt(this.state.pCosts, 10);
@@ -178,21 +227,42 @@ export default class concrete extends React.Component {
     // console.log(totalMunicipal);
     var totalMunicipalCosts = totalMunicipal / (1 - margin * 0.01);
     var totalMunCosts = totalMunicipalCosts.toFixed(2);
-    this.setState({ permitTotal: totalMunCosts });
+    if (isNaN(totalMunCosts)) {
+      this.setState({ permitTotal: 0 });
+    } else {
+      this.setState({ permitTotal: totalMunCosts });
+    }
+
+    if (!isNaN(totalMunCosts)) {
+      totalCust = +totalCust + +totalMunCosts;
+      // console.log(totalCust);
+    }
 
     // demo
     var demosqf = parseInt(this.state.dSquareFeet, 10);
-    console.log(demosqf);
+    // console.log(demosqf);
     var demoPricing = parseFloat(this.state.demoTypeVal, 10);
-    console.log(demoPricing);
+    // console.log(demoPricing);
     var demoThick = demosqf * depth * 144;
-    console.log(demoThick);
+    // console.log(demoThick);
     var demoVolCubeFT = (demoThick / 1728) * demoPricing;
     var democontract = demoVolCubeFT.toFixed(2);
-    this.setState({ demoContractorTotal: democontract });
+    if (isNaN(democontract)) {
+      this.setState({ demoContractorTotal: 0 });
+    } else {
+      this.setState({ demoContractorTotal: democontract });
+    }
 
     var totDemCost = (demoVolCubeFT / (1 - margin * 0.01)).toFixed(2);
-    this.setState({ demoTotal: totDemCost });
+    if (isNaN(totDemCost)) {
+      this.setState({ demoTotal: 0 });
+    } else {
+      this.setState({ demoTotal: totDemCost });
+    }
+
+    totalCont = +totalCont + +democontract;
+    totalCust = +totalCust + +totDemCost;
+    // console.log(totalCust);
 
     //exca
     var excasquareFT = parseInt(this.state.excaSquareFeet, 10);
@@ -201,13 +271,27 @@ export default class concrete extends React.Component {
     var excaVolYards = excaVolume / 27;
     var excaLabCost = 90 * (excaVolYards + addexcasquareFT);
     var excaLabTotal = excaLabCost.toFixed(2);
-    this.setState({ excaContractorTotal: excaLabTotal });
+    if (isNaN(excaLabTotal)) {
+      this.setState({ excaContractorTotal: 0 });
+    } else {
+      this.setState({ excaContractorTotal: excaLabTotal });
+    }
+
     var excaCost = excaLabCost / (1 - margin * 0.01);
     var excaTotals = excaCost.toFixed(2);
-    this.setState({ excaTotal: excaTotals });
+    if (isNaN(excaTotals)) {
+      this.setState({ excaTotal: 0 });
+    } else {
+      this.setState({ excaTotal: excaTotals });
+    }
+
+    totalCont = +totalCont + +excaLabTotal;
+    totalCust = +totalCust + +excaTotals;
+    // console.log(totalCust);
 
     // haul
     var haulsquareFT = parseInt(this.state.haulSquareFeet, 10);
+    console.log(this.state.haulSquareFeet);
     var addhaulsquareFT = parseInt(this.state.haulAddSQF, 10);
     var haulVolume = (haulsquareFT * depth * 144) / 1728;
     var haulVolYards = haulVolume / 27;
@@ -215,49 +299,102 @@ export default class concrete extends React.Component {
       if (excaLabCost) {
         var haulConCost = 111 * (haulVolYards + addhaulsquareFT) - excaLabCost;
         var haulConCostTotal = haulConCost.toFixed(2);
-        this.setState({ haulContractorTotal: haulConCostTotal });
+        if (isNaN(haulConCostTotal)) {
+          this.setState({ haulContractorTotal: 0 });
+        } else {
+          this.setState({ haulContractorTotal: haulConCostTotal });
+        }
+
         var haulCost =
           (111 * (haulVolYards + addhaulsquareFT) - excaLabCost) /
           (1 - margin * 0.01);
         var haulTotals = haulCost.toFixed(2);
-        this.setState({ haulTotal: haulTotals });
+        if (isNaN(haulTotals)) {
+          this.setState({ haulTotal: 0 });
+        } else {
+          this.setState({ haulTotal: haulTotals });
+        }
+
+        totalCont = +totalCont + +haulConCostTotal;
+        totalCust = +totalCust + +haulTotals;
+        // console.log(totalCust);
       } else {
         var haulConCost = 111 * (haulVolYards + addhaulsquareFT);
         var haulConCostTotal = haulConCost.toFixed(2);
-        this.setState({ haulContractorTotal: haulConCostTotal });
+        if (isNaN(haulConCostTotal)) {
+          this.setState({ haulContractorTotal: 0 });
+        } else {
+          this.setState({ haulContractorTotal: haulConCostTotal });
+        }
         var haulCost =
           (111 * (haulVolYards + addhaulsquareFT)) / (1 - margin * 0.01);
         var haulTotals = haulCost.toFixed(2);
-        this.setState({ haulTotal: haulTotals });
+        if (isNaN(haulTotals)) {
+          this.setState({ haulTotal: 0 });
+        } else {
+          this.setState({ haulTotal: haulTotals });
+        }
+        totalCont = +totalCont + +haulConCostTotal;
+        totalCust = +totalCust + +haulTotals;
+        // console.log(totalCust);
       }
     }
 
     //base 1
-    var baseoneDepth = parseInt(this.state.baseDepth, 10);
-    var basestyle = parseInt(this.state.baseCost, 10);
-    var baseVolume = (baseoneDepth / 12) * sqf;
-    var unroundbaseVolumeYards = baseVolume / 27;
-    var baseVolumeYards = Math.round(unroundbaseVolumeYards);
-    var baseDelivery = unroundbaseVolumeYards * 10 + 150;
-    if (this.state.bType === "#2 Base Rock") {
-      var baselabCost = unroundbaseVolumeYards * basestyle + baseDelivery;
-    } else {
-      var baselabCost = baseVolumeYards * basestyle + 200;
+    if (!this.state.base) {
+      var baseoneDepth = parseInt(this.state.baseDepth, 10);
+      // console.log(baseoneDepth);
+      var basestyle = parseInt(this.state.baseCost, 10);
+      var baseVolume = (baseoneDepth / 12) * sqf;
+      var unroundbaseVolumeYards = baseVolume / 27;
+      var baseVolumeYards = Math.round(unroundbaseVolumeYards);
+      var baseDelivery = unroundbaseVolumeYards * 10 + 150;
+      if (this.state.bType === "#2 Base Rock") {
+        var baselabCost = unroundbaseVolumeYards * basestyle + baseDelivery;
+      } else {
+        var baselabCost = baseVolumeYards * basestyle + 200;
+      }
+      var baselaborcost = baselabCost.toFixed(2);
+      if (isNaN(baselaborcost)) {
+        this.setState({ bContractorTotal: baselaborcost });
+      } else {
+        this.setState({ bContractorTotal: baselaborcost });
+      }
+
+      var baseCosts = baselabCost / (1 - margin * 0.01);
+      var baseoneTotal = baseCosts.toFixed(2);
+      if (isNaN(baseoneTotal)) {
+        this.setState({ bTotal: 0 });
+      } else {
+        this.setState({ bTotal: baseoneTotal });
+      }
+
+      totalCont = +totalCont + +baselaborcost;
+      totalCust = +totalCust + +baseoneTotal;
+      // console.log(totalCust);
     }
-    var baselaborcost = baselabCost.toFixed(2);
-    this.setState({ bContractorTotal: baselaborcost });
-    var baseCosts = baselabCost / (1 - margin * 0.01);
-    var baseoneTotal = baseCosts.toFixed(2);
-    this.setState({ bTotal: baseoneTotal });
 
     // zipcode additional pricing
     if (db.zipcodes[this.state.zip].addCost > 0) {
-      console.log(db.zipcodes[this.state.zip].addCost);
+      // console.log(db.zipcodes[this.state.zip].addCost);
       var zipAdditional = db.zipcodes[this.state.zip].addCost * sqf;
       var zipAddCont = zipAdditional.toFixed(2);
-      this.setState({ zipPricingContractor: zipAddCont });
+      if (isNaN(zipAddCont)) {
+        this.setState({ zipPricingContractor: 0 });
+      } else {
+        this.setState({ zipPricingContractor: zipAddCont });
+      }
+
       var zipAdd = (zipAdditional / (1 - margin * 0.01)).toFixed(2);
-      this.setState({ zipPricing: zipAdd });
+      if (isNaN(zipAdd)) {
+        this.setState({ zipPricing: 0 });
+      } else {
+        this.setState({ zipPricing: zipAdd });
+      }
+
+      totalCont = +totalCont + +zipAddCont;
+      totalCust = +totalCust + +zipAdd;
+      // console.log(totalCust);
     }
 
     // base one total
@@ -289,6 +426,18 @@ export default class concrete extends React.Component {
 
     // console.log(theTotal);
     // this.setState({ total: theTotal });
+    totalCont = totalCont.toFixed(2);
+    if (isNaN(totalCont)) {
+      this.setState({ totalCont: 0 });
+    } else {
+      this.setState({ totalCont: totalCont });
+    }
+    totalCust = totalCust.toFixed(2);
+    if (isNaN(totalCust)) {
+      this.setState({ total: 0 });
+    } else {
+      this.setState({ total: totalCust });
+    }
   }
 
   addArea = event => {
@@ -349,7 +498,7 @@ export default class concrete extends React.Component {
   };
 
   show(obj) {
-    console.log(obj);
+    // console.log(obj);
     if (obj === "display") {
       // this.setState({ nums: 0 });
       this.setState({ display: false });
@@ -383,17 +532,43 @@ export default class concrete extends React.Component {
       this.setState({ dispDisp: "none" });
       return;
     } else if (obj === "demo") {
-      this.setState({ demo: true });
-      this.setState({ demoDisp: "none" });
+      this.setState({
+        demo: true,
+        demoDisp: "none",
+        dSquareFeet: 0
+        // demoContractorTotal: 0,
+        // demoTotal: 0
+      });
+      // this.setState({ demoDisp: "none" });
+      // this.setState({ dSquareFeet: 0 });
     } else if (obj === "haul") {
-      this.setState({ haul: true });
-      this.setState({ haulDisp: "none" });
+      console.log("hide");
+      this.setState({
+        haul: true,
+        haulDisp: "none",
+        haulSquareFeet: 0,
+        haulAddSQF: 0
+      });
+      // document.getElementById("haulreset").reset();
+      // event.target.value = 0;
+      // this.handleHaul.value = "";
     } else if (obj === "exca") {
-      this.setState({ exca: true });
-      this.setState({ excaDisp: "none" });
+      this.setState({
+        exca: true,
+        excaDisp: "none",
+        excaSquareFeet: 0,
+        excaAddSQF: 0
+        // excaContractorTotal: 0,
+        // excaTotal: 0
+      });
     } else if (obj === "base") {
-      this.setState({ base: true });
-      this.setState({ baseDisp: "none" });
+      this.setState({
+        base: true,
+        baseDisp: "none",
+        baseDepth: 0,
+        bContractorTotal: 0,
+        bTotal: 0
+      });
     } else if (obj === "extra") {
       this.setState({ extra: true });
       this.setState({ extraDisp: "none" });
@@ -945,7 +1120,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="dsqf"
                     placeholder={this.state.squareFeet}
-                    // value={this.state.dSquareFeet}
+                    value={this.state.dSquareFeet}
                     onChange={this.handleDemoChange}
                   />
                 </div>
@@ -982,7 +1157,9 @@ export default class concrete extends React.Component {
                     type="text"
                     id="haulsqff"
                     placeholder={this.state.squareFeet}
+                    value={this.state.haulSquareFeet}
                     onChange={this.handleHaul}
+                    // ref={el => (this.handleHaul = el)}
                   />
                   <br></br>
                   <br></br>
@@ -991,6 +1168,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="hauladdsqff"
                     placeholder="Ex: 50"
+                    value={this.state.haulAddSQF}
                     onChange={this.handleHaul}
                   />
                 </div>
@@ -1026,6 +1204,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="excasqf"
                     placeholder={this.state.squareFeet}
+                    value={this.state.excaSquareFeet}
                     onChange={this.handleExca}
                   />
                   <br></br>
@@ -1037,6 +1216,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="excaaddsqf"
                     placeholder="Ex: 50"
+                    value={this.state.excaAddSQF}
                     onChange={this.handleExca}
                   />
                 </div>
@@ -1159,6 +1339,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="bdepth"
                     placeholder="Ex: 4"
+                    value={this.state.baseDepth}
                     onChange={this.handleBase}
                   />
                   <br></br>
@@ -1584,7 +1765,8 @@ export default class concrete extends React.Component {
               <br></br>
               <br></br>
               <label id="bob">
-                Total Hardscape Price to Customer: ${this.state.total}
+                Total Hardscape Costs Paid to Contractor: $
+                {this.state.totalCont}
               </label>
               <br></br>
               <label id="bob">
@@ -1899,7 +2081,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="dsqf"
                     placeholder={this.state.squareFeet}
-                    value={this.state.dSquareFeet}
+                    // value={this.state.dSquareFeet}
                     onChange={this.handleDemoChange}
                   />
                 </div>
@@ -1921,7 +2103,7 @@ export default class concrete extends React.Component {
                   type="radio"
                   id="no"
                   name="haul"
-                  value="no"
+                  value="haul"
                   onClick={() => this.hide("haul")}
                   defaultChecked
                 />
@@ -1929,24 +2111,27 @@ export default class concrete extends React.Component {
 
                 <div id="haull" style={stylesHaul}>
                   <br></br>
-                  <label>
-                    Haul Away Square Footage (default is full demo area):
-                  </label>
-                  <input
-                    type="text"
-                    id="haulsqff"
-                    placeholder={this.state.squareFeet}
-                    onChange={this.handleHaul}
-                  />
-                  <br></br>
-                  <br></br>
-                  <label>Additional Haul Away Volume in Cubic Yards: </label>
-                  <input
-                    type="text"
-                    id="hauladdsqff"
-                    placeholder="Ex: 50"
-                    onChange={this.handleHaul}
-                  />
+                  <form id="haulreset">
+                    <label>
+                      Haul Away Square Footage (default is full demo area):
+                    </label>
+                    <input
+                      type="text"
+                      id="haulsqff"
+                      placeholder={this.state.squareFeet}
+                      value={this.state.haulsquareFT}
+                      onChange={this.handleHaul}
+                    />
+                    <br></br>
+                    <br></br>
+                    <label>Additional Haul Away Volume in Cubic Yards: </label>
+                    <input
+                      type="text"
+                      id="hauladdsqff"
+                      placeholder="Ex: 50"
+                      onChange={this.handleHaul}
+                    />
+                  </form>
                 </div>
               </div>
 
@@ -2849,7 +3034,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="dsqf"
                     placeholder={this.state.squareFeet}
-                    value={this.state.dSquareFeet}
+                    // value={this.state.dSquareFeet}
                     onChange={this.handleDemoChange}
                   />
                 </div>
@@ -3799,7 +3984,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="dsqf"
                     placeholder={this.state.squareFeet}
-                    value={this.state.dSquareFeet}
+                    // value={this.state.dSquareFeet}
                     onChange={this.handleDemoChange}
                   />
                 </div>
@@ -4749,7 +4934,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="dsqf"
                     placeholder={this.state.squareFeet}
-                    value={this.state.dSquareFeet}
+                    // value={this.state.dSquareFeet}
                     onChange={this.handleDemoChange}
                   />
                 </div>
