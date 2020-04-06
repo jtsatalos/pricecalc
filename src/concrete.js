@@ -426,6 +426,8 @@ export default class concrete extends React.Component {
 
     // console.log(theTotal);
     // this.setState({ total: theTotal });
+
+
     totalCont = totalCont.toFixed(2);
     if (isNaN(totalCont)) {
       this.setState({ totalCont: 0 });
@@ -437,6 +439,19 @@ export default class concrete extends React.Component {
       this.setState({ total: 0 });
     } else {
       this.setState({ total: totalCust });
+    }
+    var totalContSQF = 
+    (totalCont / sqf).toFixed(2);
+    if (isNaN(totalContSQF)) {
+      this.setState({ totalContperSqf: 0 });
+    } else {
+      this.setState({ totalContperSqf: totalContSQF });
+    }
+    var totalCustSQF = (totalCust / sqf).toFixed(2);
+    if (isNaN(totalCustSQF)) {
+      this.setState({ totalperSqf: 0 });
+    } else {
+      this.setState({ totalperSqf: totalCustSQF });
     }
   }
 
@@ -1771,7 +1786,7 @@ export default class concrete extends React.Component {
               <br></br>
               <label id="bob">
                 Total Hardscape Price Per Square Foot : $
-                {this.state.totalperSqf}
+                {this.state.totalContperSqf}
               </label>
             </div>
           </div>
