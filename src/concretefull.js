@@ -1,6 +1,5 @@
 import React from "react";
 import { db } from "./db.js";
-import { thisExpression } from "@babel/types";
 
 // import { createBrowserHistory } from "history";
 // import {
@@ -19,7 +18,6 @@ export default class concrete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       numShown: 1,
       zipPricing: 0,
       zipPricingContractor: 0,
@@ -103,37 +101,27 @@ export default class concrete extends React.Component {
       baseDisp: "none",
       extra: true,
       extraDisp: "none",
-
-      conc_areas: []
+      conc2: true,
+      conc2Disp: "none",
+      conc3: true,
+      conc3Disp: "none",
+      conc4: true,
+      conc4Disp: "none",
+      conc5: true,
+      conc5Disp: "none"
     };
     document.title = "Concrete Calculator";
-  }
-
-  componentDidMount() {
-    const concAreas = db.concreteArea
-    this.state.conc_areas = concAreas
-    this.setState({
-      conc_areas: this.state.conc_areas.filter(area => {
-        return area.id <= this.state.areas;
-      })
-    });
-    console.log(this.state.conc_areas)
   }
 
   reload() {
     window.location.reload();
   }
-  calc(e,areaNum) {
+  calc(e) {
     e.preventDefault();
-    var headParent = document.getElementById(areaNum)
-    var sqfblarg = parseInt(headParent.querySelector("#sqft").value, 10);
-    console.log("sqf using parent node: " + sqfblarg)
     // Finish type value
     this.setState({ total: 0, totalCont: 0 });
-    // var trySQF = document.getElementById("sqft").value
-    // console.log("doc get by id: " + trySQF)
-    var sqf = parseInt(document.getElementById("sqft").value, 10);
-    console.log("this.state id: " + sqf)
+    console.log(this.state.haulSquareFeet);
+    var sqf = parseInt(this.state.squareFeet, 10);
     var margin = parseInt(this.state.margin, 10);
     var laborPrice = db.regions[this.state.zipRegion].finishLaborMPD;
     var laborSQF = db.regions[this.state.zipRegion].finishLaborSQFMPD;
@@ -206,6 +194,8 @@ export default class concrete extends React.Component {
     }
 
     totalCust = +totalCust + +totAdded;
+    // totalCust = totalCust.toFixed(2);
+    // this.setState({ total: totalCust });
 
     // garageFloor
     var binFloor = parseInt(this.state.garageFloor, 10);
@@ -353,14 +343,9 @@ export default class concrete extends React.Component {
 
     //base 1
     if (!this.state.base) {
-      var baseoneDepth = parseInt(document.getElementById("bdepth").value, 10);
-      console.log("base one depth: "+baseoneDepth)
-      if(!isNaN(document.getElementById("baseee").value)){
-        var basestyle = parseInt(db.base[document.getElementById("baseee").value].cost, 10);
-       
-      }
-      
-     
+      var baseoneDepth = parseInt(this.state.baseDepth, 10);
+      // console.log(baseoneDepth);
+      var basestyle = parseInt(this.state.baseCost, 10);
       var baseVolume = (baseoneDepth / 12) * sqf;
       var unroundbaseVolumeYards = baseVolume / 27;
       var baseVolumeYards = Math.round(unroundbaseVolumeYards);
@@ -391,29 +376,57 @@ export default class concrete extends React.Component {
     }
 
     // zipcode additional pricing
-    if(!isNaN(this.state.zip)){
-      if (db.zipcodes[this.state.zip].addCost > 0) {
-        // console.log(db.zipcodes[this.state.zip].addCost);
-        var zipAdditional = db.zipcodes[this.state.zip].addCost * sqf;
-        var zipAddCont = zipAdditional.toFixed(2);
-        if (isNaN(zipAddCont)) {
-          this.setState({ zipPricingContractor: 0 });
-        } else {
-          this.setState({ zipPricingContractor: zipAddCont });
-        }
-  
-        var zipAdd = (zipAdditional / (1 - margin * 0.01)).toFixed(2);
-        if (isNaN(zipAdd)) {
-          this.setState({ zipPricing: 0 });
-        } else {
-          this.setState({ zipPricing: zipAdd });
-        }
-  
-        totalCont = +totalCont + +zipAddCont;
-        totalCust = +totalCust + +zipAdd;
-        // console.log(totalCust);
+    if (db.zipcodes[this.state.zip].addCost > 0) {
+      // console.log(db.zipcodes[this.state.zip].addCost);
+      var zipAdditional = db.zipcodes[this.state.zip].addCost * sqf;
+      var zipAddCont = zipAdditional.toFixed(2);
+      if (isNaN(zipAddCont)) {
+        this.setState({ zipPricingContractor: 0 });
+      } else {
+        this.setState({ zipPricingContractor: zipAddCont });
       }
+
+      var zipAdd = (zipAdditional / (1 - margin * 0.01)).toFixed(2);
+      if (isNaN(zipAdd)) {
+        this.setState({ zipPricing: 0 });
+      } else {
+        this.setState({ zipPricing: zipAdd });
+      }
+
+      totalCont = +totalCont + +zipAddCont;
+      totalCust = +totalCust + +zipAdd;
+      // console.log(totalCust);
     }
+
+    // base one total
+    // if(isNaN(this.state.bTotal))
+
+    // var theTotal =
+    // parseInt(this.state.bTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10) +
+    // parseInt(this.state.haulTotal, 10);
+    //   this.state.bTotal +
+    // this.state.haulTotal +
+    // this.state.excaTotal +
+    //   this.state.demoTotal +
+    //   this.state.permitTotal +
+    //   this.state.garageFloorVal +
+    //   this.state.locCalc +
+    //   this.state.concVal +
+    //   this.state.finishTypeVal +
+    //   this.state.ergpCosts +
+    //   this.state.zipPricing;
+
+    // console.log(theTotal);
+    // this.setState({ total: theTotal });
 
     // project size delta
     var deltSQF = 0;
@@ -433,7 +446,8 @@ export default class concrete extends React.Component {
     totalCont = +totalCont + +deltSQF;
     totalCust = +totalCust + +custDelta;
 
-    // totals
+    // tootals
+
     totalCont = totalCont.toFixed(2);
     if (isNaN(totalCont)) {
       this.setState({ totalCont: 0 });
@@ -528,8 +542,10 @@ export default class concrete extends React.Component {
       this.setState({
         base: true,
         baseDisp: "none",
+        baseDepth: 0,
+        bContractorTotal: 0,
+        bTotal: 0
       });
-      document.getElementById("bdepth").value = null;
     } else if (obj === "extra") {
       this.setState({ extra: true });
       this.setState({ extraDisp: "none" });
@@ -565,9 +581,9 @@ export default class concrete extends React.Component {
       });
     }
   };
-  // handleSQFChange = event => {
-  //   this.setState({ squareFeet: event.target.value });
-  // };
+  handleSQFChange = event => {
+    this.setState({ squareFeet: event.target.value });
+  };
 
   handleZipChange = event => {
     console.log(event.target.value);
@@ -583,7 +599,7 @@ export default class concrete extends React.Component {
         zipId = val.id - 1;
       }
     });
-    console.log(zipId)
+
     this.setState({ zip: zipId });
     if (zipId) {
       if (db.zipcodes[zipId].region === "South Bay") {
@@ -675,48 +691,26 @@ export default class concrete extends React.Component {
     }
   };
   handleBase = event => {
-    var baseID = event.target.value
-    document.getElementById("baseee").value = baseID
-    console.log(document.getElementById("baseee").value)
-    // console.log(baseID);
-  };
-  
-
-  addArea = event => {
-    console.log(this.state.areas)
-    if(this.state.areas <= 5) {
-      var count = this.state.areas+1
-    this.setState({areas: count})
-    const concAreas = db.concreteArea
-    this.state.conc_areas = concAreas
-    console.log(count) 
-    this.setState({
-      conc_areas: this.state.conc_areas.filter(area => {
-        return area.id <= count;
-      })
-    });
+    if (event.target.id === "2br") {
+      this.setState({ bType: "#2 Base Rock", baseCost: 40 });
+    } else if (event.target.id === "3cgran") {
+      this.setState({ bType: "3/4 Minus Crushed Granite", baseCost: 45 });
+    } else if (event.target.id === "5cgran") {
+      this.setState({ bType: "5/8 Minus Crushed Granite", baseCost: 50 });
+    } else if (event.target.id === "csand") {
+      this.setState({ bType: "Concrete Sand", baseCost: 35 });
+    } else if (event.target.id === "dgray") {
+      this.setState({ bType: "DG Grey", baseCost: 55 });
+    } else if (event.target.id === "dgrays") {
+      this.setState({ bType: "DG Grey Stabilized", baseCost: 155 });
+    } else if (event.target.id === "dgold") {
+      this.setState({ bType: "DG Gold", baseCost: 90 });
+    } else if (event.target.id === "dgolds") {
+      this.setState({ bType: "DG Gold Stabilized", baseCost: 190 });
+    } else if (event.target.id === "bdepth") {
+      this.setState({ baseDepth: event.target.value });
     }
-    
-
   };
-  deleteArea = event => {
-    if(this.state.areas >1){
-      var count = this.state.areas-1
-      this.setState({areas: count})
-      const concAreas = db.concreteArea
-      this.state.conc_areas = concAreas
-      console.log(count) 
-      this.setState({
-        conc_areas: this.state.conc_areas.filter(area => {
-          return area.id <= count;
-        })
-      });
-    }
-    
-
-
-  };
-
 
   // addArea = event => {
   //   this.setState({
@@ -767,20 +761,17 @@ export default class concrete extends React.Component {
     };
     const { stylesExtra } = stylessix;
 
-  
-
-    // var joined = this.state.concretesArray.concat(concretes);
-    // this.setState({ concretesArray: joined });
-
-    return (
-      <div id="overarching">
-        {/* {concretes} */}
-        {/* {this.state.concretesArray} */}
+    const concretes = [
+      <div id="one">
         <h3>Concrete Calculator</h3>
-        <div id="concretes">
-                <label>Zip Code</label>
-                <br></br>
-                {/* <br></br> */}
+        <br></br>
+        <div id="entries">
+          <div id="concretes">
+            <h4>Concrete Area 1</h4>
+            {/* <h4>Concrete Area 1</h4> */}
+            <form id="values" onSubmit={this.handleSubmit}>
+              <div id="options">
+                <label>Zip Code: </label>
                 <input
                   type="text"
                   id="zip"
@@ -789,22 +780,7 @@ export default class concrete extends React.Component {
                   onChange={this.handleZipChange}
                 />
                 *
-                <br></br>
-                {/* <br></br> */}
               </div>
-        {this.state.conc_areas.map(area=> {
-          
-          
-          
-        return(
-          
-        <div id = {area.id} >
-        <div id="entries">
-          <div id="concretes">
-            <h4>Concrete Area {area.id}</h4>
-            
-       
-            <form id='values' onSubmit={this.handleSubmit}>
               <div id="options">
                 <label>Square Feet: </label>
 
@@ -812,8 +788,8 @@ export default class concrete extends React.Component {
                   type="text"
                   id="sqft"
                   placeholder="ex: 500"
-                  // value={this.state.squareFeet}
-                  // onChange={this.handleSQFChange}
+                  value={this.state.squareFeet}
+                  onChange={this.handleSQFChange}
                 />
               </div>
               <div id="options">
@@ -1237,14 +1213,14 @@ export default class concrete extends React.Component {
                 />
                 <label htmlFor="no"> No</label>
 
-                <div id="baseee" style={stylesBase}>
+                <div id="basee" style={stylesBase}>
                   <br></br>
                   <label>Base Layer Material: </label>
                   <input
                     type="radio"
                     id="2br"
                     name="basee"
-                    value={0}
+                    value="2br"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="2br"> #2 Base Rock </label>
@@ -1252,7 +1228,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="3cgran"
                     name="basee"
-                    value={1}
+                    value="3cgran"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="3cgran"> 3/4 Minus Crushed Granite </label>
@@ -1260,7 +1236,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="5cgran"
                     name="basee"
-                    value={2}
+                    value="5cgran"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="5cgran"> 5/8 Minus Crushed Granite </label>
@@ -1268,7 +1244,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="csand"
                     name="basee"
-                    value={3}
+                    value="csand"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="csand"> Concrete Sand </label>
@@ -1276,7 +1252,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="dgray"
                     name="basee"
-                    value={4}
+                    value="dgray"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="dgray"> DG Grey </label>
@@ -1284,7 +1260,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="dgrays"
                     name="basee"
-                    value={5}
+                    value="dgrays"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="dgrays"> DG Grey Stabilized </label>
@@ -1292,7 +1268,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="dgold"
                     name="basee"
-                    value={6}
+                    value="dgold"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="dgold"> DG Gold </label>
@@ -1300,7 +1276,7 @@ export default class concrete extends React.Component {
                     type="radio"
                     id="dgolds"
                     name="basee"
-                    value={7}
+                    value="dgolds"
                     onClick={this.handleBase}
                   />
                   <label htmlFor="dgolds"> DG Gold Stabilized </label>
@@ -1311,7 +1287,7 @@ export default class concrete extends React.Component {
                     type="text"
                     id="bdepth"
                     placeholder="Ex: 4"
-                    // value={this.state.baseDepth}
+                    value={this.state.baseDepth}
                     onChange={this.handleBase}
                   />
                   <br></br>
@@ -1595,7 +1571,7 @@ export default class concrete extends React.Component {
 
               <br></br>
 
-              <button onClick={e => this.calc(e,area.id)}>Calculate</button>
+              <button onClick={e => this.calc(e)}>Calculate</button>
 
               <br></br>
             </form>
@@ -1751,13 +1727,22 @@ export default class concrete extends React.Component {
           </div>
         </div>
       </div>
+    ];
 
-        );
-      })}
+    return (
+      <div id="overarching">
+        {concretes[0]}
+        {/* {concretes[1]}
+        {concretes[2]}
+        {concretes[3]}
+        {concretes[4]}
+        {concretes[5]} */}
+
         <div id="add">
-          <button onClick={this.addArea}>Additional Concrete Area</button>
-          {/* <button>Additional Concrete Area</button> */}
-          <button onClick={() => this.deleteArea()}>Delete Concrete Area</button>
+          {/* <button onClick={() => this.addArea()}> */}
+          <button>Additional Concrete Area</button>
+          {/* <button onClick={() => this.deleteArea()}> */}
+          <button>Delete Concrete Area</button>
 
           <br></br>
           <br></br>

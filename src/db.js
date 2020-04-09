@@ -5321,6 +5321,40 @@ export const db = {
       addCost: 0,
       region: "Sacramento	"
     }
+  ],
+  concreteArea: [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+    { id: 7 },
+    { id: 8 },
+    { id: 9 },
+    { id: 10 }
+  ],
+  baseArea: [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+    { id: 7 },
+    { id: 8 },
+    { id: 9 },
+    { id: 10 }
+  ],
+  base: [
+    { id: 0, type: "#2 Base Rock", cost: 40.0 },
+    { id: 1, type: "3/4 Minus Crushed Granite", cost: 45.0 },
+    { id: 2, type: "5/8 Minus Crushed Granite", cost: 50.0 },
+    { id: 3, type: "Concrete Sand", cost: 35.0 },
+    { id: 4, type: "DG Grey", cost: 55.0 },
+    { id: 5, type: "DG Grey Stabalized", cost: 155.0 },
+    { id: 6, type: "DG Gold", cost: 90.0 },
+    { id: 7, type: "DG Gold Stabalized", cost: 190.0 }
   ]
 };
 
