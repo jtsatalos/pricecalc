@@ -291,7 +291,7 @@ const { conc5 } = concArea5;
               id="no"
               name="munpermacq"
               value="no"
-              onClick={() => this.hide("display")}
+              onClick={(e=> this.hide(e,area.id,"display")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -346,7 +346,7 @@ const { conc5 } = concArea5;
               id="no"
               name="demo"
               value="no"
-              onClick={() => this.hide("demo")}
+              onClick={(e=> this.hide(e,area.id,"demo")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -408,7 +408,7 @@ const { conc5 } = concArea5;
               id="no"
               name="haul"
               value="haul"
-              onClick={() => this.hide("haul")}
+              onClick={(e=> this.hide(e,area.id,"haul")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -456,7 +456,7 @@ const { conc5 } = concArea5;
               id="no"
               name="exca"
               value="no"
-              onClick={() => this.hide("exca")}
+              onClick={(e=> this.hide(e,area.id,"exca")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -521,7 +521,7 @@ const { conc5 } = concArea5;
               id="no"
               name="base"
               value="no"
-              onClick={() => this.hide("base")}
+              onClick={(e=> this.hide(e,area.id,"base")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -625,7 +625,7 @@ const { conc5 } = concArea5;
               id="no"
               name="addReq"
               value="no"
-              onClick={() => this.hide("extra")}
+              onClick={(e=> this.hide(e,area.id,"extra")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -648,7 +648,7 @@ const { conc5 } = concArea5;
               id="no"
               name="rebar"
               value="no"
-              onClick={() => this.hide("rebar")}
+              onClick={(e=> this.hide(e,area.id,"rebar")}
               defaultChecked
             />
             <label htmlFor="no"> No</label>
@@ -1318,7 +1318,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="munpermacq"
                 value="no"
-                onClick={() => this.hide("display")}
+                onClick={(e=> this.hide(e,area.id,"display")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -1373,7 +1373,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="demo"
                 value="no"
-                onClick={() => this.hide("demo")}
+                onClick={(e=> this.hide(e,area.id,"demo")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -1435,7 +1435,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="haul"
                 value="no"
-                onClick={() => this.hide("haul")}
+                onClick={(e=> this.hide(e,area.id,"haul")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -1480,7 +1480,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="exca"
                 value="no"
-                onClick={() => this.hide("exca")}
+                onClick={(e=> this.hide(e,area.id,"exca")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -1547,7 +1547,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="base"
                 value="no"
-                onClick={() => this.hide("base")}
+                onClick={(e=> this.hide(e,area.id,"base")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -1651,7 +1651,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="addReq"
                 value="no"
-                onClick={() => this.hide("extra")}
+                onClick={(e=> this.hide(e,area.id,"extra")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -2265,7 +2265,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="munpermacq"
                 value="no"
-                onClick={() => this.hide("display")}
+                onClick={(e=> this.hide(e,area.id,"display")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -2320,7 +2320,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="demo"
                 value="no"
-                onClick={() => this.hide("demo")}
+                onClick={(e=> this.hide(e,area.id,"demo")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -2382,7 +2382,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="haul"
                 value="no"
-                onClick={() => this.hide("haul")}
+                onClick={(e=> this.hide(e,area.id,"haul")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -2427,7 +2427,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="exca"
                 value="no"
-                onClick={() => this.hide("exca")}
+                onClick={(e=> this.hide(e,area.id,"exca")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -2494,7 +2494,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="base"
                 value="no"
-                onClick={() => this.hide("base")}
+                onClick={(e=> this.hide(e,area.id,"base")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -2598,7 +2598,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="addReq"
                 value="no"
-                onClick={() => this.hide("extra")}
+                onClick={(e=> this.hide(e,area.id,"extra")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -3212,7 +3212,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="munpermacq"
                 value="no"
-                onClick={() => this.hide("display")}
+                onClick={(e=> this.hide(e,area.id,"display")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -3267,7 +3267,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="demo"
                 value="no"
-                onClick={() => this.hide("demo")}
+                onClick={(e=> this.hide(e,area.id,"demo")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -3329,7 +3329,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="haul"
                 value="no"
-                onClick={() => this.hide("haul")}
+                onClick={(e=> this.hide(e,area.id,"haul")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -3374,7 +3374,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="exca"
                 value="no"
-                onClick={() => this.hide("exca")}
+                onClick={(e=> this.hide(e,area.id,"exca")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -3441,7 +3441,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="base"
                 value="no"
-                onClick={() => this.hide("base")}
+                onClick={(e=> this.hide(e,area.id,"base")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
@@ -3545,7 +3545,7 @@ const { conc5 } = concArea5;
                 id="no"
                 name="addReq"
                 value="no"
-                onClick={() => this.hide("extra")}
+                onClick={(e=> this.hide(e,area.id,"extra")}
                 defaultChecked
               />
               <label htmlFor="no"> No</label>
