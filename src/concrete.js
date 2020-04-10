@@ -109,6 +109,10 @@ export default class concrete extends React.Component {
       baseDisp: "none",
       extra: true,
       extraDisp: "none",
+      rebar: true,
+      rebarDisp: "none",
+      admix: true,
+      admixDisp: "none",
 
       conc_areas: []
     };
@@ -480,6 +484,49 @@ export default class concrete extends React.Component {
     db.concreteArea[area-1].totalCont = +db.concreteArea[area-1].totalCont + +deltSQF;
         db.concreteArea[area-1].total = +db.concreteArea[area-1].total + +custDelta;
 
+
+    // rebar
+    if(!this.state.rebar){
+      var rebarId = parseInt(areaParent.querySelector("#rebarr").name, 10);
+      var rebarCostPSQF = db.rebar[rebarId].cost
+      var rebarMult = db.rebar[rebarId].mult
+      var rebarLabor = sqf*rebarMult
+      var rebarCont = (rebarCostPSQF*sqf+rebarLabor).toFixed(2)
+      if (isNaN(rebarCont)) {
+        db.concreteArea[area-1].rebarTotalCont = 0
+      } else {
+        db.concreteArea[area-1].rebarTotalCont = rebarCont
+      }
+      var rebarTot = (rebarCont/margin).toFixed(2)
+      if (isNaN(rebarTot)) {
+        db.concreteArea[area-1].rebarTotal = 0
+      } else {
+        db.concreteArea[area-1].rebarTotal = rebarTot
+      }
+      db.concreteArea[area-1].rebarTotalCont = +db.concreteArea[area-1].totalCont + +rebarCont;
+      db.concreteArea[area-1].rebarTotal = +db.concreteArea[area-1].total + +rebarTot;
+    }
+
+    // admix
+    if(!this.state.admix) {
+      var admixId = parseInt(areaParent.querySelector("#admixx").name, 10);
+      var admixCost = db.admix[admixId].cost
+      var admixLabor = (cubicYards *admixCost).toFixed(2)
+      if (isNaN(admixLabor)) {
+        db.concreteArea[area-1].admixTotalCont = 0
+      } else {
+        db.concreteArea[area-1].admixTotalCont = admixLabor
+      }
+      var admixTotal = (admixLabor/margin).toFixed(2)
+      if (isNaN(admixTotal)) {
+        db.concreteArea[area-1].admixTotal = 0
+      } else {
+        db.concreteArea[area-1].admixTotal = admixTotal
+      }
+      db.concreteArea[area-1].admixTotalCont = +db.concreteArea[area-1].totalCont + +admixLabor;
+      db.concreteArea[area-1].admixTotal = +db.concreteArea[area-1].total + +admixTotal;
+    }
+
     // totals
     totalCont = totalCont.toFixed(2);
     if (isNaN(totalCont)) {
@@ -546,6 +593,14 @@ export default class concrete extends React.Component {
       this.setState({ extra: false });
       this.setState({ extraDisp: "block" });
     }
+    else if (obj === "rebar") {
+      this.setState({ rebar: false });
+      this.setState({ rebarDisp: "block" });
+    }
+    else if (obj === "admix") {
+      this.setState({ admix: false });
+      this.setState({ admixDisp: "block" });
+    }
   }
 
   hide(e,area,obj) {
@@ -599,6 +654,14 @@ export default class concrete extends React.Component {
     } else if (obj === "extra") {
       this.setState({ extra: true });
       this.setState({ extraDisp: "none" });
+    }
+    else if (obj === "rebar") {
+      this.setState({ rebar: true });
+      this.setState({ rebarDisp: "none" });
+    }
+    else if (obj === "admix") {
+      this.setState({ admix: true });
+      this.setState({ admixDisp: "none" });
     }
   }
 
@@ -775,6 +838,17 @@ export default class concrete extends React.Component {
       console.log(head.querySelector("#baseee").name)
     }
   };
+
+  handleRebar(e,area) {
+    var head = document.getElementById(area);
+    db.concreteArea[area-1].rtype = db.rebar[e.target.value].type
+    head.querySelector("#rebarr").name = e.target.value
+  };
+  handleAdmix(e,area) {
+    var head = document.getElementById(area);
+    db.concreteArea[area-1].admixtype = db.admix[e.target.value].type
+    head.querySelector("#admixx").name = e.target.value
+  };
   
 
   addArea = event => {
@@ -862,6 +936,20 @@ export default class concrete extends React.Component {
       }
     };
     const { stylesExtra } = stylessix;
+
+    const stylesseven = {
+      stylesRebar: {
+        display: this.state.rebarDisp
+      }
+    };
+    const { stylesRebar } = stylesseven;
+
+    const styleseight = {
+      stylesAdmix: {
+        display: this.state.admixDisp
+      }
+    };
+    const { stylesAdmix } = styleseight;
 
   
 
@@ -1446,7 +1534,7 @@ export default class concrete extends React.Component {
               <div id="options" style={stylesExtra}>
                 <label>Rebar Required? </label>
 
-                <input type="radio" id="yes" name="rebar" value="yes" />
+                <input type="radio" id="yes" name="rebar" value="yes" onClick={() => this.show("rebar")}/>
                 <label htmlFor="yes"> Yes </label>
 
                 <input
@@ -1455,23 +1543,166 @@ export default class concrete extends React.Component {
                   name="rebar"
                   value="no"
                   defaultChecked
+                  onClick={e=> this.hide(e,area.id,"rebar")}
+
                 />
                 <label htmlFor="no"> No</label>
+                <br></br>
+                <div id="rebarr" style={stylesRebar}>
+                <br></br>
+                <label>Rebar Material: </label>
+                  <input
+                    type="radio"
+                    id="3r12"
+                    name="rebarr"
+                    value={0}
+                    defaultChecked
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="3r12"> #3 Rebar 12" OC </label>
+                  <input
+                    type="radio"
+                    id="3r16"
+                    name="rebarr"
+                    value={1}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="3r16"> #3 Rebar 16" OC </label>
+                  <input
+                    type="radio"
+                    id="3r18"
+                    name="rebarr"
+                    value={2}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="3r18"> #3 Rebar 18" OC </label>
+                  <input
+                    type="radio"
+                    id="3r24"
+                    name="rebarr"
+                    value={3}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="3r24"> #3 Rebar 24" OC </label>
+                  <input
+                    type="radio"
+                    id="4r12"
+                    name="rebarr"
+                    value={4}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="4r12"> #4 Rebar 12" OC </label>
+                  <input
+                    type="radio"
+                    id="4r16"
+                    name="rebarr"
+                    value={5}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="4r16"> #4 Rebar 16" OC </label>
+                  <input
+                    type="radio"
+                    id="4r18"
+                    name="rebarr"
+                    value={6}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="4r18"> #4 Rebar 18" OC </label>
+                  <input
+                    type="radio"
+                    id="4r24"
+                    name="rebarr"
+                    value={7}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="4r24"> #4 Rebar 24" OC </label>
+                  <input
+                    type="radio"
+                    id="2x2W"
+                    name="rebarr"
+                    value={8}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="2x2W"> 2"x2" Wire Mesh </label>
+                  <input
+                    type="radio"
+                    id="4x4W"
+                    name="rebarr"
+                    value={9}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="4x4W"> 4"x4" Wire Mesh </label>
+                  <input
+                    type="radio"
+                    id="6x6W"
+                    name="rebarr"
+                    value={10}
+                    onClick={e=>this.handleRebar(e,area.id)}
+                  />
+                  <label htmlFor="6x6W"> 6"x6" Wire Mesh </label>
+                  <br></br>
+                  </div>
               </div>
               <div id="options" style={stylesExtra}>
                 <label>Concrete Admixture Required? </label>
 
-                <input type="radio" id="yes" name="admix" value="yes" />
+                <input type="radio" id="yes" name="admix" value="yes" onClick={() => this.show("admix")}/>
                 <label htmlFor="yes"> Yes </label>
-
+                
                 <input
                   type="radio"
                   id="no"
                   name="admix"
                   value="no"
                   defaultChecked
+                  onClick={e=> this.hide(e,area.id,"admix")}
                 />
                 <label htmlFor="no"> No</label>
+                <div id="admixx" style={stylesAdmix}>
+                <br></br>
+                <label>Admixture Material: </label>
+                  <input
+                    type="radio"
+                    id="concR"
+                    name="admixx"
+                    value={0}
+                    defaultChecked
+                    onClick={e=>this.handleAdmix(e,area.id)}
+                  />
+                  <label htmlFor="concR"> Concrete Retarder </label>
+                  <input
+                    type="radio"
+                    id="concA"
+                    name="admixx"
+                    value={1}
+                    onClick={e=>this.handleAdmix(e,area.id)}
+                  />
+                  <label htmlFor="concA"> Concrete Accelerator </label>
+                  <input
+                    type="radio"
+                    id="polyS"
+                    name="admixx"
+                    value={2}
+                    onClick={e=>this.handleAdmix(e,area.id)}
+                  />
+                  <label htmlFor="polyS"> Polycarboxylate Superplasticizer </label>
+                  <input
+                    type="radio"
+                    id="synthF"
+                    name="admixx"
+                    value={3}
+                    onClick={e=>this.handleAdmix(e,area.id)}
+                  />
+                  <label htmlFor="sythF"> Synthetic Fiber Reinforcement </label>
+                  <input
+                    type="radio"
+                    id="helixS"
+                    name="admixx"
+                    value={4}
+                    onClick={e=>this.handleAdmix(e,area.id)}
+                  />
+                  <label htmlFor="helixS"> Helix Steel Fiber Reinforcement </label>
+                </div>
               </div>
               {/* v2 */}
               <div id="options" style={stylesExtra}>
