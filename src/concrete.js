@@ -1990,6 +1990,8 @@ export default class concrete extends React.Component {
               <br></br>
               <label id="bob">Regional Pricing: ${area.zipPricing}</label>
               <br></br>
+              <label id="bob">Regional Pricing: ${area.zipPricing}</label>
+              <br></br>
 
               <label id="bob">
                 Project Size Delta: ${area.deltaCust}
