@@ -66,17 +66,17 @@ class Home extends React.Component {
             <tr className="donkey">
               <th className="fun">
                 <NavLink to="/concrete" exact={true} id="thebutts">
-                  <b>Concrete</b>
+                  <b>Hardscape</b>
                 </NavLink>
               </th>
             </tr>
-            <tr className="donkey">
+            {/* <tr className="donkey">
               <th className="fun">
                 <NavLink to="/asphalt">
                   <b>Asphalt</b>
                 </NavLink>
               </th>
-            </tr>
+            </tr> */}
           </thead>
         </table>
         {/* <div></div>
