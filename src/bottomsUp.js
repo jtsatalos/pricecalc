@@ -1559,7 +1559,7 @@ export default class concrete extends React.Component {
                     defaultChecked
                     onClick={e=>this.handleRebar(e,area.id)}
                   />
-                  <label htmlFor="3r12"> #3 Rebar 12" OC </label>
+                  <label htmlFor="3r12"> #3 Rebar 12\"OC </label>
                   <input
                     type="radio"
                     id="3r16"
@@ -1567,7 +1567,7 @@ export default class concrete extends React.Component {
                     value={1}
                     onClick={e=>this.handleRebar(e,area.id)}
                   />
-                  <label htmlFor="3r16"> #3 Rebar 16" OC </label>
+                  <label htmlFor="3r16"> #3 Rebar 16\"OC </label>
                   <input
                     type="radio"
                     id="3r18"
@@ -1591,7 +1591,7 @@ export default class concrete extends React.Component {
                     value={4}
                     onClick={e=>this.handleRebar(e,area.id)}
                   />
-                  <label htmlFor="4r12"> #4 Rebar 12" OC </label>
+                  <label htmlFor="4r12"> #4 Rebar 12\"OC </label>
                   <input
                     type="radio"
                     id="4r16"
@@ -1599,7 +1599,7 @@ export default class concrete extends React.Component {
                     value={5}
                     onClick={e=>this.handleRebar(e,area.id)}
                   />
-                  <label htmlFor="4r16"> #4 Rebar 16" OC </label>
+                  <label htmlFor="4r16"> #4 Rebar 16\"OC </label>
                   <input
                     type="radio"
                     id="4r18"
@@ -1639,7 +1639,7 @@ export default class concrete extends React.Component {
                     value={10}
                     onClick={e=>this.handleRebar(e,area.id)}
                   />
-                  <label htmlFor="6x6W"> 6"x6" Wire Mesh </label>
+                  <label htmlFor="6x6W"> 6"x6\"Wire Mesh </label>
                   <br></br>
                   </div>
               </div>
@@ -2087,6 +2087,26 @@ export default class concrete extends React.Component {
 
         );
       })}
+      {/* <form id="stainForm">
+                        <input
+                          type="radio"
+                          id="premix"
+                          name="stain"
+                          value="Pre-Mixed"
+                          onClick={e => this.handleFinishType(e, area.id)}
+                          defaultChecked
+                        />
+                        <label htmlFor="prmix"> Pre-Mixed</label>
+
+                        <input
+                          type="radio"
+                          id="surfApp"
+                          name="stain"
+                          value="Surface Applied"
+                          onClick={e => this.handleFinishType(e, area.id)}
+                        />
+                        <label htmlFor="surfApp"> Surface Applied</label>
+                      </form> */}
         <div id="add">
           <button onClick={this.addArea}>Additional Concrete Area</button>
           {/* <button>Additional Concrete Area</button> */}

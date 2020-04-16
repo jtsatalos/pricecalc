@@ -35,6 +35,17 @@ h4 {
   margin: 0px;
 }
 
+/* for hidden values of edit and additional */
+#optionsShown {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgb(237, 237, 237);
+}
+#optionsShown:hover {
+  background-color: lightgray;
+}
+
 #options {
   border-bottom: 1px solid lightgray;
   /* border-top: 1px solid lightgray; */
@@ -68,6 +79,9 @@ h4 {
   /* border-top: 1px solid lightgray; */
   border-bottom: 1px solid lightgray;
   float: left;
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  /* padding-top: 10px; */
   /* padding-bottom: 20px;
   padding-top: 20px;
   margin: 0px; */
@@ -97,9 +111,6 @@ h4 {
 } */
 
 #totals {
-  border-bottom: 1px solid lightgray;
-  /* border-top: 1px solid lightgray; */
-  /* text-align: right; */
   padding-bottom: 10px;
   padding-top: 10px;
   padding-right: 30px;
@@ -144,4 +155,30 @@ th.fun {
   float: left;
 
   width: 100%;
+}
+
+/* select */
+
+.select-css {
+  font-size: 18x;
+
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #fff;
+}
+.select-css::-ms-expand {
+  display: none;
+}
+.select-css:hover {
+  border-color: #888;
+}
+.select-css:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+.select-css option {
+  font-weight: normal;
 }
