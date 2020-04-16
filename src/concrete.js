@@ -49,20 +49,26 @@ export default class concrete extends React.Component {
         return area.id <= this.state.areas;
       })
     });
+
+    // const stainAreas = db.stain;
+    // console.log(this.state.areas);
+    // console.log(db.stain[this.state.areas].count);
+    // this.state.stain_areas = stainAreas;
     const stainAreas = db.stain;
     this.state.stain_areas = stainAreas;
+    // console.log(db.stainer[]);
     this.setState({
-      stain_areas: this.state.stain_areas.filter(stain => {
-        return stain.id <= this.state.stains;
+      stain_areas: this.state.stain_areas.filter(fun => {
+        return fun.id <= db.stainer[this.state.areas].quant;
       })
     });
-    const hideAreas = db.hide;
-    this.state.hide_areas = hideAreas;
-    this.setState({
-      hide_areas: this.state.hide_areas.filter(hide => {
-        return hide.id <= 100;
-      })
-    });
+    // const hideAreas = db.visibility;
+    // this.state.hide_areas = hideAreas;
+    // this.setState({
+    //   hide_areas: this.state.hide_areas.filter(hide => {
+    //     return hide.id <= 100;
+    //   })
+    // });
   }
 
   reload() {
@@ -84,84 +90,60 @@ export default class concrete extends React.Component {
     var margin = parseFloat(this.state.margin, 10);
   }
 
-  show(area, obj) {
-    console.log("entered show");
-    console.log(obj);
+  show(e, area, obj) {
+    // console.log("entered show");
     // console.log(obj);
     if (obj === "base") {
-      // this.setState({ base: false });
-      // this.setState({ baseDisp: "block" });
-      db.hide[0].base[area - 1].styles.display = "block";
+      db.visibility[0].type[area - 1].val = 0;
     } else if (obj === "extra") {
-      // this.setState({ extra: false });
-      // this.setState({ extraDisp: "block" });
-
-      db.hide[1].additional[area - 1].styles.display = "block";
+      db.visibility[1].type[area - 1].val = 0;
     } else if (obj === "rebar") {
-      // this.setState({ rebar: false });
-      // this.setState({ rebarDisp: "block" });
-      db.hide[2].rebar[area - 1].styles.display = "block";
+      db.visibility[2].type[area - 1].val = 0;
     } else if (obj === "edit") {
-      // this.setState({ edit: false });
-      // this.setState({ editDisp: "block" });
-      db.hide[3].edit[area - 1].styles.display = "block";
+      db.visibility[3].type[area - 1].val = 0;
     } else if (obj === "stamp") {
-      // this.setState({ stamp: false });
-      // this.setState({ stampDisp: "block" });
-      db.hide[4].stamp[area - 1].styles.display = "block";
+      db.visibility[4].type[area - 1].val = 0;
     } else if (obj === "stain") {
-      // this.setState({ stain: false });
-      // this.setState({ stainDisp: "block" });
-      db.hide[5].stain[area - 1].styles.display = "block";
+      db.visibility[5].type[area - 1].val = 0;
+      // const stainAreas = db.stain;
+      // this.state.stain_areas = stainAreas;
+      // this.setState({
+      //   stain_areas: this.state.stain_areas[area.id - 1].type.filter(stain => {
+      //     return stain.id <= db.stain[area.id - 1].count;
+      //   })
+      // });
     }
+    this.setState({
+      conc_areas: this.state.conc_areas.filter(area => {
+        return area.id <= this.state.areas;
+      })
+    });
   }
 
   hide(e, area, obj) {
-    // var head = document.getElementById(area);
-    // if (obj === "display") {
-    //   this.setState({ display: true });
-    //   this.setState({ dispDisp: "none" });
-    //   head.querySelector("#pcost").value = 0;
-    //   head.querySelector("#icost").value = 0;
-    //   head.querySelector("#permittype").value = null;
-    //   db.concreteArea[area - 1].ptype = null;
-    // }  else
     if (obj === "base") {
-      db.hide[0].base[area - 1].styles.display = "none";
-      // this.setState({
-      //   base: true,
-      //   baseDisp: "none"
-      // });
-      // head.querySelector("#bdepth").value = null;
-      // db.concreteArea[area - 1].baseDepth = 0;
-      // db.concreteArea[area - 1].btype = null;
-      // head.querySelector("#baseee").name = null;
+      db.visibility[0].type[area - 1].val = 1;
     } else if (obj === "extra") {
-      // this.setState({ extra: true });
-      // this.setState({ extraDisp: "none" });
-      db.hide[1].additional[area - 1].styles.display = "none";
+      db.visibility[1].type[area - 1].val = 1;
     } else if (obj === "rebar") {
-      // this.setState({ rebar: true });
-      // this.setState({ rebarDisp: "none" });
-      db.hide[2].rebar[area - 1].styles.display = "none";
+      db.visibility[2].type[area - 1].val = 1;
     } else if (obj === "edit") {
-      // this.setState({ edit: true });
-      // this.setState({ editDisp: "none" });
-      db.hide[3].edit[area - 1].styles.display = "none";
+      db.visibility[3].type[area - 1].val = 1;
     } else if (obj === "stamp") {
-      // this.setState({ stamp: true });
-      // this.setState({ stampDisp: "none" });
-      db.hide[4].stamp[area - 1].styles.display = "none";
+      db.visibility[4].type[area - 1].val = 1;
     } else if (obj === "stain") {
-      // this.setState({ stain: true });
-      // this.setState({ stainDisp: "none" });
-      db.hide[5].stain[area - 1].styles.display = "none";
+      db.visibility[5].type[area - 1].val = 1;
+      db.stain[area - 1].count = 0;
     }
-    const hideAreas = db.hide;
-    this.state.hide_areas = hideAreas;
-    this.setState({
-      hide_areas: this.state.hide_areas
-    });
+    // console.log(db.stain[area - 1].count);
+    // var counting = db.stain[area - 1].count;
+    // this.setState({
+    //   stain_areas: db.stain.filter(fun => {
+    //     for (var i = 0; i < fun.type.length - 1; i++) {
+    //       return fun.type[i].id <= counting;
+    //     }
+    //   })
+    // });
   }
 
   // Handling Input changes
@@ -228,13 +210,6 @@ export default class concrete extends React.Component {
     }
   }
 
-  // remove values on hide, done but check
-  // handleMunicipalPermit(e,area) {
-  //   var head = document.getElementById(area)
-  //   db.concreteArea[area-1].ptype = head.querySelector("#permittype").value
-  //   console.log(db.concreteArea[area-1].ptype)
-  // };
-
   // done but check
 
   handleBase(e, area) {
@@ -256,11 +231,11 @@ export default class concrete extends React.Component {
   }
   handleStainChange(e, area, count) {
     console.log(count);
-    db.stain[count].sType = e.target.value;
+    db.stain[db.stainer[area.id].qunat].sType = e.target.value;
 
     this.setState({
       stain_areas: this.state.stain_areas.filter(obj => {
-        return obj.id <= this.state.stains;
+        return obj.id <= db.stainer[area - 1].quant;
       })
     });
   }
@@ -295,84 +270,73 @@ export default class concrete extends React.Component {
     }
   };
 
+  //revamp these with db
   addStain = event => {
-    if (this.state.stains < 2) {
-      var count = this.state.stains + 1;
-      this.setState({ stains: count });
+    var area = event.target.value - 1;
+
+    if (db.stainer[area].quant < 2) {
+      var count = db.stainer[area].quant + 1;
+      db.stainer[area].quant = count;
       const stainAreas = db.stain;
       this.state.stain_areas = stainAreas;
+      // console.log(db.stainer[]);
       this.setState({
-        stain_areas: this.state.stain_areas.filter(stain => {
-          return stain.id <= count;
+        stain_areas: this.state.stain_areas.filter(fun => {
+          return fun.id <= db.stainer[area.id].quant;
         })
       });
+      // console.log(db.stain[area].count);
+
+      // var counting = db.stain[area].count;
+      // this.setState({
+      //   stain_areas: db.stain.filter(fun => {
+      //     for (var i = 0; i < fun.type.length - 1; i++) {
+      //       return fun.type[i].id <= counting;
+      //     }
+      //   })
+      // });
     }
+    // if (this.state.stains < 2) {
+    //   var count = this.state.stains + 1;
+    //   this.setState({ stains: count });
+    //   const stainAreas = db.stain[0].type;
+    //   this.state.stain_areas = stainAreas;
+    //   this.setState({
+    //     stain_areas: this.state.stain_areas.filter(stain => {
+    //       return stain.id <= count;
+    //     })
+    //   });
+    // }
   };
   deleteStain = event => {
-    if (this.state.stains > 0) {
-      var count = this.state.stains - 1;
-      this.setState({ stains: count });
+    var area = event.target.value - 1;
+    if (db.stainer[area].quant < 2) {
+      var count = db.stainer[area].quant - 1;
+      db.stainer[area].quant = count;
       const stainAreas = db.stain;
       this.state.stain_areas = stainAreas;
+      // console.log(db.stainer[]);
       this.setState({
-        stain_areas: this.state.stain_areas.filter(stain => {
-          return stain.id <= count;
+        stain_areas: this.state.stain_areas.filter(fun => {
+          return fun.id <= db.stainer[area.id].quant;
         })
       });
     }
+    // handleStainRefresh;
+    // if (this.state.stains > 0) {
+    //   var count = this.state.stains - 1;
+    //   this.setState({ stains: count });
+    //   const stainAreas = db.stain[0].type;
+    //   this.state.stain_areas = stainAreas;
+    //   this.setState({
+    //     stain_areas: this.state.stain_areas.filter(stain => {
+    //       return stain.id <= count;
+    //     })
+    //   });
+    // }
   };
 
   render() {
-    const styles = {
-      stylesDisp: {
-        display: this.state.dispDisp
-      }
-    };
-    const { stylesDisp } = styles;
-    // var basesty = "stylesBase"
-    const stylesfive = {
-      stylesBase: {
-        display: this.state.baseDisp
-      }
-    };
-    const { stylesBase } = stylesfive;
-    console.log(stylesBase);
-    console.log(db.hide[0].base[0].styles);
-
-    const stylessix = {
-      stylesExtra: {
-        display: this.state.extraDisp
-      }
-    };
-    const { stylesExtra } = stylessix;
-
-    const stylesseven = {
-      stylesRebar: {
-        display: this.state.rebarDisp
-      }
-    };
-    const { stylesRebar } = stylesseven;
-
-    const styleseight = {
-      stylesEdit: {
-        display: this.state.editDisp
-      }
-    };
-    const { stylesEdit } = styleseight;
-
-    const stylesnine = {
-      stylesStamp: {
-        display: this.state.stampDisp
-      }
-    };
-    const { stylesStamp } = stylesnine;
-    const stylesten = {
-      stylesStain: {
-        display: this.state.stainDisp
-      }
-    };
-    const { stylesStain } = stylesten;
-
     // var joined = this.state.concretesArray.concat(concretes);
     // this.setState({ concretesArray: joined });
 
@@ -417,6 +381,15 @@ export default class concrete extends React.Component {
           var elec = "elec" + area.id;
           var addlaboor = "addlaborr" + area.id;
           var custReq = "cust" + area.id;
+
+          // console.log("conc areaa");
+          // db.vals[db.visibility[3].edit[area.id - 1].val].styles
+          // console.log(db.vals[0].type[0].styles);
+          // console.log(db.visibility[3].type[area.id - 1].val);
+          // console.log(
+          //   db.vals[db.visibility[3].type[area.id - 1].val].type[0].styles
+          // );
+
           return (
             <div id={area.id}>
               <div id="entries">
@@ -492,16 +465,16 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id="yes"
+                      id={3}
                       name={edits}
                       value="yes"
-                      onClick={this.show.bind(area.id, "edit")}
+                      onClick={e => this.show(e, area.id, "edit")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
                       type="radio"
-                      id="no"
+                      id={3}
                       name={edits}
                       value="no"
                       onClick={e => this.hide(e, area.id, "edit")}
@@ -510,8 +483,15 @@ export default class concrete extends React.Component {
                     <label htmlFor="no"> No</label>
                   </div>
 
-                  <div id="optionsShown" style={db.hide[3].edit[0]}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[3].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Concrete Type: </label>
+
                     <select
                       id="selectPSI"
                       class="select-css"
@@ -545,7 +525,13 @@ export default class concrete extends React.Component {
                       onChange={e => this.handleCDepthChange(e, area.id)}
                     />
                   </div>
-                  <div id="optionsShown" style={stylesEdit}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[3].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Finish Type: </label>
 
                     <input
@@ -567,21 +553,27 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="salt"> Salt</label>
                   </div>
-                  <div id="optionsShown" style={stylesEdit}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[3].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Base Layer Required? </label>
 
                     <input
                       type="radio"
-                      id="yes"
+                      id={1}
                       name={basell}
                       value="yes"
-                      onClick={this.show.bind(area.id, "base")}
+                      onClick={e => this.show(e, area.id, "base")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
                       type="radio"
-                      id="no"
+                      id={1}
                       name={basell}
                       value="no"
                       onClick={e => this.hide(e, area.id, "base")}
@@ -589,7 +581,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
 
-                    <div id="baseee" style={stylesBase}>
+                    <div
+                      id="baseee"
+                      style={
+                        db.vals[db.visibility[0].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
                       <br></br>
                       <label>Base Layer Material: </label>
                       <select id="selectBase" class="select-css">
@@ -618,21 +616,27 @@ export default class concrete extends React.Component {
                     </div>
                   </div>
 
-                  <div id="optionsShown" style={stylesEdit}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[3].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Rebar Required? </label>
 
                     <input
                       type="radio"
-                      id="yes"
+                      id={2}
                       name={rebaar}
                       value="yes"
-                      onClick={this.show.bind(area.id, "rebar")}
+                      onClick={e => this.show(e, area.id, "rebar")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
                       type="radio"
-                      id="no"
+                      id={2}
                       name={rebaar}
                       value="no"
                       defaultChecked
@@ -640,7 +644,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                     <br></br>
-                    <div id="rebarr" style={stylesRebar}>
+                    <div
+                      id="rebarr"
+                      style={
+                        db.vals[db.visibility[2].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
                       <br></br>
                       <label>Material: </label>
                       <select id="selectRebar" class="select-css">
@@ -663,7 +673,7 @@ export default class concrete extends React.Component {
                       id="yes"
                       name={addREqq}
                       value="yes"
-                      onClick={this.show.bind(area.id, "extra")}
+                      onClick={e => this.show(e, area.id, "extra")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
@@ -677,24 +687,28 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  {/* v2 */}
 
-                  {/* v2 */}
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Stamped Finish Requested? </label>
 
                     <input
                       type="radio"
-                      id="yes"
+                      id={4}
                       name={stampss}
                       value="yes"
-                      onClick={this.show.bind(area.id, "stamp")}
+                      onClick={e => this.show(e, area.id, "stamp")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
                       type="radio"
-                      id="no"
+                      id={4}
                       name={stampss}
                       value="no"
                       defaultChecked
@@ -702,10 +716,17 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
 
-                    <div id="stampp" style={stylesStamp}>
+                    <div
+                      id="stampp"
+                      style={
+                        db.vals[db.visibility[4].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
                       <br></br>
                       <label>Stamp Choice: </label>
                       <select id="selectStamp" class="select-css">
+                        {db.stamps}
                         {db.stamps.map(rebar => {
                           return (
                             <option id={rebar.type} name={rebar.id}>
@@ -717,32 +738,48 @@ export default class concrete extends React.Component {
                     </div>
                   </div>
 
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Stained Finish Requested? </label>
 
                     <input
                       type="radio"
-                      id="yes"
+                      id={5}
                       name={stainsss}
                       value="yes"
                       // defaultChecked
-                      onClick={this.show.bind(area.id, "stain")}
+                      onClick={e => this.show(e, area.id, "stain")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
                       type="radio"
-                      id="no"
+                      id={5}
                       name={stainsss}
                       value="no"
                       defaultChecked
                       onClick={e => this.hide(e, area.id, "stain")}
                     />
                     <label htmlFor="no"> No</label>
-                    <div id="stainn" name="PM" style={stylesStain}>
-                      {this.state.stain_areas.map(count => {
-                        var pm = count.id + "pm";
-                        var ap = count.id + "ap";
+                    <div
+                      id="stainn"
+                      name="PM"
+                      style={
+                        db.vals[db.visibility[5].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      {console.log(this.state.stain_areas)}
+                      {db.stain.map(count => {
+                        console.log(count.type[0]);
+                        // console.log(count);
+                        var pm = count.id + "pm" + area.id;
+                        // var ap = count.id + "ap";
                         return (
                           <div id="stainVals" name={count}>
                             <br></br>
@@ -768,34 +805,26 @@ export default class concrete extends React.Component {
                               }
                             />
                             <label htmlFor={pm}> Surface Applied</label>
-                            {/* <select
-                              class="select-css"
-                              id="selectStainType"
-                              value="Pre-Mixed"
-                              onChange={e =>
-                                this.handleStainChange(e, area.id, count.id)
-                              }
-                            >
-                              <option selected value="Pre-Mixed">
-                                Pre-Mixed
-                              </option>
-                              <option>Surface Applied</option>
-                            </select> */}
+
                             <br></br>
                             <br></br>
                             <label>Color: </label>
                             <select id="selectStain" class="select-css">
                               {db.stains.map(stain => {
-                                // var head = document.getElementById(area.id);
-                                // var type = head.querySelector("#selectStainType");
+                                var nameColor = area.id + "color" + stain.id;
+                                // if(document.getElementsByName(pm)) {
+                                //   if(document.getElementsByName(pm))
+                                // }
+                                console.log(db.stain[area.id - 1].type);
                                 // console.log(count.id);
-                                // console.log(db.stain[count.id].id);
-                                // console.log(db.stain[count.id].sType);
 
-                                if (db.stain[count.id].sType === "Pre-Mixed") {
+                                if (
+                                  db.stain[area.id - 1].type[count.id].sType ===
+                                  "Pre-Mixed"
+                                ) {
                                   if (stain.id <= 39) {
                                     return (
-                                      <option id={stain.type} name={stain.id}>
+                                      <option id={stain.type} name={nameColor}>
                                         {stain.type}
                                       </option>
                                     );
@@ -803,7 +832,7 @@ export default class concrete extends React.Component {
                                 } else {
                                   if (stain.id > 39) {
                                     return (
-                                      <option id={stain.type} name={stain.id}>
+                                      <option id={stain.type} name={nameColor}>
                                         {stain.type}
                                       </option>
                                     );
@@ -816,10 +845,10 @@ export default class concrete extends React.Component {
                         );
                       })}
                       <br></br>
-                      <button onClick={this.addStain}>
+                      <button value={area.id} onClick={this.addStain}>
                         Add Extra Stain Color
                       </button>
-                      <button onClick={this.deleteStain}>
+                      <button value={area.id} onClick={this.deleteStain}>
                         Delete Stain Color
                       </button>
                       <br></br>
@@ -827,7 +856,13 @@ export default class concrete extends React.Component {
                     </div>
                   </div>
 
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Sealant Requested? </label>
 
                     <input type="radio" id="yes" name={seals} value="yes" />
@@ -843,7 +878,13 @@ export default class concrete extends React.Component {
                     <label htmlFor="no"> No</label>
                   </div>
                   {/* v2 */}
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Exposed Aggregate Finish Requested? </label>
 
                     <input type="radio" id="yes" name={aggra} value="yes" />
@@ -858,7 +899,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Underlayment Required? </label>
 
                     <input type="radio" id="yes" name={underlayy} value="yes" />
@@ -873,7 +920,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Drainage Required? </label>
 
                     <input type="radio" id="yes" name={drainn} value="yes" />
@@ -889,7 +942,13 @@ export default class concrete extends React.Component {
                     <label htmlFor="no"> No</label>
                   </div>
                   {/* v2 */}
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Steps Requested? </label>
 
                     <input type="radio" id="yes" name={stepps} value="yes" />
@@ -905,7 +964,13 @@ export default class concrete extends React.Component {
                     <label htmlFor="no"> No</label>
                   </div>
                   {/* v2 */}
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Landing Requested?</label>
 
                     <input type="radio" id="yes" name={landingg} value="yes" />
@@ -921,7 +986,13 @@ export default class concrete extends React.Component {
                     <label htmlFor="no"> No</label>
                   </div>
                   {/* v2 */}
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Curbing: </label>
 
                     <input
@@ -941,7 +1012,13 @@ export default class concrete extends React.Component {
                     <label htmlFor="curved"> Curved</label>
                   </div>
                   {/* v2 */}
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Retaining Wall Required? </label>
 
                     <input type="radio" id="yes" name={retWall} value="yes" />
@@ -956,7 +1033,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>
                       Driveway Approach with Sidewalk and Gutter Requested?
                     </label>
@@ -973,7 +1056,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Electrical Conduit Requested? </label>
 
                     <input type="radio" id="yes" name={elec} value="yes" />
@@ -988,7 +1077,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Additional Labor Required? </label>
 
                     <input type="radio" id="yes" name={addlaboor} value="yes" />
@@ -1003,7 +1098,13 @@ export default class concrete extends React.Component {
                     />
                     <label htmlFor="no"> No</label>
                   </div>
-                  <div id="optionsShown" style={stylesExtra}>
+                  <div
+                    id="optionsShown"
+                    style={
+                      db.vals[db.visibility[1].type[area.id - 1].val].type[0]
+                        .styles
+                    }
+                  >
                     <label>Custom Request? </label>
 
                     <input type="radio" id="yes" name={custReq} value="yes" />

@@ -6415,6 +6415,13 @@ export const db = {
     { id: 106, type: "	Classic Wood with Nail Studs", amount: 1, cost: 1 },
     { id: 107, type: "	Bridges of Madison County", amount: 1, cost: 1 }
   ],
+  stainer: [
+    { id: 0, quant: 0 },
+    { id: 1, quant: 0 },
+    { id: 2, quant: 0 },
+    { id: 3, quant: 0 },
+    { id: 4, quant: 0 }
+  ],
   stain: [
     { id: 0, sType: "Pre-Mixed" },
     { id: 1, sType: "Pre-Mixed" },
@@ -6498,180 +6505,20 @@ export const db = {
     { id: 74, type: "	Surface Applied - Walnut" },
     { id: 75, type: "	Surface Applied - White" }
   ],
-  hide: [
+  vals: [
     {
       id: 0,
-      base: [
+      type: [
         {
           styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
+            display: "block"
           }
         }
       ]
     },
     {
       id: 1,
-      additional: [
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        }
-      ]
-    },
-    {
-      id: 2,
-      rebar: [
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        }
-      ]
-    },
-    {
-      id: 3,
-      edit: [
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        }
-      ]
-    },
-    {
-      id: 4,
-      stamp: [
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        }
-      ]
-    },
-    {
-      id: 5,
-      stain: [
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
-        {
-          styles: {
-            display: "none"
-          }
-        },
+      type: [
         {
           styles: {
             display: "none"
@@ -6679,6 +6526,14 @@ export const db = {
         }
       ]
     }
+  ],
+  visibility: [
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // base
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //extra
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //rebar
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //edit
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //stamp
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } //stain
   ]
 };
 
