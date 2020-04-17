@@ -6581,7 +6581,8 @@ export const db = {
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //stain
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //seal
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //aggra
-    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // underlay
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // underlay
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // drain
   ],
   // sealant: [
   //   { id: 0, type: "Glossy " },
@@ -6850,6 +6851,73 @@ export const db = {
         { id: 2, bdepth: 0 },
         { id: 3, bdepth: 0 },
         { id: 4, bdepth: 0 }
+      ]
+    }
+  ],
+  drainage: [
+    { id: 0, type: "Drain Pipe", cost: 20.0 },
+    { id: 1, type: "Trench Drain", cost: 50.0 },
+    { id: 2, type: "French Drain", cost: 35.0 },
+    { id: 3, type: "Channel Drain", cost: 75.0 },
+    { id: 4, type: "Basin Drain", cost: 100.0 },
+    { id: 5, type: "Dry Well", cost: 300.0 },
+    { id: 6, type: "Emitters", cost: 25.0 },
+    { id: 7, type: "Drain Pipe(excavated)", cost: 10.0 }
+  ],
+  drains: [
+    {
+      id: 0,
+      quant: 0,
+      options: [
+        { id: 0, drainSize: 0 },
+        { id: 1, drainSize: 0 },
+        { id: 2, drainSize: 0 },
+        { id: 3, drainSize: 0 },
+        { id: 4, drainSize: 0 }
+      ]
+    },
+    {
+      id: 1,
+      quant: 0,
+      options: [
+        { id: 0, drainSize: 0 },
+        { id: 1, drainSize: 0 },
+        { id: 2, drainSize: 0 },
+        { id: 3, drainSize: 0 },
+        { id: 4, drainSize: 0 }
+      ]
+    },
+    {
+      id: 2,
+      quant: 0,
+      options: [
+        { id: 0, drainSize: 0 },
+        { id: 1, drainSize: 0 },
+        { id: 2, drainSize: 0 },
+        { id: 3, drainSize: 0 },
+        { id: 4, drainSize: 0 }
+      ]
+    },
+    {
+      id: 3,
+      quant: 0,
+      options: [
+        { id: 0, drainSize: 0 },
+        { id: 1, drainSize: 0 },
+        { id: 2, drainSize: 0 },
+        { id: 3, drainSize: 0 },
+        { id: 4, drainSize: 0 }
+      ]
+    },
+    {
+      id: 4,
+      quant: 0,
+      options: [
+        { id: 0, drainSize: 0 },
+        { id: 1, drainSize: 0 },
+        { id: 2, drainSize: 0 },
+        { id: 3, drainSize: 0 },
+        { id: 4, drainSize: 0 }
       ]
     }
   ]

@@ -90,6 +90,8 @@ export default class concrete extends React.Component {
       db.visibility[7].type[area - 1].val = 0;
     } else if (obj === "under") {
       db.visibility[8].type[area - 1].val = 0;
+    } else if (obj === "drain") {
+      db.visibility[9].type[area - 1].val = 0;
     }
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
@@ -118,6 +120,8 @@ export default class concrete extends React.Component {
       db.visibility[7].type[area - 1].val = 1;
     } else if (obj === "under") {
       db.visibility[8].type[area - 1].val = 1;
+    } else if (obj === "drain") {
+      db.visibility[9].type[area - 1].val = 1;
     }
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
@@ -350,6 +354,21 @@ export default class concrete extends React.Component {
     var area = event.target.value - 1;
     if (db.bases[area].quant > 0) {
       db.bases[area].quant = db.bases[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  addDrain = event => {
+    var area = event.target.value - 1;
+
+    if (db.drains[area].quant < 4) {
+      db.drains[area].quant = db.drains[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  deleteDrain = event => {
+    var area = event.target.value - 1;
+    if (db.drains[area].quant > 0) {
+      db.drains[area].quant = db.drains[area].quant - 1;
       this.setState({ conc_areas: this.state.conc_areas });
     }
   };
@@ -1120,7 +1139,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Drainage Required? </label>
 
-                    <input type="radio" id="yes" name={drainn} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={drainn}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "drain")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1129,10 +1154,55 @@ export default class concrete extends React.Component {
                       name={drainn}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "drain")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="drainnn"
+                      style={
+                        db.vals[db.visibility[9].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      {db.drains[area.id - 1].options.map(count => {
+                        if (count.id <= db.drains[area.id - 1].quant) {
+                          return (
+                            <div id="drainVals" name={count}>
+                              <br></br>
+                              <label>Type: </label>
+                              <select id="selectDrain" class="select-css">
+                                {db.drainage.map(drain => {
+                                  return (
+                                    <option id={drain.type} name={drain.id}>
+                                      {drain.type}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                              <br></br>
+                              <br></br>
+                              <label>Drainage Linear Feet/Quantity: </label>
+                              <input
+                                type="text"
+                                id="drainsie"
+                                placeholder="Ex: 50"
+                              />
+                            </div>
+                          );
+                        }
+                      })}
+                      <br></br>
+                      <button value={area.id} onClick={this.addDrain}>
+                        Add Extra Drainage
+                      </button>
+                      <button value={area.id} onClick={this.deleteDrain}>
+                        Delete Drainage
+                      </button>
+                      <br></br>
+                      <br></br>
+                    </div>
                   </div>
-                  {/* v2 */}
+
                   <div
                     id="optionsShown"
                     style={
