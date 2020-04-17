@@ -34,7 +34,11 @@ export default class concrete extends React.Component {
       stain: true,
       stainDisp: "none",
 
-      conc_areas: []
+      conc_areas: [],
+      stain_areas: [],
+      seal_areas: [],
+      underlayment_areas: []
+      // hide_areas: []
     };
     document.title = "Concrete Calculator";
   }
@@ -46,6 +50,37 @@ export default class concrete extends React.Component {
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
         return area.id <= this.state.areas;
+      })
+    });
+
+    const stainAreas = db.stainer[this.state.areas - 1].stainTypes;
+    this.state.stain_areas = stainAreas;
+    console.log(db.stainer);
+
+    this.setState({
+      stain_areas: this.state.stain_areas.filter(fun => {
+        return fun.id <= db.stainer[this.state.areas - 1].quant;
+      })
+    });
+
+    const sealAreas = db.seals[this.state.areas - 1].sealTypes;
+    this.state.seal_areas = sealAreas;
+
+    this.setState({
+      seal_areas: this.state.seal_areas.filter(fun => {
+        return fun.id <= db.seals[this.state.areas - 1].quant;
+      })
+    });
+    console.log(db.underlay[this.state.areas - 1].types);
+
+    const underlayAreas = db.underlay[this.state.areas - 1].types;
+
+    console.log(db.underlay);
+    this.state.underlayment_areas = underlayAreas;
+    console.log(this.state.underlayment_areas);
+    this.setState({
+      underlayment_areas: this.state.underlayment_areas.filter(fun => {
+        return fun.id <= db.underlay[this.state.areas - 1].quant;
       })
     });
   }
@@ -202,15 +237,15 @@ export default class concrete extends React.Component {
   // done but check
 
   handleBase(e, area) {
-    // var head = document.getElementById(area);
-    // if (e.target.id === "bdepth") {
-    //   db.concreteArea[area - 1].baseDepth = e.target.value;
-    // } else {
-    //   db.concreteArea[area - 1].btype = db.base[e.target.value].type;
-    //   console.log(db.concreteArea[area - 1].btype);
-    //   head.querySelector("#baseee").name = db.base[e.target.value].cost;
-    //   console.log(head.querySelector("#baseee").name);
-    // }
+    var head = document.getElementById(area);
+    if (e.target.id === "bdepth") {
+      db.concreteArea[area - 1].baseDepth = e.target.value;
+    } else {
+      db.concreteArea[area - 1].btype = db.base[e.target.value].type;
+      console.log(db.concreteArea[area - 1].btype);
+      head.querySelector("#baseee").name = db.base[e.target.value].cost;
+      console.log(head.querySelector("#baseee").name);
+    }
   }
 
   handleRebar(e, area) {
@@ -220,13 +255,27 @@ export default class concrete extends React.Component {
   }
   handleStainChange(e, area, count) {
     db.stainer[area - 1].stainTypes[count].sType = e.target.value;
-    this.setState({ conc_areas: this.state.conc_areas });
+    this.setState({
+      stain_areas: this.state.stain_areas.filter(obj => {
+        return obj.id <= db.stainer[area - 1].quant;
+      })
+    });
   }
   handleSealChange(e, area, count) {
     db.seals[area - 1].sealTypes[count].type = e.target.value;
+    this.setState({
+      seal_areas: this.state.seal_areas.filter(obj => {
+        return obj.id <= db.seals[area - 1].quant;
+      })
+    });
   }
   handleUnderChange(e, area, count) {
     db.underlay[area - 1].types[count].type = e.target.value;
+    this.setState({
+      underlayment_areas: this.state.underlayment_areas.filter(obj => {
+        return obj.id <= db.underlay[area - 1].quant;
+      })
+    });
   }
 
   addArea = event => {
@@ -258,6 +307,16 @@ export default class concrete extends React.Component {
       this.setState({
         seal_areas: this.state.seal_areas.filter(fun => {
           return fun.id <= db.seals[count - 1].quant;
+        })
+      });
+
+      const underlayAreas = db.underlay[count - 1].types;
+      this.state.underlayment_areas = underlayAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        underlayment_areas: this.state.underlayment_areas.filter(fun => {
+          return fun.id <= db.underlay[count - 1].quant;
         })
       });
     }
@@ -293,70 +352,135 @@ export default class concrete extends React.Component {
           return fun.id <= db.seals[count - 1].quant;
         })
       });
+      const underlayAreas = db.underlay[count - 1].types;
+      this.state.underlayment_areas = underlayAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        underlayment_areas: this.state.underlayment_areas.filter(fun => {
+          return fun.id <= db.underlay[count - 1].quant;
+        })
+      });
     }
   };
 
+  //revamp these with db
   addStain = event => {
     var area = event.target.value - 1;
+
     if (db.stainer[area].quant < 2) {
-      db.stainer[area].quant = db.stainer[area].quant + 1;
-      this.setState({ conc_areas: this.state.conc_areas });
+      var count = db.stainer[area].quant + 1;
+      db.stainer[area].quant = count;
+      console.log(db.stainer[area].quant);
+      const stainAreas = db.stainer[area].stainTypes;
+      this.state.stain_areas = stainAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        stain_areas: this.state.stain_areas.filter(fun => {
+          return fun.id <= db.stainer[area].quant;
+        })
+      });
+      console.log(db.stainer[area].quant);
+      console.log(this.state.stain_areas);
     }
   };
   deleteStain = event => {
     var area = event.target.value - 1;
     if (db.stainer[area].quant > 0) {
-      db.stainer[area].quant = db.stainer[area].quant - 1;
+      var count = db.stainer[area].quant - 1;
+      db.stainer[area].quant = count;
+      const stainAreas = db.stain;
+      this.state.stain_areas = stainAreas;
+      // console.log(db.stainer[]);
+      this.setState({
+        stain_areas: this.state.stain_areas.filter(fun => {
+          return fun.id <= db.stainer[area].quant;
+        })
+      });
     }
   };
   addSeal = event => {
     var area = event.target.value - 1;
+
     if (db.seals[area].quant < 1) {
-      db.seals[area].quant = db.seals[area].quant + 1;
-      this.setState({ conc_areas: this.state.conc_areas });
+      var count = db.seals[area].quant + 1;
+      db.seals[area].quant = count;
+
+      const sealAreas = db.seals[area].sealTypes;
+      this.state.seal_areas = sealAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        seal_areas: this.state.seal_areas.filter(fun => {
+          return fun.id <= db.seals[area].quant;
+        })
+      });
     }
   };
   deleteSeal = event => {
     var area = event.target.value - 1;
+
     if (db.seals[area].quant > 0) {
-      db.seals[area].quant = db.seals[area].quant - 1;
-      this.setState({ conc_areas: this.state.conc_areas });
+      var count = db.seals[area].quant - 1;
+      db.seals[area].quant = count;
+
+      const sealAreas = db.seals[area].sealTypes;
+      this.state.seal_areas = sealAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        seal_areas: this.state.seal_areas.filter(fun => {
+          return fun.id <= db.seals[area].quant;
+        })
+      });
     }
   };
   addUnder = event => {
     var area = event.target.value - 1;
 
     if (db.underlay[area].quant < 1) {
-      db.underlay[area].quant = db.underlay[area].quant + 1;
-      this.setState({ conc_areas: this.state.conc_areas });
+      var count = db.underlay[area].quant + 1;
+      db.underlay[area].quant = count;
+
+      const underlayAreas = db.underlay[area].types;
+      this.state.underlayment_areas = underlayAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        underlayment_areas: this.state.underlayment_areas.filter(fun => {
+          return fun.id <= db.underlay[area].quant;
+        })
+      });
     }
   };
   deleteUnder = event => {
     var area = event.target.value - 1;
-    if (db.underlay[area].quant > 0) {
-      db.underlay[area].quant = db.underlay[area].quant - 1;
-      this.setState({ conc_areas: this.state.conc_areas });
-    }
-  };
-  addBase = event => {
-    var area = event.target.value - 1;
 
-    if (db.underlay[area].quant < 1) {
-      db.bases[area].quant = db.bases[area].quant + 1;
-      this.setState({ conc_areas: this.state.conc_areas });
-    }
-  };
-  deleteBase = event => {
-    var area = event.target.value - 1;
-    if (db.bases[area].quant > 0) {
-      db.bases[area].quant = db.bases[area].quant - 1;
-      this.setState({ conc_areas: this.state.conc_areas });
+    if (db.underlay[area].quant > 0) {
+      var count = db.underlay[area].quant - 1;
+      db.underlay[area].quant = count;
+
+      const underlayAreas = db.underlay[area].types;
+      this.state.underlayment_areas = underlayAreas;
+      // console.log(db.stainer[]);
+
+      this.setState({
+        underlayment_areas: this.state.underlayment_areas.filter(fun => {
+          return fun.id <= db.underlay[area].quant;
+        })
+      });
     }
   };
 
   render() {
+    // var joined = this.state.concretesArray.concat(concretes);
+    // this.setState({ concretesArray: joined });
+
     return (
       <div id="overarching">
+        {/* {concretes} */}
+        {/* {this.state.concretesArray} */}
         <h3>Hardscape Calculator</h3>
         <div id="concretes">
           <label>Margin</label>
@@ -601,49 +725,31 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {/* {db.bases[area.id - 1].options[0]} */}
-                      {db.bases[area.id - 1].options.map(count => {
-                        if (count.id <= db.bases[area.id - 1].quant) {
+                      <br></br>
+                      <label>Base Layer Material: </label>
+                      <select id="selectBase" class="select-css">
+                        {db.base.map(base => {
                           return (
-                            <div id="basey" name={count.id}>
-                              <br></br>
-                              <label>
-                                Base Layer Material {count.id + 1}:{" "}
-                              </label>
-                              <select id="selectBase" class="select-css">
-                                {db.base.map(base => {
-                                  return (
-                                    <option id={base.type} name={base.id}>
-                                      {base.type}
-                                    </option>
-                                  );
-                                })}
-                              </select>
-
-                              <br></br>
-                              <br></br>
-                              <label>Base Layer Depth in Inches: </label>
-                              <input
-                                type="text"
-                                id="bdepth"
-                                placeholder="Default is 4"
-                                // value={this.state.baseDepth}
-                                onChange={e => this.handleBase(e, area.id)}
-                              />
-                            </div>
+                            <option id={base.type} name={base.id}>
+                              {base.type}
+                            </option>
                           );
-                        }
-                      })}
+                        })}
+                      </select>
 
                       <br></br>
-                      <button value={area.id} onClick={this.addBase}>
-                        Add Extra Base Layer
-                      </button>
-                      <button value={area.id} onClick={this.deleteBase}>
-                        Delete Base Layer
-                      </button>
+                      <br></br>
+                      <label>Base Layer Depth in Inches: </label>
+                      <input
+                        type="text"
+                        id="bdepth"
+                        placeholder="Default is 4"
+                        // value={this.state.baseDepth}
+                        onChange={e => this.handleBase(e, area.id)}
+                      />
                       <br></br>
                       <br></br>
+                      <button>Additional Base Layer</button>
                     </div>
                   </div>
 
@@ -805,76 +911,75 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {/* {this.state.stain_areas.map(count => { */}
-                      {db.stainer[area.id - 1].stainTypes.map(count => {
+                      {/* {console.log(this.state.stain_areas)} */}
+                      {this.state.stain_areas.map(count => {
+                        // console.log(count.type[0]);
+                        // console.log(count);
                         var pm = count.id + "pm" + area.id;
                         // var ap = count.id + "ap";
-                        if (count.id <= db.stainer[area.id - 1].quant) {
-                          return (
-                            <div id="stainVals" name={count}>
-                              <br></br>
-                              <label>Type: </label>
-                              <input
-                                type="radio"
-                                // id={pm}
-                                value="Pre-Mixed"
-                                name={pm}
-                                onClick={e =>
-                                  this.handleStainChange(e, area.id, count.id)
-                                }
-                                defaultChecked
-                              />
-                              <label htmlFor={pm}> Pre-Mixed</label>
-                              <input
-                                type="radio"
-                                // id={ap}
-                                value="Surface Applied"
-                                name={pm}
-                                onClick={e =>
-                                  this.handleStainChange(e, area.id, count.id)
-                                }
-                              />
-                              <label htmlFor={pm}> Surface Applied</label>
+                        return (
+                          <div id="stainVals" name={count}>
+                            <br></br>
+                            <label>Type: </label>
+                            <input
+                              type="radio"
+                              // id={pm}
+                              value="Pre-Mixed"
+                              name={pm}
+                              onClick={e =>
+                                this.handleStainChange(e, area.id, count.id)
+                              }
+                              defaultChecked
+                            />
+                            <label htmlFor={pm}> Pre-Mixed</label>
+                            <input
+                              type="radio"
+                              // id={ap}
+                              value="Surface Applied"
+                              name={pm}
+                              onClick={e =>
+                                this.handleStainChange(e, area.id, count.id)
+                              }
+                            />
+                            <label htmlFor={pm}> Surface Applied</label>
 
-                              <br></br>
-                              <br></br>
-                              <label>Color: </label>
-                              <select id="selectStain" class="select-css">
-                                {db.stains.map(stain => {
-                                  var nameColor = area.id + "color" + stain.id;
+                            <br></br>
+                            <br></br>
+                            <label>Color: </label>
+                            <select id="selectStain" class="select-css">
+                              {db.stains.map(stain => {
+                                var nameColor = area.id + "color" + stain.id;
+                                // if(document.getElementsByName(pm)) {
+                                //   if(document.getElementsByName(pm))
+                                // }
+                                // console.log(db.stain[area.id - 1].type);
+                                // console.log(count.id);
 
-                                  if (
-                                    db.stainer[area.id - 1].stainTypes[count.id]
-                                      .sType === "Pre-Mixed"
-                                  ) {
-                                    if (stain.id <= 39) {
-                                      return (
-                                        <option
-                                          id={stain.type}
-                                          name={nameColor}
-                                        >
-                                          {stain.type}
-                                        </option>
-                                      );
-                                    }
-                                  } else {
-                                    if (stain.id > 39) {
-                                      return (
-                                        <option
-                                          id={stain.type}
-                                          name={nameColor}
-                                        >
-                                          {stain.type}
-                                        </option>
-                                      );
-                                    }
+                                if (
+                                  db.stainer[area.id - 1].stainTypes[count.id]
+                                    .sType === "Pre-Mixed"
+                                ) {
+                                  if (stain.id <= 39) {
+                                    return (
+                                      <option id={stain.type} name={nameColor}>
+                                        {stain.type}
+                                      </option>
+                                    );
                                   }
-                                })}
-                              </select>
-                              <br></br>
-                            </div>
-                          );
-                        }
+                                } else {
+                                  if (stain.id > 39) {
+                                    return (
+                                      <option id={stain.type} name={nameColor}>
+                                        {stain.type}
+                                      </option>
+                                    );
+                                  }
+                                }
+                              })}
+                            </select>
+                            <br></br>
+                          </div>
+                        );
                       })}
                       <br></br>
                       <button value={area.id} onClick={this.addStain}>
@@ -922,49 +1027,46 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {db.seals[area.id - 1].sealTypes.map(count => {
+                      {this.state.seal_areas.map(count => {
                         var bpm = count.id + "aspm" + area.id;
-                        if (count.id <= db.seals[area.id - 1].quant) {
-                          return (
-                            <div id="sealVals" name={count}>
-                              <br></br>
-                              <label>Sealant Type: </label>
-                              <input
-                                type="radio"
-                                // id={pm}
-                                value="Glossy"
-                                name={bpm}
-                                onClick={e =>
-                                  this.handleSealChange(e, area.id, count.id)
-                                }
-                                defaultChecked
-                              />
-                              <label htmlFor={bpm}> Glossy</label>
-                              <input
-                                type="radio"
-                                // id={ap}
-                                value="Matte"
-                                name={bpm}
-                                onClick={e =>
-                                  this.handleSealChange(e, area.id, count.id)
-                                }
-                              />
-                              <label htmlFor={bpm}> Matte</label>
-                              <input
-                                type="radio"
-                                // id={ap}
-                                value="Epoxy"
-                                name={bpm}
-                                onClick={e =>
-                                  this.handleSealChange(e, area.id, count.id)
-                                }
-                              />
-                              <label htmlFor={bpm}>Epoxy</label>
-                            </div>
-                          );
-                        }
+                        return (
+                          <div id="sealVals" name={count}>
+                            <br></br>
+                            <label>Sealant Type: </label>
+                            <input
+                              type="radio"
+                              // id={pm}
+                              value="Glossy"
+                              name={bpm}
+                              onClick={e =>
+                                this.handleSealChange(e, area.id, count.id)
+                              }
+                              defaultChecked
+                            />
+                            <label htmlFor={bpm}> Glossy</label>
+                            <input
+                              type="radio"
+                              // id={ap}
+                              value="Matte"
+                              name={bpm}
+                              onClick={e =>
+                                this.handleSealChange(e, area.id, count.id)
+                              }
+                            />
+                            <label htmlFor={bpm}> Matte</label>
+                            <input
+                              type="radio"
+                              // id={ap}
+                              value="Epoxy"
+                              name={bpm}
+                              onClick={e =>
+                                this.handleSealChange(e, area.id, count.id)
+                              }
+                            />
+                            <label htmlFor={bpm}>Epoxy</label>
+                          </div>
+                        );
                       })}
-
                       <br></br>
                       <button value={area.id} onClick={this.addSeal}>
                         Add Extra Sealant
@@ -1061,45 +1163,39 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {db.underlay[area.id - 1].types.map(count => {
-                        var apm = area.id + "asdfas" + count.id;
-                        if (count.id <= db.underlay[area.id - 1].quant) {
-                          return (
-                            <div id="underVals" name={count}>
-                              <br></br>
-                              <label>Type: </label>
-                              <input
-                                type="radio"
-                                // id={pm}
-                                value="10 mil Stego Vapor Barrier"
-                                name={apm}
-                                onClick={e =>
-                                  this.handleUnderChange(e, area.id, count.id)
-                                }
-                                defaultChecked
-                              />
-                              <label htmlFor={apm}>
-                                {" "}
-                                10 mil Stego Vapor Barrier{" "}
-                              </label>
-                              <input
-                                type="radio"
-                                // id={ap}
-                                value="Geotex - Mirafi 500x"
-                                name={apm}
-                                onClick={e =>
-                                  this.handleUnderChange(e, area.id, count.id)
-                                }
-                              />
-                              <label htmlFor={apm}>
-                                {" "}
-                                Geotex - Mirafi 500x{" "}
-                              </label>
-                            </div>
-                          );
-                        }
+                      {this.state.underlayment_areas.map(count => {
+                        var apm = count.id + "apm" + area.id;
+                        return (
+                          <div id="underVals" name={count}>
+                            <br></br>
+                            <label>Type: </label>
+                            <input
+                              type="radio"
+                              // id={pm}
+                              value="10 mil Stego Vapor Barrier"
+                              name={apm}
+                              onClick={e =>
+                                this.handleUnderChange(e, area.id, count.id)
+                              }
+                              defaultChecked
+                            />
+                            <label htmlFor={apm}>
+                              {" "}
+                              10 mil Stego Vapor Barrier{" "}
+                            </label>
+                            <input
+                              type="radio"
+                              // id={ap}
+                              value="Geotex - Mirafi 500x"
+                              name={apm}
+                              onClick={e =>
+                                this.handleUnderChange(e, area.id, count.id)
+                              }
+                            />
+                            <label htmlFor={apm}> Geotex - Mirafi 500x </label>
+                          </div>
+                        );
                       })}
-
                       <br></br>
                       <button value={area.id} onClick={this.addUnder}>
                         Add Extra Underlayment

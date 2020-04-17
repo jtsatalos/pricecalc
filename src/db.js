@@ -6416,12 +6416,57 @@ export const db = {
     { id: 107, type: "	Bridges of Madison County", amount: 1, cost: 1 }
   ],
   stainer: [
-    { id: 0, quant: 0 },
-    { id: 1, quant: 0 },
-    { id: 2, quant: 0 },
-    { id: 3, quant: 0 },
-    { id: 4, quant: 0 }
+    {
+      id: 0,
+      quant: 0,
+      stainTypes: [
+        { id: 0, sType: "Pre-Mixed" },
+        { id: 1, sType: "Pre-Mixed" },
+        { id: 2, sType: "Pre-Mixed" }
+      ]
+    },
+    {
+      id: 1,
+      quant: 0,
+      stainTypes: [
+        { id: 0, sType: "Pre-Mixed" },
+        { id: 1, sType: "Pre-Mixed" },
+        { id: 2, sType: "Pre-Mixed" }
+      ]
+    },
+    {
+      id: 2,
+      quant: 0,
+      stainTypes: [
+        { id: 0, sType: "Pre-Mixed" },
+        { id: 1, sType: "Pre-Mixed" },
+        { id: 2, sType: "Pre-Mixed" }
+      ]
+    },
+    {
+      id: 3,
+      quant: 0,
+      stainTypes: [
+        { id: 0, sType: "Pre-Mixed" },
+        { id: 1, sType: "Pre-Mixed" },
+        { id: 2, sType: "Pre-Mixed" }
+      ]
+    },
+    {
+      id: 4,
+      quant: 0,
+      stainTypes: [
+        { id: 0, sType: "Pre-Mixed" },
+        { id: 1, sType: "Pre-Mixed" },
+        { id: 2, sType: "Pre-Mixed" }
+      ]
+    }
   ],
+
+  // id: 1, quant: 0 },
+  //     { id: 2, quant: 0 },
+  //     { id: 3, quant: 0 },
+  //     { id: 4, quant: 0 }
   stain: [
     { id: 0, sType: "Pre-Mixed" },
     { id: 1, sType: "Pre-Mixed" },
@@ -6533,7 +6578,280 @@ export const db = {
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //rebar
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //edit
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //stamp
-    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } //stain
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //stain
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //seal
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //aggra
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // underlay
+  ],
+  // sealant: [
+  //   { id: 0, type: "Glossy " },
+  //   { id: 1, type: "Matte " },
+  //   { id: 2, type: "Epoxy " }
+  // ],
+  seals: [
+    {
+      id: 0,
+      quant: 0,
+      sealTypes: [
+        { id: 0, type: "Glossy " },
+        { id: 1, type: "Glossy " }
+      ]
+    },
+    {
+      id: 1,
+      quant: 0,
+      sealTypes: [
+        { id: 0, type: "Glossy " },
+        { id: 1, type: "Glossy " }
+      ]
+    },
+    {
+      id: 2,
+      quant: 0,
+      sealTypes: [
+        { id: 0, type: "Glossy " },
+        { id: 1, type: "Glossy " }
+      ]
+    },
+    {
+      id: 3,
+      quant: 0,
+      sealTypes: [
+        { id: 0, type: "Glossy " },
+        { id: 1, type: "Glossy " }
+      ]
+    },
+    {
+      id: 4,
+      quant: 0,
+      sealTypes: [
+        { id: 0, type: "Glossy " },
+        { id: 1, type: "Glossy " }
+      ]
+    }
+  ],
+  exposedAggregate: [
+    {
+      id: 0,
+      type: '1/2" Pami Pebble',
+      cost: 239.0,
+      tonsPerCubic: 1.2,
+      perCubic: 286.8,
+      perTonPerLayer: 300,
+      perTonWTax: 262.9
+    },
+    {
+      id: 1,
+      type: '1/4" Pami Pebble',
+      cost: 242.5,
+      tonsPerCubic: 1.2,
+      perCubic: 291.0,
+      perTonPerLayer: 600,
+      perTonWTax: 266.75
+    },
+    {
+      id: 2,
+      type: '3/8" Pami Pebble',
+      cost: 244.0,
+      tonsPerCubic: 1.2,
+      perCubic: 292.8,
+      perTonPerLayer: 300,
+      perTonWTax: 268.4
+    },
+    {
+      id: 3,
+      type: '1/2" Salmon Bay',
+      cost: 368.5,
+      tonsPerCubic: 1.2,
+      perCubic: 442.2,
+      perTonPerLayer: 300,
+      perTonWTax: 405.35
+    },
+    {
+      id: 4,
+      type: '3/4" Black and White Quartz',
+      cost: 89.5,
+      tonsPerCubic: 1.2,
+      perCubic: 107.4,
+      perTonPerLayer: 275,
+      perTonWTax: 98.45
+    },
+    {
+      id: 5,
+      type: '1/2" Black and White Quartz',
+      cost: 84.5,
+      tonsPerCubic: 1.2,
+      perCubic: 101.4,
+      perTonPerLayer: 300,
+      perTonWTax: 92.95
+    },
+    {
+      id: 6,
+      type: '3/8" Black and White Quartz',
+      cost: 88.5,
+      tonsPerCubic: 1.2,
+      perCubic: 106.2,
+      perTonPerLayer: 300,
+      perTonWTax: 97.35
+    },
+    {
+      id: 7,
+      type: 'Large Cobble 4"-10"',
+      cost: 147.0,
+      tonsPerCubic: 1.2,
+      perCubic: 176.4,
+      perTonPerLayer: 55,
+      perTonWTax: 161.7
+    },
+    {
+      id: 8,
+      type: 'Medium Cobble 2"-4"',
+      cost: 145.0,
+      tonsPerCubic: 1.2,
+      perCubic: 174.0,
+      perTonPerLayer: 75,
+      perTonWTax: 159.5
+    },
+    {
+      id: 9,
+      type: '1/2"x1" Black Lapaz',
+      cost: 504.0,
+      tonsPerCubic: 1.2,
+      perCubic: 604.8,
+      perTonPerLayer: 200,
+      perTonWTax: 554.4
+    },
+    {
+      id: 10,
+      type: '1"x2" Black Lapaz',
+      cost: 504.0,
+      tonsPerCubic: 1.2,
+      perCubic: 604.8,
+      perTonPerLayer: 150,
+      perTonWTax: 554.4
+    },
+    {
+      id: 11,
+      type: '1/4" Granite',
+      cost: 71.5,
+      tonsPerCubic: 1.05,
+      perCubic: 75.08,
+      perTonPerLayer: 600,
+      perTonWTax: 78.65
+    },
+    {
+      id: 12,
+      type: '1 1/2" Lynn Creek',
+      cost: 125.5,
+      tonsPerCubic: 1.2,
+      perCubic: 150.6,
+      perTonPerLayer: 175,
+      perTonWTax: 138.05
+    }
+  ],
+  underlayment: [
+    { id: 0, type: "Geotex - Mirafi 500x", pricePSQF: 3.25 },
+    { id: 1, type: "Geotex - Mirafi 500x", pricePSQF: 3.25 }
+    // { id: 1, type: "10 mil Stego Vapor Barrier", pricePSQF: 2.0 }
+  ],
+  underlay: [
+    {
+      id: 0,
+      quant: 0,
+      types: [
+        { id: 0, type: "Geotex - Mirafi 500x" },
+        { id: 1, type: "Geotex - Mirafi 500x" }
+      ]
+    },
+    {
+      id: 1,
+      quant: 0,
+      types: [
+        { id: 0, type: "Geotex - Mirafi 500x" },
+        { id: 1, type: "Geotex - Mirafi 500x" }
+      ]
+    },
+    {
+      id: 2,
+      quant: 0,
+      types: [
+        { id: 0, type: "Geotex - Mirafi 500x" },
+        { id: 1, type: "Geotex - Mirafi 500x" }
+      ]
+    },
+    {
+      id: 3,
+      quant: 0,
+      types: [
+        { id: 0, type: "Geotex - Mirafi 500x" },
+        { id: 1, type: "Geotex - Mirafi 500x" }
+      ]
+    },
+    {
+      id: 4,
+      quant: 0,
+      types: [
+        { id: 0, type: "Geotex - Mirafi 500x" },
+        { id: 1, type: "Geotex - Mirafi 500x" }
+      ]
+    }
+  ],
+  bases: [
+    {
+      id: 0,
+      quant: 0,
+      options: [
+        { id: 0, bdepth: 0 },
+        { id: 1, bdepth: 0 },
+        { id: 2, bdepth: 0 },
+        { id: 3, bdepth: 0 },
+        { id: 4, bdepth: 0 }
+      ]
+    },
+    {
+      id: 1,
+      quant: 0,
+      options: [
+        { id: 0, bdepth: 0 },
+        { id: 1, bdepth: 0 },
+        { id: 2, bdepth: 0 },
+        { id: 3, bdepth: 0 },
+        { id: 4, bdepth: 0 }
+      ]
+    },
+    {
+      id: 2,
+      quant: 0,
+      options: [
+        { id: 0, bdepth: 0 },
+        { id: 1, bdepth: 0 },
+        { id: 2, bdepth: 0 },
+        { id: 3, bdepth: 0 },
+        { id: 4, bdepth: 0 }
+      ]
+    },
+    {
+      id: 3,
+      quant: 0,
+      options: [
+        { id: 0, bdepth: 0 },
+        { id: 1, bdepth: 0 },
+        { id: 2, bdepth: 0 },
+        { id: 3, bdepth: 0 },
+        { id: 4, bdepth: 0 }
+      ]
+    },
+    {
+      id: 4,
+      quant: 0,
+      options: [
+        { id: 0, bdepth: 0 },
+        { id: 1, bdepth: 0 },
+        { id: 2, bdepth: 0 },
+        { id: 3, bdepth: 0 },
+        { id: 4, bdepth: 0 }
+      ]
+    }
   ]
 };
 
