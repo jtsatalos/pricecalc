@@ -6582,7 +6582,12 @@ export const db = {
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //seal
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //aggra
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // underlay
-    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // drain
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // drain
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // conduit
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // adish
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // custom
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // approach13
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // permit
   ],
   // sealant: [
   //   { id: 0, type: "Glossy " },
@@ -6918,6 +6923,53 @@ export const db = {
         { id: 2, drainSize: 0 },
         { id: 3, drainSize: 0 },
         { id: 4, drainSize: 0 }
+      ]
+    }
+  ],
+  custom: [
+    {
+      id: 0,
+      quant: 0,
+      options: [
+        { id: 0, cost: 0 },
+        { id: 1, cost: 0 },
+        { id: 2, cost: 0 }
+      ]
+    },
+    {
+      id: 1,
+      quant: 0,
+      options: [
+        { id: 0, cost: 0 },
+        { id: 1, cost: 0 },
+        { id: 2, cost: 0 }
+      ]
+    },
+    {
+      id: 2,
+      quant: 0,
+      options: [
+        { id: 0, cost: 0 },
+        { id: 1, cost: 0 },
+        { id: 2, cost: 0 }
+      ]
+    },
+    {
+      id: 3,
+      quant: 0,
+      options: [
+        { id: 0, cost: 0 },
+        { id: 1, cost: 0 },
+        { id: 2, cost: 0 }
+      ]
+    },
+    {
+      id: 4,
+      quant: 0,
+      options: [
+        { id: 0, cost: 0 },
+        { id: 1, cost: 0 },
+        { id: 2, cost: 0 }
       ]
     }
   ]

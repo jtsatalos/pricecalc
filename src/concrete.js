@@ -57,16 +57,46 @@ export default class concrete extends React.Component {
     e.preventDefault();
     // sets which area you are pulling from to calculate
     var areaParent = document.getElementById(area);
-
+    console.log(areaParent);
+    console.log(area);
+    console.log(areaParent.querySelector("#sqft"));
     // pulls sqf from input value in desired area
-    var sqf = parseInt(areaParent.querySelector("#sqft").value, 10);
+    var sqf = parseFloat(areaParent.querySelector("#sqft").value, 10);
+    var margin = parseFloat(this.state.margin, 10);
+    if (isNaN(sqf) || isNaN(margin)) {
+      alert("Please enter margin and squarefeet before calculatin");
+    } else if (db.visibility[3].type[area - 1].val === 0) {
+      if (sqf <= 1000) {
+        db.concreteArea[area - 1].totalCont = (sqf * 12).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      } else {
+        db.concreteArea[area - 1].totalCont = (sqf * 11).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      }
+    } else {
+      if (sqf <= 1000) {
+        db.concreteArea[area - 1].totalCont = (sqf * 12).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      } else {
+        db.concreteArea[area - 1].totalCont = (sqf * 11).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      }
+    }
 
     // maybe delete this will need multiple totals
-    this.setState({ total: 0, totalCont: 0 });
 
     // get margin from head of document
     // var margin = parseInt(document.querySelector("#margin").value, 10);
-    var margin = parseFloat(this.state.margin, 10);
+
+    this.setState({ total: 0, totalCont: 0 });
   }
 
   show(e, area, obj) {
@@ -92,7 +122,18 @@ export default class concrete extends React.Component {
       db.visibility[8].type[area - 1].val = 0;
     } else if (obj === "drain") {
       db.visibility[9].type[area - 1].val = 0;
+    } else if (obj === "conduit") {
+      db.visibility[10].type[area - 1].val = 0;
+    } else if (obj === "addlab") {
+      db.visibility[11].type[area - 1].val = 0;
+    } else if (obj === "custom") {
+      db.visibility[12].type[area - 1].val = 0;
+    } else if (obj === "approaches") {
+      db.visibility[13].type[area - 1].val = 0;
+    } else if (obj === "permit") {
+      db.visibility[14].type[area - 1].val = 0;
     }
+
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
         return area.id <= this.state.areas;
@@ -122,6 +163,16 @@ export default class concrete extends React.Component {
       db.visibility[8].type[area - 1].val = 1;
     } else if (obj === "drain") {
       db.visibility[9].type[area - 1].val = 1;
+    } else if (obj === "conduit") {
+      db.visibility[10].type[area - 1].val = 1;
+    } else if (obj === "addlab") {
+      db.visibility[11].type[area - 1].val = 1;
+    } else if (obj === "custom") {
+      db.visibility[12].type[area - 1].val = 1;
+    } else if (obj === "approaches") {
+      db.visibility[13].type[area - 1].val = 1;
+    } else if (obj === "permit") {
+      db.visibility[14].type[area - 1].val = 1;
     }
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
@@ -240,7 +291,7 @@ export default class concrete extends React.Component {
       this.setState({ areas: count });
       const concAreas = db.concreteArea;
       this.state.conc_areas = concAreas;
-      console.log(count);
+
       this.setState({
         conc_areas: this.state.conc_areas.filter(area => {
           return area.id <= count;
@@ -372,6 +423,20 @@ export default class concrete extends React.Component {
       this.setState({ conc_areas: this.state.conc_areas });
     }
   };
+  addCustom = event => {
+    var area = event.target.value - 1;
+    if (db.custom[area].quant < 2) {
+      db.custom[area].quant = db.custom[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  deleteCustom = event => {
+    var area = event.target.value - 1;
+    if (db.custom[area].quant > 0) {
+      db.custom[area].quant = db.custom[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
 
   render() {
     return (
@@ -497,7 +562,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={3}
+                      // id={3}
                       name={edits}
                       value="yes"
                       onClick={e => this.show(e, area.id, "edit")}
@@ -506,7 +571,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={3}
+                      // id={3}
                       name={edits}
                       value="no"
                       onClick={e => this.hide(e, area.id, "edit")}
@@ -552,8 +617,7 @@ export default class concrete extends React.Component {
                     <input
                       type="text"
                       id="cdepth"
-                      placeholder="Default is 5"
-                      // value={5}
+                      placeholder={db.concreteArea[area.id - 1].concDepth}
                       onChange={e => this.handleCDepthChange(e, area.id)}
                     />
                   </div>
@@ -596,7 +660,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={1}
+                      // id={1}
                       name={basell}
                       value="yes"
                       onClick={e => this.show(e, area.id, "base")}
@@ -605,7 +669,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={1}
+                      // id={1}
                       name={basell}
                       value="no"
                       onClick={e => this.hide(e, area.id, "base")}
@@ -677,7 +741,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={2}
+                      // id={2}
                       name={rebaar}
                       value="yes"
                       onClick={e => this.show(e, area.id, "rebar")}
@@ -686,7 +750,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={2}
+                      // id={2}
                       name={rebaar}
                       value="no"
                       defaultChecked
@@ -705,11 +769,19 @@ export default class concrete extends React.Component {
                       <label>Material: </label>
                       <select id="selectRebar" class="select-css">
                         {db.rebar.map(rebar => {
-                          return (
-                            <option id={rebar.type} name={rebar.id}>
-                              {rebar.type}
-                            </option>
-                          );
+                          if (rebar.type === '#4 Rebar 16" OC') {
+                            return (
+                              <option id={rebar.type} name={rebar.id} selected>
+                                {rebar.type}
+                              </option>
+                            );
+                          } else {
+                            return (
+                              <option id={rebar.type} name={rebar.id}>
+                                {rebar.type}
+                              </option>
+                            );
+                          }
                         })}
                       </select>
                     </div>
@@ -749,7 +821,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={4}
+                      // id={4}
                       name={stampss}
                       value="yes"
                       onClick={e => this.show(e, area.id, "stamp")}
@@ -758,7 +830,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={4}
+                      // id={4}
                       name={stampss}
                       value="no"
                       defaultChecked
@@ -799,7 +871,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={5}
+                      // id={5}
                       name={stainsss}
                       value="yes"
                       // defaultChecked
@@ -809,7 +881,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={5}
+                      // id={5}
                       name={stainsss}
                       value="no"
                       defaultChecked
@@ -1305,7 +1377,13 @@ export default class concrete extends React.Component {
                       Driveway Approach with Sidewalk and Gutter Requested?
                     </label>
 
-                    <input type="radio" id="yes" name={approachs} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={approachs}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "approaches")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1314,6 +1392,7 @@ export default class concrete extends React.Component {
                       name={approachs}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "approaches")}
                     />
                     <label htmlFor="no"> No</label>
                   </div>
@@ -1326,7 +1405,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Electrical Conduit Requested? </label>
 
-                    <input type="radio" id="yes" name={elec} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={elec}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "conduit")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1335,8 +1420,26 @@ export default class concrete extends React.Component {
                       name={elec}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "conduit")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="conduitsShown"
+                      style={
+                        db.vals[db.visibility[10].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      <br></br>
+                      <label>Linear Feet: </label>
+                      <input
+                        type="text"
+                        id="elecCond"
+                        placeholder="Ex: 50"
+                        // value={5}
+                        // onChange={e => this.handleCDepthChange(e, area.id)}
+                      />
+                    </div>
                   </div>
                   <div
                     id="optionsShown"
@@ -1347,7 +1450,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Additional Labor Required? </label>
 
-                    <input type="radio" id="yes" name={addlaboor} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={addlaboor}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "addlab")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1356,8 +1465,28 @@ export default class concrete extends React.Component {
                       name={addlaboor}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "addlab")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="addishShown"
+                      style={
+                        db.vals[db.visibility[11].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      <br></br>
+                      <label>Extra Labor Hours: </label>
+                      <input type="text" id="exlab" placeholder="Ex: 10" />
+                      <br></br>
+                      <br></br>
+                      <label>Description of Labor: </label>
+                      <input
+                        type="text"
+                        id="elecCond"
+                        placeholder="Ex: Cleaning"
+                      />
+                    </div>
                   </div>
                   <div
                     id="optionsShown"
@@ -1368,7 +1497,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Custom Request? </label>
 
-                    <input type="radio" id="yes" name={custReq} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={custReq}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "custom")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1377,8 +1512,49 @@ export default class concrete extends React.Component {
                       name={custReq}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "custom")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="customsShown"
+                      style={
+                        db.vals[db.visibility[12].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      {db.custom[area.id - 1].options.map(count => {
+                        if (count.id <= db.custom[area.id - 1].quant) {
+                          return (
+                            <div id="custvalss" name={count}>
+                              <br></br>
+                              <label>Description {count.id + 1}: </label>
+                              <input
+                                type="text"
+                                id="custss"
+                                placeholder="Ex: Gate"
+                              />
+                              <br></br>
+                              <br></br>
+                              <label>Pay to Contractor: </label>
+                              <input
+                                type="text"
+                                id="custss"
+                                placeholder="Ex: 1000"
+                              />
+                            </div>
+                          );
+                        }
+                      })}
+                      <br></br>
+                      <button value={area.id} onClick={this.addCustom}>
+                        Add Extra Custom Items
+                      </button>
+                      <button value={area.id} onClick={this.deleteCustom}>
+                        Delete Custom Item
+                      </button>
+                      <br></br>
+                      <br></br>
+                    </div>
                   </div>
 
                   <br></br>

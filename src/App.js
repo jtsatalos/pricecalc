@@ -70,6 +70,13 @@ class Home extends React.Component {
                 </NavLink>
               </th>
             </tr>
+            <tr className="donkey">
+              <th className="fun">
+                <NavLink to="/concrete" exact={true} id="thebutts">
+                  <b>Fence Repair</b>
+                </NavLink>
+              </th>
+            </tr>
             {/* <tr className="donkey">
               <th className="fun">
                 <NavLink to="/asphalt">
