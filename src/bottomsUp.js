@@ -155,8 +155,8 @@ export default class concrete extends React.Component {
     
 
     // if this is the same eveyrwhere hardcode
-    var laborPrice = db.regions[zipId].finishLaborMPD;
-    var laborSQF = db.regions[zipId].finishLaborSQFMPD;
+    var laborPrice = db.regions[0].finishLaborMPD;
+    var laborSQF = db.regions[0].finishLaborSQFMPD;
 
     // finish type
     var typeContractor;
@@ -191,7 +191,7 @@ export default class concrete extends React.Component {
 
     // Concrete Pricing
     // gets conc depth for specified area
-    var depth = parseInt(areaParent.querySelector("#cdepth").value, 10);
+    var depth = parseFloat(areaParent.querySelector("#cdepth").value, 10);
     if(isNaN(areaParent.querySelector("#concCosttype").name)) {
       areaParent.querySelector("#concCosttype").name = db.regions[this.state.zipRegion].threefivepsi
     }
@@ -199,17 +199,17 @@ export default class concrete extends React.Component {
     var cubicFeet = (depth / 12) * sqf;
     var cubicYards = cubicFeet / 27;
     var concCostCont = (cubicYards * psiValue + 200).toFixed(2);
-    if (isNaN(concCostCont)) {
-      db.concreteArea[area-1].concValCont = 0
-    } else {
-      db.concreteArea[area-1].concValCont = concCostCont
-    }
+    // if (isNaN(concCostCont)) {
+    //   db.concreteArea[area-1].concValCont = 0
+    // } else {
+    //   db.concreteArea[area-1].concValCont = concCostCont
+    // }
     var concPriceInput = (concCostCont / margin).toFixed(2);
-    if (isNaN(concPriceInput)) {
-      db.concreteArea[area-1].concVal = 0
-    } else {
-      db.concreteArea[area-1].concVal = concPriceInput
-    }
+    // if (isNaN(concPriceInput)) {
+    //   db.concreteArea[area-1].concVal = 0
+    // } else {
+    //   db.concreteArea[area-1].concVal = concPriceInput
+    // }
     totalCont = +totalCont + +concCostCont;
     totalCust = +totalCust + +concPriceInput;
     db.concreteArea[area-1].totalCont = +db.concreteArea[area-1].totalCont + +concCostCont;

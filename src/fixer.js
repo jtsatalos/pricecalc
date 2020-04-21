@@ -34,11 +34,7 @@ export default class concrete extends React.Component {
       stain: true,
       stainDisp: "none",
 
-      conc_areas: [],
-      stain_areas: [],
-      seal_areas: [],
-      underlayment_areas: []
-      // hide_areas: []
+      conc_areas: []
     };
     document.title = "Concrete Calculator";
   }
@@ -52,37 +48,6 @@ export default class concrete extends React.Component {
         return area.id <= this.state.areas;
       })
     });
-
-    const stainAreas = db.stainer[this.state.areas - 1].stainTypes;
-    this.state.stain_areas = stainAreas;
-    console.log(db.stainer);
-
-    this.setState({
-      stain_areas: this.state.stain_areas.filter(fun => {
-        return fun.id <= db.stainer[this.state.areas - 1].quant;
-      })
-    });
-
-    const sealAreas = db.seals[this.state.areas - 1].sealTypes;
-    this.state.seal_areas = sealAreas;
-
-    this.setState({
-      seal_areas: this.state.seal_areas.filter(fun => {
-        return fun.id <= db.seals[this.state.areas - 1].quant;
-      })
-    });
-    console.log(db.underlay[this.state.areas - 1].types);
-
-    const underlayAreas = db.underlay[this.state.areas - 1].types;
-
-    console.log(db.underlay);
-    this.state.underlayment_areas = underlayAreas;
-    console.log(this.state.underlayment_areas);
-    this.setState({
-      underlayment_areas: this.state.underlayment_areas.filter(fun => {
-        return fun.id <= db.underlay[this.state.areas - 1].quant;
-      })
-    });
   }
 
   reload() {
@@ -92,16 +57,46 @@ export default class concrete extends React.Component {
     e.preventDefault();
     // sets which area you are pulling from to calculate
     var areaParent = document.getElementById(area);
-
+    console.log(areaParent);
+    console.log(area);
+    console.log(areaParent.querySelector("#sqft"));
     // pulls sqf from input value in desired area
-    var sqf = parseInt(areaParent.querySelector("#sqft").value, 10);
+    var sqf = parseFloat(areaParent.querySelector("#sqft").value, 10);
+    var margin = parseFloat(this.state.margin, 10);
+    if (isNaN(sqf) || isNaN(margin)) {
+      alert("Please enter margin and squarefeet before calculatin");
+    } else if (db.visibility[3].type[area - 1].val === 0) {
+      if (sqf <= 1000) {
+        db.concreteArea[area - 1].totalCont = (sqf * 12).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      } else {
+        db.concreteArea[area - 1].totalCont = (sqf * 11).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      }
+    } else {
+      if (sqf <= 1000) {
+        db.concreteArea[area - 1].totalCont = (sqf * 12).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      } else {
+        db.concreteArea[area - 1].totalCont = (sqf * 11).toFixed(2);
+        db.concreteArea[area - 1].total = (
+          db.concreteArea[area - 1].totalCont / margin
+        ).toFixed(2);
+      }
+    }
 
     // maybe delete this will need multiple totals
-    this.setState({ total: 0, totalCont: 0 });
 
     // get margin from head of document
     // var margin = parseInt(document.querySelector("#margin").value, 10);
-    var margin = parseFloat(this.state.margin, 10);
+
+    this.setState({ total: 0, totalCont: 0 });
   }
 
   show(e, area, obj) {
@@ -125,7 +120,20 @@ export default class concrete extends React.Component {
       db.visibility[7].type[area - 1].val = 0;
     } else if (obj === "under") {
       db.visibility[8].type[area - 1].val = 0;
+    } else if (obj === "drain") {
+      db.visibility[9].type[area - 1].val = 0;
+    } else if (obj === "conduit") {
+      db.visibility[10].type[area - 1].val = 0;
+    } else if (obj === "addlab") {
+      db.visibility[11].type[area - 1].val = 0;
+    } else if (obj === "custom") {
+      db.visibility[12].type[area - 1].val = 0;
+    } else if (obj === "approaches") {
+      db.visibility[13].type[area - 1].val = 0;
+    } else if (obj === "permit") {
+      db.visibility[14].type[area - 1].val = 0;
     }
+
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
         return area.id <= this.state.areas;
@@ -153,6 +161,18 @@ export default class concrete extends React.Component {
       db.visibility[7].type[area - 1].val = 1;
     } else if (obj === "under") {
       db.visibility[8].type[area - 1].val = 1;
+    } else if (obj === "drain") {
+      db.visibility[9].type[area - 1].val = 1;
+    } else if (obj === "conduit") {
+      db.visibility[10].type[area - 1].val = 1;
+    } else if (obj === "addlab") {
+      db.visibility[11].type[area - 1].val = 1;
+    } else if (obj === "custom") {
+      db.visibility[12].type[area - 1].val = 1;
+    } else if (obj === "approaches") {
+      db.visibility[13].type[area - 1].val = 1;
+    } else if (obj === "permit") {
+      db.visibility[14].type[area - 1].val = 1;
     }
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
@@ -237,15 +257,15 @@ export default class concrete extends React.Component {
   // done but check
 
   handleBase(e, area) {
-    var head = document.getElementById(area);
-    if (e.target.id === "bdepth") {
-      db.concreteArea[area - 1].baseDepth = e.target.value;
-    } else {
-      db.concreteArea[area - 1].btype = db.base[e.target.value].type;
-      console.log(db.concreteArea[area - 1].btype);
-      head.querySelector("#baseee").name = db.base[e.target.value].cost;
-      console.log(head.querySelector("#baseee").name);
-    }
+    // var head = document.getElementById(area);
+    // if (e.target.id === "bdepth") {
+    //   db.concreteArea[area - 1].baseDepth = e.target.value;
+    // } else {
+    //   db.concreteArea[area - 1].btype = db.base[e.target.value].type;
+    //   console.log(db.concreteArea[area - 1].btype);
+    //   head.querySelector("#baseee").name = db.base[e.target.value].cost;
+    //   console.log(head.querySelector("#baseee").name);
+    // }
   }
 
   handleRebar(e, area) {
@@ -255,27 +275,13 @@ export default class concrete extends React.Component {
   }
   handleStainChange(e, area, count) {
     db.stainer[area - 1].stainTypes[count].sType = e.target.value;
-    this.setState({
-      stain_areas: this.state.stain_areas.filter(obj => {
-        return obj.id <= db.stainer[area - 1].quant;
-      })
-    });
+    this.setState({ conc_areas: this.state.conc_areas });
   }
   handleSealChange(e, area, count) {
     db.seals[area - 1].sealTypes[count].type = e.target.value;
-    this.setState({
-      seal_areas: this.state.seal_areas.filter(obj => {
-        return obj.id <= db.seals[area - 1].quant;
-      })
-    });
   }
   handleUnderChange(e, area, count) {
     db.underlay[area - 1].types[count].type = e.target.value;
-    this.setState({
-      underlayment_areas: this.state.underlayment_areas.filter(obj => {
-        return obj.id <= db.underlay[area - 1].quant;
-      })
-    });
   }
 
   addArea = event => {
@@ -285,7 +291,7 @@ export default class concrete extends React.Component {
       this.setState({ areas: count });
       const concAreas = db.concreteArea;
       this.state.conc_areas = concAreas;
-      console.log(count);
+
       this.setState({
         conc_areas: this.state.conc_areas.filter(area => {
           return area.id <= count;
@@ -307,16 +313,6 @@ export default class concrete extends React.Component {
       this.setState({
         seal_areas: this.state.seal_areas.filter(fun => {
           return fun.id <= db.seals[count - 1].quant;
-        })
-      });
-
-      const underlayAreas = db.underlay[count - 1].types;
-      this.state.underlayment_areas = underlayAreas;
-      // console.log(db.stainer[]);
-
-      this.setState({
-        underlayment_areas: this.state.underlayment_areas.filter(fun => {
-          return fun.id <= db.underlay[count - 1].quant;
         })
       });
     }
@@ -352,135 +348,99 @@ export default class concrete extends React.Component {
           return fun.id <= db.seals[count - 1].quant;
         })
       });
-      const underlayAreas = db.underlay[count - 1].types;
-      this.state.underlayment_areas = underlayAreas;
-      // console.log(db.stainer[]);
-
-      this.setState({
-        underlayment_areas: this.state.underlayment_areas.filter(fun => {
-          return fun.id <= db.underlay[count - 1].quant;
-        })
-      });
     }
   };
 
-  //revamp these with db
   addStain = event => {
     var area = event.target.value - 1;
-
     if (db.stainer[area].quant < 2) {
-      var count = db.stainer[area].quant + 1;
-      db.stainer[area].quant = count;
-      console.log(db.stainer[area].quant);
-      const stainAreas = db.stainer[area].stainTypes;
-      this.state.stain_areas = stainAreas;
-      // console.log(db.stainer[]);
-
-      this.setState({
-        stain_areas: this.state.stain_areas.filter(fun => {
-          return fun.id <= db.stainer[area].quant;
-        })
-      });
-      console.log(db.stainer[area].quant);
-      console.log(this.state.stain_areas);
+      db.stainer[area].quant = db.stainer[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
     }
   };
   deleteStain = event => {
     var area = event.target.value - 1;
     if (db.stainer[area].quant > 0) {
-      var count = db.stainer[area].quant - 1;
-      db.stainer[area].quant = count;
-      const stainAreas = db.stain;
-      this.state.stain_areas = stainAreas;
-      // console.log(db.stainer[]);
-      this.setState({
-        stain_areas: this.state.stain_areas.filter(fun => {
-          return fun.id <= db.stainer[area].quant;
-        })
-      });
+      db.stainer[area].quant = db.stainer[area].quant - 1;
     }
   };
   addSeal = event => {
     var area = event.target.value - 1;
-
     if (db.seals[area].quant < 1) {
-      var count = db.seals[area].quant + 1;
-      db.seals[area].quant = count;
-
-      const sealAreas = db.seals[area].sealTypes;
-      this.state.seal_areas = sealAreas;
-      // console.log(db.stainer[]);
-
-      this.setState({
-        seal_areas: this.state.seal_areas.filter(fun => {
-          return fun.id <= db.seals[area].quant;
-        })
-      });
+      db.seals[area].quant = db.seals[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
     }
   };
   deleteSeal = event => {
     var area = event.target.value - 1;
-
     if (db.seals[area].quant > 0) {
-      var count = db.seals[area].quant - 1;
-      db.seals[area].quant = count;
-
-      const sealAreas = db.seals[area].sealTypes;
-      this.state.seal_areas = sealAreas;
-      // console.log(db.stainer[]);
-
-      this.setState({
-        seal_areas: this.state.seal_areas.filter(fun => {
-          return fun.id <= db.seals[area].quant;
-        })
-      });
+      db.seals[area].quant = db.seals[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
     }
   };
   addUnder = event => {
     var area = event.target.value - 1;
 
     if (db.underlay[area].quant < 1) {
-      var count = db.underlay[area].quant + 1;
-      db.underlay[area].quant = count;
-
-      const underlayAreas = db.underlay[area].types;
-      this.state.underlayment_areas = underlayAreas;
-      // console.log(db.stainer[]);
-
-      this.setState({
-        underlayment_areas: this.state.underlayment_areas.filter(fun => {
-          return fun.id <= db.underlay[area].quant;
-        })
-      });
+      db.underlay[area].quant = db.underlay[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
     }
   };
   deleteUnder = event => {
     var area = event.target.value - 1;
-
     if (db.underlay[area].quant > 0) {
-      var count = db.underlay[area].quant - 1;
-      db.underlay[area].quant = count;
+      db.underlay[area].quant = db.underlay[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  addBase = event => {
+    var area = event.target.value - 1;
 
-      const underlayAreas = db.underlay[area].types;
-      this.state.underlayment_areas = underlayAreas;
-      // console.log(db.stainer[]);
+    if (db.underlay[area].quant < 1) {
+      db.bases[area].quant = db.bases[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  deleteBase = event => {
+    var area = event.target.value - 1;
+    if (db.bases[area].quant > 0) {
+      db.bases[area].quant = db.bases[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  addDrain = event => {
+    var area = event.target.value - 1;
 
-      this.setState({
-        underlayment_areas: this.state.underlayment_areas.filter(fun => {
-          return fun.id <= db.underlay[area].quant;
-        })
-      });
+    if (db.drains[area].quant < 4) {
+      db.drains[area].quant = db.drains[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  deleteDrain = event => {
+    var area = event.target.value - 1;
+    if (db.drains[area].quant > 0) {
+      db.drains[area].quant = db.drains[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  addCustom = event => {
+    var area = event.target.value - 1;
+    if (db.custom[area].quant < 2) {
+      db.custom[area].quant = db.custom[area].quant + 1;
+      this.setState({ conc_areas: this.state.conc_areas });
+    }
+  };
+  deleteCustom = event => {
+    var area = event.target.value - 1;
+    if (db.custom[area].quant > 0) {
+      db.custom[area].quant = db.custom[area].quant - 1;
+      this.setState({ conc_areas: this.state.conc_areas });
     }
   };
 
   render() {
-    // var joined = this.state.concretesArray.concat(concretes);
-    // this.setState({ concretesArray: joined });
-
     return (
       <div id="overarching">
-        {/* {concretes} */}
-        {/* {this.state.concretesArray} */}
         <h3>Hardscape Calculator</h3>
         <div id="concretes">
           <label>Margin</label>
@@ -602,7 +562,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={3}
+                      // id={3}
                       name={edits}
                       value="yes"
                       onClick={e => this.show(e, area.id, "edit")}
@@ -611,7 +571,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={3}
+                      // id={3}
                       name={edits}
                       value="no"
                       onClick={e => this.hide(e, area.id, "edit")}
@@ -657,8 +617,7 @@ export default class concrete extends React.Component {
                     <input
                       type="text"
                       id="cdepth"
-                      placeholder="Default is 5"
-                      // value={5}
+                      placeholder={db.concreteArea[area.id - 1].concDepth}
                       onChange={e => this.handleCDepthChange(e, area.id)}
                     />
                   </div>
@@ -701,7 +660,6 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={1}
                       name={basell}
                       value="yes"
                       onClick={e => this.show(e, area.id, "base")}
@@ -710,7 +668,6 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={1}
                       name={basell}
                       value="no"
                       onClick={e => this.hide(e, area.id, "base")}
@@ -725,31 +682,48 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      <br></br>
-                      <label>Base Layer Material: </label>
-                      <select id="selectBase" class="select-css">
-                        {db.base.map(base => {
+                      {db.bases[area.id - 1].options.map(count => {
+                        if (count.id <= db.bases[area.id - 1].quant) {
                           return (
-                            <option id={base.type} name={base.id}>
-                              {base.type}
-                            </option>
+                            <div id="basey" name={count.id}>
+                              <br></br>
+                              <label>
+                                Base Layer Material {count.id + 1}:{" "}
+                              </label>
+                              <select id="selectBase" class="select-css">
+                                {db.base.map(base => {
+                                  return (
+                                    <option id={base.type} name={base.id}>
+                                      {base.type}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+
+                              <br></br>
+                              <br></br>
+                              <label>Base Layer Depth in Inches: </label>
+                              <input
+                                type="text"
+                                id="bdepth"
+                                placeholder="Default is 4"
+                                // value={this.state.baseDepth}
+                                onChange={e => this.handleBase(e, area.id)}
+                              />
+                            </div>
                           );
-                        })}
-                      </select>
+                        }
+                      })}
 
                       <br></br>
-                      <br></br>
-                      <label>Base Layer Depth in Inches: </label>
-                      <input
-                        type="text"
-                        id="bdepth"
-                        placeholder="Default is 4"
-                        // value={this.state.baseDepth}
-                        onChange={e => this.handleBase(e, area.id)}
-                      />
+                      <button value={area.id} onClick={this.addBase}>
+                        Add Extra Base Layer
+                      </button>
+                      <button value={area.id} onClick={this.deleteBase}>
+                        Delete Base Layer
+                      </button>
                       <br></br>
                       <br></br>
-                      <button>Additional Base Layer</button>
                     </div>
                   </div>
 
@@ -764,7 +738,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={2}
+                      // id={2}
                       name={rebaar}
                       value="yes"
                       onClick={e => this.show(e, area.id, "rebar")}
@@ -773,7 +747,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={2}
+                      // id={2}
                       name={rebaar}
                       value="no"
                       defaultChecked
@@ -792,11 +766,19 @@ export default class concrete extends React.Component {
                       <label>Material: </label>
                       <select id="selectRebar" class="select-css">
                         {db.rebar.map(rebar => {
-                          return (
-                            <option id={rebar.type} name={rebar.id}>
-                              {rebar.type}
-                            </option>
-                          );
+                          if (rebar.type === '#4 Rebar 16" OC') {
+                            return (
+                              <option id={rebar.type} name={rebar.id} selected>
+                                {rebar.type}
+                              </option>
+                            );
+                          } else {
+                            return (
+                              <option id={rebar.type} name={rebar.id}>
+                                {rebar.type}
+                              </option>
+                            );
+                          }
                         })}
                       </select>
                     </div>
@@ -836,7 +818,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={4}
+                      // id={4}
                       name={stampss}
                       value="yes"
                       onClick={e => this.show(e, area.id, "stamp")}
@@ -845,7 +827,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={4}
+                      // id={4}
                       name={stampss}
                       value="no"
                       defaultChecked
@@ -886,7 +868,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={5}
+                      // id={5}
                       name={stainsss}
                       value="yes"
                       // defaultChecked
@@ -896,7 +878,7 @@ export default class concrete extends React.Component {
 
                     <input
                       type="radio"
-                      id={5}
+                      // id={5}
                       name={stainsss}
                       value="no"
                       defaultChecked
@@ -911,75 +893,76 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {/* {console.log(this.state.stain_areas)} */}
-                      {this.state.stain_areas.map(count => {
-                        // console.log(count.type[0]);
-                        // console.log(count);
+                      {/* {this.state.stain_areas.map(count => { */}
+                      {db.stainer[area.id - 1].stainTypes.map(count => {
                         var pm = count.id + "pm" + area.id;
                         // var ap = count.id + "ap";
-                        return (
-                          <div id="stainVals" name={count}>
-                            <br></br>
-                            <label>Type: </label>
-                            <input
-                              type="radio"
-                              // id={pm}
-                              value="Pre-Mixed"
-                              name={pm}
-                              onClick={e =>
-                                this.handleStainChange(e, area.id, count.id)
-                              }
-                              defaultChecked
-                            />
-                            <label htmlFor={pm}> Pre-Mixed</label>
-                            <input
-                              type="radio"
-                              // id={ap}
-                              value="Surface Applied"
-                              name={pm}
-                              onClick={e =>
-                                this.handleStainChange(e, area.id, count.id)
-                              }
-                            />
-                            <label htmlFor={pm}> Surface Applied</label>
-
-                            <br></br>
-                            <br></br>
-                            <label>Color: </label>
-                            <select id="selectStain" class="select-css">
-                              {db.stains.map(stain => {
-                                var nameColor = area.id + "color" + stain.id;
-                                // if(document.getElementsByName(pm)) {
-                                //   if(document.getElementsByName(pm))
-                                // }
-                                // console.log(db.stain[area.id - 1].type);
-                                // console.log(count.id);
-
-                                if (
-                                  db.stainer[area.id - 1].stainTypes[count.id]
-                                    .sType === "Pre-Mixed"
-                                ) {
-                                  if (stain.id <= 39) {
-                                    return (
-                                      <option id={stain.type} name={nameColor}>
-                                        {stain.type}
-                                      </option>
-                                    );
-                                  }
-                                } else {
-                                  if (stain.id > 39) {
-                                    return (
-                                      <option id={stain.type} name={nameColor}>
-                                        {stain.type}
-                                      </option>
-                                    );
-                                  }
+                        if (count.id <= db.stainer[area.id - 1].quant) {
+                          return (
+                            <div id="stainVals" name={count}>
+                              <br></br>
+                              <label>Type: </label>
+                              <input
+                                type="radio"
+                                // id={pm}
+                                value="Pre-Mixed"
+                                name={pm}
+                                onClick={e =>
+                                  this.handleStainChange(e, area.id, count.id)
                                 }
-                              })}
-                            </select>
-                            <br></br>
-                          </div>
-                        );
+                                defaultChecked
+                              />
+                              <label htmlFor={pm}> Pre-Mixed</label>
+                              <input
+                                type="radio"
+                                // id={ap}
+                                value="Surface Applied"
+                                name={pm}
+                                onClick={e =>
+                                  this.handleStainChange(e, area.id, count.id)
+                                }
+                              />
+                              <label htmlFor={pm}> Surface Applied</label>
+
+                              <br></br>
+                              <br></br>
+                              <label>Color: </label>
+                              <select id="selectStain" class="select-css">
+                                {db.stains.map(stain => {
+                                  var nameColor = area.id + "color" + stain.id;
+
+                                  if (
+                                    db.stainer[area.id - 1].stainTypes[count.id]
+                                      .sType === "Pre-Mixed"
+                                  ) {
+                                    if (stain.id <= 39) {
+                                      return (
+                                        <option
+                                          id={stain.type}
+                                          name={nameColor}
+                                        >
+                                          {stain.type}
+                                        </option>
+                                      );
+                                    }
+                                  } else {
+                                    if (stain.id > 39) {
+                                      return (
+                                        <option
+                                          id={stain.type}
+                                          name={nameColor}
+                                        >
+                                          {stain.type}
+                                        </option>
+                                      );
+                                    }
+                                  }
+                                })}
+                              </select>
+                              <br></br>
+                            </div>
+                          );
+                        }
                       })}
                       <br></br>
                       <button value={area.id} onClick={this.addStain}>
@@ -1027,46 +1010,49 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {this.state.seal_areas.map(count => {
+                      {db.seals[area.id - 1].sealTypes.map(count => {
                         var bpm = count.id + "aspm" + area.id;
-                        return (
-                          <div id="sealVals" name={count}>
-                            <br></br>
-                            <label>Sealant Type: </label>
-                            <input
-                              type="radio"
-                              // id={pm}
-                              value="Glossy"
-                              name={bpm}
-                              onClick={e =>
-                                this.handleSealChange(e, area.id, count.id)
-                              }
-                              defaultChecked
-                            />
-                            <label htmlFor={bpm}> Glossy</label>
-                            <input
-                              type="radio"
-                              // id={ap}
-                              value="Matte"
-                              name={bpm}
-                              onClick={e =>
-                                this.handleSealChange(e, area.id, count.id)
-                              }
-                            />
-                            <label htmlFor={bpm}> Matte</label>
-                            <input
-                              type="radio"
-                              // id={ap}
-                              value="Epoxy"
-                              name={bpm}
-                              onClick={e =>
-                                this.handleSealChange(e, area.id, count.id)
-                              }
-                            />
-                            <label htmlFor={bpm}>Epoxy</label>
-                          </div>
-                        );
+                        if (count.id <= db.seals[area.id - 1].quant) {
+                          return (
+                            <div id="sealVals" name={count}>
+                              <br></br>
+                              <label>Sealant Type: </label>
+                              <input
+                                type="radio"
+                                // id={pm}
+                                value="Glossy"
+                                name={bpm}
+                                onClick={e =>
+                                  this.handleSealChange(e, area.id, count.id)
+                                }
+                                defaultChecked
+                              />
+                              <label htmlFor={bpm}> Glossy</label>
+                              <input
+                                type="radio"
+                                // id={ap}
+                                value="Matte"
+                                name={bpm}
+                                onClick={e =>
+                                  this.handleSealChange(e, area.id, count.id)
+                                }
+                              />
+                              <label htmlFor={bpm}> Matte</label>
+                              <input
+                                type="radio"
+                                // id={ap}
+                                value="Epoxy"
+                                name={bpm}
+                                onClick={e =>
+                                  this.handleSealChange(e, area.id, count.id)
+                                }
+                              />
+                              <label htmlFor={bpm}>Epoxy</label>
+                            </div>
+                          );
+                        }
                       })}
+
                       <br></br>
                       <button value={area.id} onClick={this.addSeal}>
                         Add Extra Sealant
@@ -1163,39 +1149,45 @@ export default class concrete extends React.Component {
                           .styles
                       }
                     >
-                      {this.state.underlayment_areas.map(count => {
-                        var apm = count.id + "apm" + area.id;
-                        return (
-                          <div id="underVals" name={count}>
-                            <br></br>
-                            <label>Type: </label>
-                            <input
-                              type="radio"
-                              // id={pm}
-                              value="10 mil Stego Vapor Barrier"
-                              name={apm}
-                              onClick={e =>
-                                this.handleUnderChange(e, area.id, count.id)
-                              }
-                              defaultChecked
-                            />
-                            <label htmlFor={apm}>
-                              {" "}
-                              10 mil Stego Vapor Barrier{" "}
-                            </label>
-                            <input
-                              type="radio"
-                              // id={ap}
-                              value="Geotex - Mirafi 500x"
-                              name={apm}
-                              onClick={e =>
-                                this.handleUnderChange(e, area.id, count.id)
-                              }
-                            />
-                            <label htmlFor={apm}> Geotex - Mirafi 500x </label>
-                          </div>
-                        );
+                      {db.underlay[area.id - 1].types.map(count => {
+                        var apm = area.id + "asdfas" + count.id;
+                        if (count.id <= db.underlay[area.id - 1].quant) {
+                          return (
+                            <div id="underVals" name={count}>
+                              <br></br>
+                              <label>Type: </label>
+                              <input
+                                type="radio"
+                                // id={pm}
+                                value="10 mil Stego Vapor Barrier"
+                                name={apm}
+                                onClick={e =>
+                                  this.handleUnderChange(e, area.id, count.id)
+                                }
+                                defaultChecked
+                              />
+                              <label htmlFor={apm}>
+                                {" "}
+                                10 mil Stego Vapor Barrier{" "}
+                              </label>
+                              <input
+                                type="radio"
+                                // id={ap}
+                                value="Geotex - Mirafi 500x"
+                                name={apm}
+                                onClick={e =>
+                                  this.handleUnderChange(e, area.id, count.id)
+                                }
+                              />
+                              <label htmlFor={apm}>
+                                {" "}
+                                Geotex - Mirafi 500x{" "}
+                              </label>
+                            </div>
+                          );
+                        }
                       })}
+
                       <br></br>
                       <button value={area.id} onClick={this.addUnder}>
                         Add Extra Underlayment
@@ -1216,7 +1208,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Drainage Required? </label>
 
-                    <input type="radio" id="yes" name={drainn} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={drainn}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "drain")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1225,10 +1223,55 @@ export default class concrete extends React.Component {
                       name={drainn}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "drain")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="drainnn"
+                      style={
+                        db.vals[db.visibility[9].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      {db.drains[area.id - 1].options.map(count => {
+                        if (count.id <= db.drains[area.id - 1].quant) {
+                          return (
+                            <div id="drainVals" name={count}>
+                              <br></br>
+                              <label>Type: </label>
+                              <select id="selectDrain" class="select-css">
+                                {db.drainage.map(drain => {
+                                  return (
+                                    <option id={drain.type} name={drain.id}>
+                                      {drain.type}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                              <br></br>
+                              <br></br>
+                              <label>Drainage Linear Feet/Quantity: </label>
+                              <input
+                                type="text"
+                                id="drainsie"
+                                placeholder="Ex: 50"
+                              />
+                            </div>
+                          );
+                        }
+                      })}
+                      <br></br>
+                      <button value={area.id} onClick={this.addDrain}>
+                        Add Extra Drainage
+                      </button>
+                      <button value={area.id} onClick={this.deleteDrain}>
+                        Delete Drainage
+                      </button>
+                      <br></br>
+                      <br></br>
+                    </div>
                   </div>
-                  {/* v2 */}
+
                   <div
                     id="optionsShown"
                     style={
@@ -1331,7 +1374,13 @@ export default class concrete extends React.Component {
                       Driveway Approach with Sidewalk and Gutter Requested?
                     </label>
 
-                    <input type="radio" id="yes" name={approachs} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={approachs}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "approaches")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1340,6 +1389,7 @@ export default class concrete extends React.Component {
                       name={approachs}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "approaches")}
                     />
                     <label htmlFor="no"> No</label>
                   </div>
@@ -1352,7 +1402,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Electrical Conduit Requested? </label>
 
-                    <input type="radio" id="yes" name={elec} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={elec}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "conduit")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1361,8 +1417,26 @@ export default class concrete extends React.Component {
                       name={elec}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "conduit")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="conduitsShown"
+                      style={
+                        db.vals[db.visibility[10].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      <br></br>
+                      <label>Linear Feet: </label>
+                      <input
+                        type="text"
+                        id="elecCond"
+                        placeholder="Ex: 50"
+                        // value={5}
+                        // onChange={e => this.handleCDepthChange(e, area.id)}
+                      />
+                    </div>
                   </div>
                   <div
                     id="optionsShown"
@@ -1373,7 +1447,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Additional Labor Required? </label>
 
-                    <input type="radio" id="yes" name={addlaboor} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={addlaboor}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "addlab")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1382,8 +1462,28 @@ export default class concrete extends React.Component {
                       name={addlaboor}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "addlab")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="addishShown"
+                      style={
+                        db.vals[db.visibility[11].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      <br></br>
+                      <label>Extra Labor Hours: </label>
+                      <input type="text" id="exlab" placeholder="Ex: 10" />
+                      <br></br>
+                      <br></br>
+                      <label>Description of Labor: </label>
+                      <input
+                        type="text"
+                        id="elecCond"
+                        placeholder="Ex: Cleaning"
+                      />
+                    </div>
                   </div>
                   <div
                     id="optionsShown"
@@ -1394,7 +1494,13 @@ export default class concrete extends React.Component {
                   >
                     <label>Custom Request? </label>
 
-                    <input type="radio" id="yes" name={custReq} value="yes" />
+                    <input
+                      type="radio"
+                      id="yes"
+                      name={custReq}
+                      value="yes"
+                      onClick={e => this.show(e, area.id, "custom")}
+                    />
                     <label htmlFor="yes"> Yes </label>
 
                     <input
@@ -1403,8 +1509,49 @@ export default class concrete extends React.Component {
                       name={custReq}
                       value="no"
                       defaultChecked
+                      onClick={e => this.hide(e, area.id, "custom")}
                     />
                     <label htmlFor="no"> No</label>
+                    <div
+                      id="customsShown"
+                      style={
+                        db.vals[db.visibility[12].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      {db.custom[area.id - 1].options.map(count => {
+                        if (count.id <= db.custom[area.id - 1].quant) {
+                          return (
+                            <div id="custvalss" name={count}>
+                              <br></br>
+                              <label>Description {count.id + 1}: </label>
+                              <input
+                                type="text"
+                                id="custss"
+                                placeholder="Ex: Gate"
+                              />
+                              <br></br>
+                              <br></br>
+                              <label>Pay to Contractor: </label>
+                              <input
+                                type="text"
+                                id="custss"
+                                placeholder="Ex: 1000"
+                              />
+                            </div>
+                          );
+                        }
+                      })}
+                      <br></br>
+                      <button value={area.id} onClick={this.addCustom}>
+                        Add Extra Custom Items
+                      </button>
+                      <button value={area.id} onClick={this.deleteCustom}>
+                        Delete Custom Item
+                      </button>
+                      <br></br>
+                      <br></br>
+                    </div>
                   </div>
 
                   <br></br>
