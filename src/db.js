@@ -5363,6 +5363,11 @@ export const db = {
       addLaborHours: 0,
       addLaborTotals: 0,
       addLaborTotalsCont: 0,
+      approachSQF: 0,
+      approachTotalsCont: 0,
+      approachTotals: 0,
+      gFloorTotals: 0,
+      gFloorTotalsCont: 0,
       totalCont: 0,
       totalContperSqf: 0
     },
@@ -6187,7 +6192,12 @@ export const db = {
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // adish
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // custom
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // approach13
-    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // permit
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // permit
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // retaining wall
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //curbing
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // landing
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, //steps
+    { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } //garage
   ],
   sealant: [
     { id: 0, type: "Glossy", cost: 1.5 },

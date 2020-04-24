@@ -62,7 +62,8 @@ export default class concrete extends React.Component {
     var sqf = parseFloat(areaParent.querySelector("#sqft").value, 10);
     var margin = parseFloat(this.state.margin, 10);
     if (isNaN(sqf) || isNaN(margin)) {
-      alert("Please enter margin and squarefeet before calculatin");
+      alert("Please enter margin and squarefeet before calculating");
+      return;
     } else if (
       db.visibility[3].type[area - 1].val === 0 &&
       (db.concreteArea[area - 1].concType !== "3500" ||
@@ -299,7 +300,7 @@ export default class concrete extends React.Component {
     var cust = db.custom[area - 1].quant;
     if (db.visibility[12].type[area - 1].val === 0) {
       for (var i = 0; i <= cust; i++) {
-        var cost = db.custom[area - 1].options[i].cost.toFixed(2);
+        var cost = db.custom[area - 1].options[i].cost;
         db.custom[area - 1].options[i].totalsCont = cost;
         db.custom[area - 1].options[i].totals = (cost / margin).toFixed(2);
       }
@@ -340,6 +341,16 @@ export default class concrete extends React.Component {
       }
     }
 
+    // garage floor
+
+    if (db.visibility[19].type[area - 1].val === 0) {
+      db.concreteArea[area - 1].gFloorTotalsCont = (sqf * 2.86).toFixed(2);
+      db.concreteArea[area - 1].gFloorTotals = (
+        db.concreteArea[area - 1].gFloorTotalsCont / margin
+      ).toFixed(2);
+    }
+    console.log(db.concreteArea[area - 1].gFloorTotalsCont);
+
     this.setState({ total: 0, totalCont: 0 });
   }
 
@@ -353,8 +364,8 @@ export default class concrete extends React.Component {
     var laborSQF = db.regions[0].finishLaborSQFMPD;
     var typeContractor;
     var theF;
-    var totalsCont;
-    var totals;
+    var totalsCont = 0;
+    var totals = 0;
     if (db.concreteArea[area - 1].finishType === "Salt") {
       typeContractor = ((sqf / laborSQF) * laborPrice + sqf).toFixed(2);
       theF = (((sqf / laborSQF) * laborPrice + sqf) / margin).toFixed(2);
@@ -394,7 +405,10 @@ export default class concrete extends React.Component {
     // exca
     var excasquareFT = db.concreteArea[area - 1].sqf;
     var addexcasquareFT = 0;
-    var excaDepth = depth + db.bases[area - 1].options[0].bdepth;
+    var excaDepth = +depth + +db.bases[area - 1].options[0].bdepth;
+    console.log(excaDepth);
+    console.log(depth);
+    console.log(db.bases[area - 1].options[0].bdepth);
     var excaVolume = (excasquareFT * excaDepth * 144) / 1728;
     var excaVolYards = excaVolume / 27;
     var excaLabTotal = (90 * (excaVolYards + addexcasquareFT)).toFixed(2);
@@ -476,8 +490,6 @@ export default class concrete extends React.Component {
   }
 
   show(e, area, obj) {
-    // console.log("entered show");
-    // console.log(obj);
     var areaHead = document.getElementById(area);
     if (obj === "base") {
       db.visibility[0].type[area - 1].val = 0;
@@ -510,6 +522,16 @@ export default class concrete extends React.Component {
       db.visibility[13].type[area - 1].val = 0;
     } else if (obj === "permit") {
       db.visibility[14].type[area - 1].val = 0;
+    } else if (obj === "retaining") {
+      db.visibility[15].type[area - 1].val = 0;
+    } else if (obj === "curbing") {
+      db.visibility[16].type[area - 1].val = 0;
+    } else if (obj === "landing") {
+      db.visibility[17].type[area - 1].val = 0;
+    } else if (obj === "steps") {
+      db.visibility[18].type[area - 1].val = 0;
+    } else if (obj === "garage") {
+      db.visibility[19].type[area - 1].val = 0;
     }
 
     this.setState({
@@ -536,6 +558,10 @@ export default class concrete extends React.Component {
       this.hide(e, area, "custom");
       this.hide(e, area, "approaches");
       this.hide(e, area, "permit");
+      this.hide(e, area, "retaining");
+      this.hide(e, area, "curbing");
+      this.hide(e, area, "landing");
+      this.hide(e, area, "steps");
     } else if (obj === "rebar") {
       db.visibility[2].type[area - 1].val = 1;
     } else if (obj === "edit") {
@@ -603,7 +629,18 @@ export default class concrete extends React.Component {
       db.visibility[13].type[area - 1].val = 1;
     } else if (obj === "permit") {
       db.visibility[14].type[area - 1].val = 1;
+    } else if (obj === "retaining") {
+      db.visibility[15].type[area - 1].val = 1;
+    } else if (obj === "curbing") {
+      db.visibility[16].type[area - 1].val = 1;
+    } else if (obj === "landing") {
+      db.visibility[17].type[area - 1].val = 1;
+    } else if (obj === "steps") {
+      db.visibility[18].type[area - 1].val = 1;
+    } else if (obj === "garage") {
+      db.visibility[19].type[area - 1].val = 1;
     }
+
     this.setState({
       conc_areas: this.state.conc_areas.filter(area => {
         return area.id <= this.state.areas;
@@ -692,14 +729,14 @@ export default class concrete extends React.Component {
   };
 
   // changed on both sides: check
-  handleGarage(event, area) {
-    var head = document.getElementById(area);
-    if (event.target.value === "yes") {
-      head.querySelector("#garageFloor").name = 1;
-    } else if (event.target.value === "no") {
-      head.querySelector("#garageFloor").name = 0;
-    }
-  }
+  // handleGarage(event, area) {
+  //   var head = document.getElementById(area);
+  //   if (event.target.value === "yes") {
+  //     head.querySelector("#garageFloor").name = 1;
+  //   } else if (event.target.value === "no") {
+  //     head.querySelector("#garageFloor").name = 0;
+  //   }
+  // }
 
   // done but check
 
@@ -911,20 +948,22 @@ export default class concrete extends React.Component {
   handleCustom(e, area, count) {
     var descrip;
     if (e.target.value === "no") {
-      descrip = 0;
+      descrip = "";
+      db.custom[area - 1].options[0].descrip = descrip;
     } else {
       descrip = e.target.value;
+      db.custom[area - 1].options[count].descrip = descrip;
     }
-    db.custom[area - 1].options[count].descrip = descrip;
   }
   handleCustomCost(e, area, count) {
     var cost;
     if (e.target.value === "no") {
       cost = 0;
+      db.custom[area - 1].options[0].cost = cost;
     } else {
       cost = e.target.value;
+      db.custom[area - 1].options[count].cost = cost;
     }
-    db.custom[area - 1].options[count].cost = cost;
   }
   handleAddLabor(e, area) {
     var descrip;
@@ -1178,7 +1217,7 @@ export default class concrete extends React.Component {
                       onChange={e => this.handleSQFChange(e, area.id)}
                     />
                   </div>
-                  <div id="options">
+                  {/* <div id="options">
                     <label>Hardscape Style: </label>
 
                     <select class="select-css" required>
@@ -1186,7 +1225,7 @@ export default class concrete extends React.Component {
                       <option value="pav">Pavers </option>
                       <option value="asph">Asphalt </option>
                     </select>
-                  </div>
+                  </div> */}
 
                   {/* <div id="options">
                     <label>Is it on a Slope? </label>
@@ -1209,7 +1248,7 @@ export default class concrete extends React.Component {
                       defaultChecked
                     />
                     <label htmlFor="no"> No</label>
-                  </div>
+                  </div> */}
                   <div id="options">
                     <label id="garageFloor">Is it a Garage Floor? </label>
 
@@ -1218,7 +1257,7 @@ export default class concrete extends React.Component {
                       id="yes"
                       name={garagee}
                       value="yes"
-                      onClick={e => this.handleGarage(e, area.id)}
+                      onClick={e => this.show(e, area.id, "garage")}
                     />
                     <label htmlFor="yes"> Yes </label>
 
@@ -1227,11 +1266,11 @@ export default class concrete extends React.Component {
                       id="no"
                       name={garagee}
                       value="no"
-                      onClick={e => this.handleGarage(e, area.id)}
+                      onClick={e => this.hide(e, area.id, "garage")}
                       defaultChecked
                     />
                     <label htmlFor="no"> No</label>
-                  </div> */}
+                  </div>
                   <div id="options">
                     <label>Edit Defaults? </label>
 
@@ -2125,20 +2164,47 @@ export default class concrete extends React.Component {
                         .styles
                     }
                   >
-                    <label>Retaining Wall Required? </label>
+                    <form id="retainingForm">
+                      <label>Retaining Wall Required? </label>
 
-                    <input type="radio" id="yes" name={retWall} value="yes" />
-                    <label htmlFor="yes"> Yes </label>
+                      <input
+                        type="radio"
+                        id="yes"
+                        name={retWall}
+                        value="yes"
+                        onClick={e => this.show(e, area.id, "retaining")}
+                      />
+                      <label htmlFor="yes"> Yes </label>
 
-                    <input
-                      type="radio"
-                      id="no"
-                      name={retWall}
-                      value="no"
-                      defaultChecked
-                    />
-                    <label htmlFor="no"> No</label>
+                      <input
+                        type="radio"
+                        id="no"
+                        name={retWall}
+                        value="no"
+                        defaultChecked
+                        onClick={e => this.hide(e, area.id, "retaining")}
+                      />
+                      <label htmlFor="no"> No</label>
+                      <div
+                        id="retainingShown"
+                        style={
+                          db.vals[db.visibility[15].type[area.id - 1].val]
+                            .type[0].styles
+                        }
+                      >
+                        <br></br>
+                        <label>Length in Feet: </label>
+                        <input
+                          type="text"
+                          id="retwalll"
+                          placeholder="Ex: 50"
+                          // value={5}
+                          onChange={e => this.handleApproach(e, area.id)}
+                        />
+                      </div>
+                    </form>
                   </div>
+
                   <div
                     id="optionsShown"
                     style={
@@ -2395,12 +2461,22 @@ export default class concrete extends React.Component {
                       Total Hardscape Price to Customer: ${area.total}
                     </label>
                     <br></br>
+
                     <label id="bob">
                       Total Hardscape Price Per Square Foot : $
                       {area.totalperSqf}
                     </label>
                     <br></br>
                     <br></br>
+                    <label
+                      id="bob"
+                      style={
+                        db.vals[db.visibility[19].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      Garage Floor: ${area.gFloorTotals}
+                    </label>
                     <label
                       id="bob"
                       style={
@@ -2581,6 +2657,15 @@ export default class concrete extends React.Component {
                     </label>
                     <br></br>
                     <br></br>
+                    <label
+                      id="bob"
+                      style={
+                        db.vals[db.visibility[19].type[area.id - 1].val].type[0]
+                          .styles
+                      }
+                    >
+                      Garage Floor: ${area.gFloorTotalsCont}
+                    </label>
                     <label
                       id="bob"
                       style={
