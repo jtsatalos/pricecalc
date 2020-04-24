@@ -5319,471 +5319,10 @@ export const db = {
       county: "Sacramento",
       tier: "Tier 3B",
       addCost: 0,
-      region: "Sacramento	"
+      region: "Sacramento"
     }
   ],
-  // concreteArea: [
-  //   {
-  //     id: 1,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 5,
-  //     concType: "3500",
-  //     concVal: 168,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 2,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 168,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 3,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 4,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 5,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 6,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 7,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 8,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 9,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   },
-  //   {
-  //     id: 10,
-  //     sqf: 0,
-  //     ergpCostss: 0,
-  //     ptype: "",
-  //     permitTotal: 0,
-  //     dsquarefeet: 0,
-  //     dtype: "Concrete",
-  //     demoTotal: 0,
-  //     haulSquareFeet: 0,
-  //     haulTotal: 0,
-  //     excaSquareFeet: 0,
-  //     excaTotal: 0,
-  //     finishType: "Broom",
-  //     finishTypeVal: 0,
-  //     baseDepth: 0,
-  //     btype: "#2 Base Rock",
-  //     bTotal: 0,
-  //     concDepth: 0,
-  //     concType: "3500",
-  //     concVal: 0,
-  //     locCalc: 0,
-  //     garageFloorVal: 0,
-  //     zipPricing: 0,
-  //     deltaCust: 0,
-  //     total: 0,
-  //     totalperSqf: 0,
-  //     permitTotalCon: 0,
-  //     demoContractorTotal: 0,
-  //     excaContractorTotal: 0,
-  //     haulContractorTotal: 0,
-  //     finishTypeValCont: 0,
-  //     bContractorTotal: 0,
-  //     concValCont: 0,
-  //     garageFloorValCont: 0,
-  //     zipPricingContractor: 0,
-  //     delta: 0,
-  //     rtype: '#3 Rebar 12"',
-  //     rebarTotalCont: 0,
-  //     rebarTotal: 0,
-  //     aType: "Concrete Retarder",
-  //     admixTotalCont: 0,
-  //     admixTotal: 0,
-  //     totalCont: 0,
-  //     totalContperSqf: 0
-  //   }
-  // ],
+
   concreteArea: [
     {
       id: 1,
@@ -5792,42 +5331,38 @@ export const db = {
       ptype: "",
       permitTotal: 0,
       finishType: "Broom",
-      // finishTypeVal: 0,
       baseDepth: 4,
       btype: "#2 Base Rock",
       bTotal: 0,
       concDepth: 5,
       concType: "3500",
       concVal: 168,
-      // locCalc: 0,
-      // garageFloorVal: 0,
-      // zipPricing: 0,
-      // deltaCust: 0,
       total: 0,
       totalperSqf: 0,
       permitTotalCon: 0,
-      // demoContractorTotal: 0,
-      // excaContractorTotal: 0,
-      // haulContractorTotal: 0,
-      // finishTypeValCont: 0,
-      // bContractorTotal: 0,
-      // concValCont: 0,
-      // garageFloorValCont: 0,
-      // zipPricingContractor: 0,
-      // delta: 0,
       rtype: '#4 Rebar 16" OC',
       rCost: 2.0,
       rMult: 1,
       rebarTotalCont: 0,
       rebarTotal: 0,
-      // aType: "Concrete Retarder",
-      // admixTotalCont: 0,
-      // admixTotal: 0,
       stampType: "Yorkshire Cobble",
       stampCost: 3,
       stampQuant: 17,
-      stampTotal:0,
-      stampTotalCont:0,
+      stampTotal: 0,
+      stampTotalCont: 0,
+      stainTotalCont: 0,
+      stainTotal: 0,
+      sealTotalsCont: 0,
+      aggraID: 0,
+      aggraTotals: 0,
+      aggraTotalsCont: 0,
+      conduitlength: 0,
+      conduitTotals: 0,
+      conduitTotalsCont: 0,
+      addLabordescrip: 0,
+      addLaborHours: 0,
+      addLaborTotals: 0,
+      addLaborTotalsCont: 0,
       totalCont: 0,
       totalContperSqf: 0
     },
@@ -6269,12 +5804,12 @@ export const db = {
     { id: 7, type: "DG Gold Stabalized", cost: 190.0 }
   ],
   rebar: [
-    { id: 0, type: '#3 Rebar 12"OC', cost: 1.85, mult: 1.25 },
+    { id: 0, type: '#4 Rebar 16" OC', cost: 2.0, mult: 1 },
     { id: 1, type: '#3 Rebar 16" OC', cost: 1.85, mult: 1 },
     { id: 2, type: '#3 Rebar 18" OC', cost: 1.65, mult: 0.875 },
     { id: 3, type: '#3 Rebar 24" OC', cost: 1.4, mult: 0.75 },
     { id: 4, type: '#4 Rebar 12"OC', cost: 2.25, mult: 1.25 },
-    { id: 5, type: '#4 Rebar 16" OC', cost: 2.0, mult: 1 },
+    { id: 5, type: '#3 Rebar 12"OC', cost: 1.85, mult: 1.25 },
     { id: 6, type: '#4 Rebar 18" OC', cost: 1.75, mult: 0.875 },
     { id: 7, type: '#4 Rebar 24" OC', cost: 1.5, mult: 0.75 },
     { id: 8, type: '2"x2" Wire Mesh', cost: 3.5, mult: 1 },
@@ -6289,176 +5824,318 @@ export const db = {
     { id: 4, type: "Helix Steel Fiber Reinforcement", cost: 100, lbs: 25 }
   ],
   psi: [
-    { id: 0, type: "2500 PSI", cost: 150 },
+    //type: "3500 PSI", cost: 168
+    { id: 0, type: "3500 PSI", cost: 168 },
+    { id: 1, type: "2500 PSI", cost: 150 },
     { id: 2, type: "3000 PSI", cost: 150 },
-    { id: 3, type: "3500 PSI", cost: 168 },
-    { id: 4, type: "4000 PSI", cost: 190 },
-    { id: 5, type: "4500 PSI", cost: 210 }
+    { id: 3, type: "4000 PSI", cost: 190 },
+    { id: 4, type: "4500 PSI", cost: 210 }
   ],
-  stamps: [
-    { id: 0, type: "Yorkshire Cobble", amount: 17, cost: 3 },
-    { id: 1, type: "Pavimento of Paris", amount: 23, cost: 3 },
-    { id: 2, type: "Hammered Sofia Stone", amount: 16, cost: 3 },
-    { id: 3, type: "Stones of Athens", amount: 15, cost: 3 },
-    { id: 4, type: "Rotating Venetian Marble", amount: 15, cost: 3 },
-    { id: 5, type: "Fractured Cyprus Slate", amount: 13, cost: 3 },
-    {
-      id: 6,
-      type: "Rough Cut Ashlar - Rough Hand Tooled Stones",
-      amount: 3,
-      cost: 1
-    },
-    { id: 7, type: "Rough Cut Ashlar - Blue Stone Slate", amount: 3, cost: 1 },
-    { id: 8, type: "Australian Ashlar Cut Stone", amount: 3, cost: 1 },
-    { id: 9, type: "Random Stone TM-200", amount: 2, cost: 1 },
-    { id: 10, type: '4"x4" Slate Setts', amount: 1, cost: 1 },
-    { id: 11, type: "Mountain Stone Granite Setts", amount: 1, cost: 1 },
-    { id: 12, type: '6" x 6" Granite Setts', amount: 1, cost: 1 },
-    { id: 13, type: "Old English Cobblestone", amount: 1, cost: 1 },
-    { id: 14, type: '12" x 12" Cut Stone', amount: 1, cost: 1 },
-    { id: 15, type: '12" x 12" Heavy Stone', amount: 1, cost: 1 },
-    { id: 16, type: '12" x 12" Utah Stone', amount: 1, cost: 1 },
-    { id: 17, type: 'Stone Texture w/ 1/2" Joints', amount: 1, cost: 1 },
-    { id: 18, type: "European Fan", amount: 1, cost: 1 },
-    { id: 19, type: "Yucatan Tile", amount: 1, cost: 1 },
-    { id: 20, type: "Antique Stone", amount: 1, cost: 1 },
-    { id: 21, type: "Basket Weave New Stone Weave Look", amount: 1, cost: 1 },
-    { id: 22, type: "Windsor Cobble", amount: 1, cost: 1 },
-    { id: 23, type: "Mesa Random Stone", amount: 1, cost: 1 },
-    { id: 24, type: '6" x 6" Edinburgh Cobble', amount: 1, cost: 1 },
-    { id: 25, type: "Cheshire Cobble (Smooth Grout)", amount: 1, cost: 1 },
-    { id: 26, type: "London Cobble", amount: 1, cost: 1 },
-    { id: 27, type: "Large Cobble", amount: 1, cost: 1 },
-    { id: 28, type: "Circulos Del Sol", amount: 1, cost: 1 },
-    { id: 29, type: '24" x 24" Keystone Coquina Stone', amount: 1, cost: 1 },
-    { id: 30, type: "San Juan Pavers", amount: 1, cost: 1 },
-    { id: 31, type: "Random Stone FM-700", amount: 3, cost: 1 },
-    { id: 32, type: "Flagstone", amount: 2, cost: 1 },
-    { id: 33, type: "Beverly Hills Random Stone FM-725", amount: 3, cost: 1 },
-    { id: 34, type: "Large Random Stone FM-750", amount: 2, cost: 1 },
-    { id: 35, type: "Lincoln Trail Large Random", amount: 1, cost: 1 },
-    { id: 36, type: "Santa Fe Pebble", amount: 1, cost: 1 },
-    { id: 37, type: "Blue Stone FM-800", amount: 1, cost: 1 },
-    { id: 38, type: "Pennsylvania Cobble – Sanded Joint", amount: 1, cost: 1 },
-    { id: 39, type: "Pennsylvania Cobble – Smooth Joint", amount: 1, cost: 1 },
-    { id: 40, type: '18" x 18" Utah Stone', amount: 1, cost: 1 },
-    { id: 41, type: "Opa Locka Stone", amount: 2, cost: 1 },
-    { id: 42, type: '24" x 24" Yucatan Stone', amount: 1, cost: 1 },
-    { id: 43, type: "Metro Cobble 1", amount: 1, cost: 1 },
-    { id: 44, type: "Metro Cobble 2", amount: 1, cost: 1 },
-    { id: 45, type: '30" x 30" Bushed Stone', amount: 1, cost: 1 },
-    { id: 46, type: "Cut Stone Border", amount: 1, cost: 1 },
-    { id: 47, type: "Cut Stone Double", amount: 1, cost: 1 },
-    { id: 48, type: "Garden Stone", amount: 1, cost: 1 },
-    { id: 49, type: "Patio Stone", amount: 1, cost: 1 },
-    { id: 50, type: "Castle Stone", amount: 2, cost: 1 },
-    { id: 51, type: "English Field Stone", amount: 1, cost: 1 },
-    { id: 52, type: "Luccia Stone", amount: 1, cost: 1 },
-    { id: 53, type: "Roman Cobble", amount: 2, cost: 1 },
-    { id: 54, type: "Walkway Stone", amount: 2, cost: 1 },
-    { id: 55, type: "Tuscany Stone", amount: 3, cost: 1 },
-    { id: 56, type: "Verona Stone", amount: 3, cost: 1 },
-    { id: 57, type: "Large Herringbone", amount: 1, cost: 1 },
-    { id: 58, type: '12" x 12" Blue Stone', amount: 1, cost: 1 },
-    { id: 59, type: '16" x 16" Slate', amount: 1, cost: 1 },
-    { id: 60, type: '12" x 12" Slate', amount: 1, cost: 1 },
-    { id: 61, type: '12" x 12" Slate-Butt Joint', amount: 1, cost: 1 },
-    { id: 62, type: '18" x 18" Slate', amount: 1, cost: 1 },
-    { id: 63, type: '36" Ashlar Cut Slate w/o Insert', amount: 3, cost: 1 },
-    { id: 64, type: "Ashlar Cut Slate", amount: 3, cost: 1 },
-    { id: 65, type: "Aidan Ashlar", amount: 3, cost: 1 },
-    { id: 66, type: "Large Ashlar Cut Slate", amount: 3, cost: 1 },
-    { id: 67, type: "American Ashlar Slate", amount: 2, cost: 1 },
-    { id: 68, type: '48" x 48" Slate Texture with Joint', amount: 1, cost: 1 },
-    { id: 69, type: '24" x 24" Slate', amount: 1, cost: 1 },
-    { id: 70, type: '12" x 12" Slate', amount: 1, cost: 1 },
-    { id: 71, type: '12" x 12" Slate Border', amount: 1, cost: 1 },
-    { id: 72, type: "Slate with Diamond Insert", amount: 1, cost: 1 },
-    { id: 73, type: "Walkway Slate", amount: 3, cost: 1 },
-    { id: 74, type: "California Weave", amount: 1, cost: 1 },
-    { id: 75, type: "Herringbone Slate", amount: 1, cost: 1 },
-    { id: 76, type: "Running Bond Slate", amount: 1, cost: 1 },
-    { id: 77, type: "New England Basket Weave", amount: 1, cost: 1 },
-    { id: 78, type: "Regal Ashlar Blue Stone", amount: 3, cost: 1 },
-    { id: 79, type: "Grand Ashlar", amount: 3, cost: 1 },
-    { id: 80, type: '4" x 12" Brick Border', amount: 1, cost: 1 },
-    { id: 81, type: "Tile Border", amount: 1, cost: 1 },
-    { id: 82, type: "Tile Border Corner", amount: 1, cost: 1 },
-    { id: 83, type: "Brushed Border", amount: 1, cost: 1 },
-    { id: 84, type: '12" x 12" Mexican Tile Border', amount: 1, cost: 1 },
-    { id: 85, type: "Danish Fan", amount: 1, cost: 1 },
-    { id: 86, type: '12" x 12" Mexican Tile', amount: 1, cost: 1 },
-    { id: 87, type: "Teardrop Fan", amount: 1, cost: 1 },
-    { id: 88, type: 'Hexagon Smooth with 1/2" Joints', amount: 1, cost: 1 },
-    { id: 89, type: "Herringbone Used Brick", amount: 1, cost: 1 },
-    { id: 90, type: "Running Bond Used Brick", amount: 1, cost: 1 },
-    { id: 91, type: "Running Bond New Brick", amount: 1, cost: 1 },
-    { id: 92, type: "Basket Weave Used Brick", amount: 1, cost: 1 },
-    { id: 93, type: "Herringbone New Brick Sanded Joint", amount: 1, cost: 1 },
-    {
-      id: 94,
-      type: '12" x 12" Mexican Tile Smooth Texture',
-      amount: 1,
-      cost: 1
-    },
-    { id: 95, type: "Santa Barbara Tile", amount: 1, cost: 1 },
-    { id: 96, type: "Octagon Tile", amount: 1, cost: 1 },
-    { id: 97, type: "Octagon Tile Flower", amount: 1, cost: 1 },
-    { id: 98, type: 'Untextured Ashlar with 1/2" V-Joint', amount: 3, cost: 1 },
-    { id: 99, type: "Chateau Ashlar", amount: 3, cost: 1 },
-    { id: 100, type: '3" Cedar Wood Flooring', amount: 1, cost: 1 },
-    { id: 101, type: "Wood Planks", amount: 1, cost: 1 },
-    { id: 102, type: "Cedar Wood Planks", amount: 1, cost: 1 },
-    { id: 103, type: '8" Wood Planks', amount: 3, cost: 1 },
-    { id: 104, type: "Wood Block", amount: 1, cost: 1 },
-    { id: 105, type: "Classic Wood", amount: 1, cost: 1 },
-    { id: 106, type: "Classic Wood with Nail Studs", amount: 1, cost: 1 },
-    { id: 107, type: "Bridges of Madison County", amount: 1, cost: 1 }
-  ],
+  stamps:
+    // {
+    //   id : 34,
+    //   name : "stampas"
+    [
+      { id: 0, type: "Yorkshire Cobble", amount: 17, cost: 3 },
+      { id: 1, type: "Pavimento of Paris", amount: 23, cost: 3 },
+      { id: 2, type: "Hammered Sofia Stone", amount: 16, cost: 3 },
+      { id: 3, type: "Stones of Athens", amount: 15, cost: 3 },
+      { id: 4, type: "Rotating Venetian Marble", amount: 15, cost: 3 },
+      { id: 5, type: "Fractured Cyprus Slate", amount: 13, cost: 3 },
+      {
+        id: 6,
+        type: "Rough Cut Ashlar - Rough Hand Tooled Stones",
+        amount: 3,
+        cost: 1
+      },
+      {
+        id: 7,
+        type: "Rough Cut Ashlar - Blue Stone Slate",
+        amount: 3,
+        cost: 1
+      },
+      { id: 8, type: "Australian Ashlar Cut Stone", amount: 3, cost: 1 },
+      { id: 9, type: "Random Stone TM-200", amount: 2, cost: 1 },
+      { id: 10, type: '4"x4" Slate Setts', amount: 1, cost: 1 },
+      { id: 11, type: "Mountain Stone Granite Setts", amount: 1, cost: 1 },
+      { id: 12, type: '6" x 6" Granite Setts', amount: 1, cost: 1 },
+      { id: 13, type: "Old English Cobblestone", amount: 1, cost: 1 },
+      { id: 14, type: '12" x 12" Cut Stone', amount: 1, cost: 1 },
+      { id: 15, type: '12" x 12" Heavy Stone', amount: 1, cost: 1 },
+      { id: 16, type: '12" x 12" Utah Stone', amount: 1, cost: 1 },
+      { id: 17, type: 'Stone Texture w/ 1/2" Joints', amount: 1, cost: 1 },
+      { id: 18, type: "European Fan", amount: 1, cost: 1 },
+      { id: 19, type: "Yucatan Tile", amount: 1, cost: 1 },
+      { id: 20, type: "Antique Stone", amount: 1, cost: 1 },
+      { id: 21, type: "Basket Weave New Stone Weave Look", amount: 1, cost: 1 },
+      { id: 22, type: "Windsor Cobble", amount: 1, cost: 1 },
+      { id: 23, type: "Mesa Random Stone", amount: 1, cost: 1 },
+      { id: 24, type: '6" x 6" Edinburgh Cobble', amount: 1, cost: 1 },
+      { id: 25, type: "Cheshire Cobble (Smooth Grout)", amount: 1, cost: 1 },
+      { id: 26, type: "London Cobble", amount: 1, cost: 1 },
+      { id: 27, type: "Large Cobble", amount: 1, cost: 1 },
+      { id: 28, type: "Circulos Del Sol", amount: 1, cost: 1 },
+      { id: 29, type: '24" x 24" Keystone Coquina Stone', amount: 1, cost: 1 },
+      { id: 30, type: "San Juan Pavers", amount: 1, cost: 1 },
+      { id: 31, type: "Random Stone FM-700", amount: 3, cost: 1 },
+      { id: 32, type: "Flagstone", amount: 2, cost: 1 },
+      { id: 33, type: "Beverly Hills Random Stone FM-725", amount: 3, cost: 1 },
+      { id: 34, type: "Large Random Stone FM-750", amount: 2, cost: 1 },
+      { id: 35, type: "Lincoln Trail Large Random", amount: 1, cost: 1 },
+      { id: 36, type: "Santa Fe Pebble", amount: 1, cost: 1 },
+      { id: 37, type: "Blue Stone FM-800", amount: 1, cost: 1 },
+      {
+        id: 38,
+        type: "Pennsylvania Cobble – Sanded Joint",
+        amount: 1,
+        cost: 1
+      },
+      {
+        id: 39,
+        type: "Pennsylvania Cobble – Smooth Joint",
+        amount: 1,
+        cost: 1
+      },
+      { id: 40, type: '18" x 18" Utah Stone', amount: 1, cost: 1 },
+      { id: 41, type: "Opa Locka Stone", amount: 2, cost: 1 },
+      { id: 42, type: '24" x 24" Yucatan Stone', amount: 1, cost: 1 },
+      { id: 43, type: "Metro Cobble 1", amount: 1, cost: 1 },
+      { id: 44, type: "Metro Cobble 2", amount: 1, cost: 1 },
+      { id: 45, type: '30" x 30" Bushed Stone', amount: 1, cost: 1 },
+      { id: 46, type: "Cut Stone Border", amount: 1, cost: 1 },
+      { id: 47, type: "Cut Stone Double", amount: 1, cost: 1 },
+      { id: 48, type: "Garden Stone", amount: 1, cost: 1 },
+      { id: 49, type: "Patio Stone", amount: 1, cost: 1 },
+      { id: 50, type: "Castle Stone", amount: 2, cost: 1 },
+      { id: 51, type: "English Field Stone", amount: 1, cost: 1 },
+      { id: 52, type: "Luccia Stone", amount: 1, cost: 1 },
+      { id: 53, type: "Roman Cobble", amount: 2, cost: 1 },
+      { id: 54, type: "Walkway Stone", amount: 2, cost: 1 },
+      { id: 55, type: "Tuscany Stone", amount: 3, cost: 1 },
+      { id: 56, type: "Verona Stone", amount: 3, cost: 1 },
+      { id: 57, type: "Large Herringbone", amount: 1, cost: 1 },
+      { id: 58, type: '12" x 12" Blue Stone', amount: 1, cost: 1 },
+      { id: 59, type: '16" x 16" Slate', amount: 1, cost: 1 },
+      { id: 60, type: '12" x 12" Slate', amount: 1, cost: 1 },
+      { id: 61, type: '12" x 12" Slate-Butt Joint', amount: 1, cost: 1 },
+      { id: 62, type: '18" x 18" Slate', amount: 1, cost: 1 },
+      { id: 63, type: '36" Ashlar Cut Slate w/o Insert', amount: 3, cost: 1 },
+      { id: 64, type: "Ashlar Cut Slate", amount: 3, cost: 1 },
+      { id: 65, type: "Aidan Ashlar", amount: 3, cost: 1 },
+      { id: 66, type: "Large Ashlar Cut Slate", amount: 3, cost: 1 },
+      { id: 67, type: "American Ashlar Slate", amount: 2, cost: 1 },
+      {
+        id: 68,
+        type: '48" x 48" Slate Texture with Joint',
+        amount: 1,
+        cost: 1
+      },
+      { id: 69, type: '24" x 24" Slate', amount: 1, cost: 1 },
+      { id: 70, type: '12" x 12" Slate', amount: 1, cost: 1 },
+      { id: 71, type: '12" x 12" Slate Border', amount: 1, cost: 1 },
+      { id: 72, type: "Slate with Diamond Insert", amount: 1, cost: 1 },
+      { id: 73, type: "Walkway Slate", amount: 3, cost: 1 },
+      { id: 74, type: "California Weave", amount: 1, cost: 1 },
+      { id: 75, type: "Herringbone Slate", amount: 1, cost: 1 },
+      { id: 76, type: "Running Bond Slate", amount: 1, cost: 1 },
+      { id: 77, type: "New England Basket Weave", amount: 1, cost: 1 },
+      { id: 78, type: "Regal Ashlar Blue Stone", amount: 3, cost: 1 },
+      { id: 79, type: "Grand Ashlar", amount: 3, cost: 1 },
+      { id: 80, type: '4" x 12" Brick Border', amount: 1, cost: 1 },
+      { id: 81, type: "Tile Border", amount: 1, cost: 1 },
+      { id: 82, type: "Tile Border Corner", amount: 1, cost: 1 },
+      { id: 83, type: "Brushed Border", amount: 1, cost: 1 },
+      { id: 84, type: '12" x 12" Mexican Tile Border', amount: 1, cost: 1 },
+      { id: 85, type: "Danish Fan", amount: 1, cost: 1 },
+      { id: 86, type: '12" x 12" Mexican Tile', amount: 1, cost: 1 },
+      { id: 87, type: "Teardrop Fan", amount: 1, cost: 1 },
+      { id: 88, type: 'Hexagon Smooth with 1/2" Joints', amount: 1, cost: 1 },
+      { id: 89, type: "Herringbone Used Brick", amount: 1, cost: 1 },
+      { id: 90, type: "Running Bond Used Brick", amount: 1, cost: 1 },
+      { id: 91, type: "Running Bond New Brick", amount: 1, cost: 1 },
+      { id: 92, type: "Basket Weave Used Brick", amount: 1, cost: 1 },
+      {
+        id: 93,
+        type: "Herringbone New Brick Sanded Joint",
+        amount: 1,
+        cost: 1
+      },
+      {
+        id: 94,
+        type: '12" x 12" Mexican Tile Smooth Texture',
+        amount: 1,
+        cost: 1
+      },
+      { id: 95, type: "Santa Barbara Tile", amount: 1, cost: 1 },
+      { id: 96, type: "Octagon Tile", amount: 1, cost: 1 },
+      { id: 97, type: "Octagon Tile Flower", amount: 1, cost: 1 },
+      {
+        id: 98,
+        type: 'Untextured Ashlar with 1/2" V-Joint',
+        amount: 3,
+        cost: 1
+      },
+      { id: 99, type: "Chateau Ashlar", amount: 3, cost: 1 },
+      { id: 100, type: '3" Cedar Wood Flooring', amount: 1, cost: 1 },
+      { id: 101, type: "Wood Planks", amount: 1, cost: 1 },
+      { id: 102, type: "Cedar Wood Planks", amount: 1, cost: 1 },
+      { id: 103, type: '8" Wood Planks', amount: 3, cost: 1 },
+      { id: 104, type: "Wood Block", amount: 1, cost: 1 },
+      { id: 105, type: "Classic Wood", amount: 1, cost: 1 },
+      { id: 106, type: "Classic Wood with Nail Studs", amount: 1, cost: 1 },
+      { id: 107, type: "Bridges of Madison County", amount: 1, cost: 1 }
+    ],
   stainer: [
     {
       id: 0,
       quant: 0,
       stainTypes: [
-        { id: 0, sType: "Pre-Mixed" },
-        { id: 1, sType: "Pre-Mixed" },
-        { id: 2, sType: "Pre-Mixed" }
+        {
+          id: 0,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          colorPM: "Adobe",
+          colorSA: "Surface Applied - Black",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 1,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 2,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        }
       ]
     },
     {
       id: 1,
       quant: 0,
       stainTypes: [
-        { id: 0, sType: "Pre-Mixed" },
-        { id: 1, sType: "Pre-Mixed" },
-        { id: 2, sType: "Pre-Mixed" }
+        {
+          id: 0,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 1,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 2,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        }
       ]
     },
     {
       id: 2,
       quant: 0,
       stainTypes: [
-        { id: 0, sType: "Pre-Mixed" },
-        { id: 1, sType: "Pre-Mixed" },
-        { id: 2, sType: "Pre-Mixed" }
+        {
+          id: 0,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 1,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 2,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        }
       ]
     },
     {
       id: 3,
       quant: 0,
       stainTypes: [
-        { id: 0, sType: "Pre-Mixed" },
-        { id: 1, sType: "Pre-Mixed" },
-        { id: 2, sType: "Pre-Mixed" }
+        {
+          id: 0,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 1,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 2,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        }
       ]
     },
     {
       id: 4,
       quant: 0,
       stainTypes: [
-        { id: 0, sType: "Pre-Mixed" },
-        { id: 1, sType: "Pre-Mixed" },
-        { id: 2, sType: "Pre-Mixed" }
+        {
+          id: 0,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 1,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        },
+        {
+          id: 2,
+          sType: "Pre-Mixed",
+          color: "Adobe",
+          stainId: 0,
+          staintotals: 0,
+          staintotalsCont: 0
+        }
       ]
     }
   ],
@@ -6472,84 +6149,7 @@ export const db = {
     { id: 1, sType: "Pre-Mixed" },
     { id: 2, sType: "Pre-Mixed" }
   ],
-  stains: [
-    { id: 0, type: "Adobe" },
-    { id: 1, type: "Baja Red" },
-    { id: 2, type: "Bayou" },
-    { id: 3, type: "Brick Red" },
-    { id: 4, type: "Canyon" },
-    { id: 5, type: "Cocoa" },
-    { id: 6, type: "Cobblestone" },
-    { id: 7, type: "Dark Gray" },
-    { id: 8, type: "Dune" },
-    { id: 9, type: "Flagstone Brown" },
-    { id: 10, type: "Graphite" },
-    { id: 11, type: "Green Slate" },
-    { id: 12, type: "Harvest Gold" },
-    { id: 13, type: "Kailua" },
-    { id: 14, type: "Light Gray" },
-    { id: 15, type: "Mesa Buff" },
-    { id: 16, type: "Mesquite" },
-    { id: 17, type: "Mocha" },
-    { id: 18, type: "Omaha Tan" },
-    { id: 19, type: "Outback" },
-    { id: 20, type: "Palomino" },
-    { id: 21, type: "Pebble" },
-    { id: 22, type: "Pewter" },
-    { id: 23, type: "Rustic Brown" },
-    { id: 24, type: "Salmon" },
-    { id: 25, type: "San Diego Buff" },
-    { id: 26, type: "Sandstone" },
-    { id: 27, type: "Santa Fe" },
-    { id: 28, type: "Sangria" },
-    { id: 29, type: "Sequoia Sand" },
-    { id: 30, type: "Silver Smoke" },
-    { id: 31, type: "Sierra" },
-    { id: 32, type: "Southern Blush" },
-    { id: 33, type: "Spanish Gold" },
-    { id: 34, type: "Sunset Rose" },
-    { id: 35, type: "Taupe" },
-    { id: 36, type: "Terra Cotta" },
-    { id: 37, type: "Tile Red" },
-    { id: 38, type: "Willow Green" },
-    { id: 39, type: "Yosemite Brown" },
-    { id: 40, type: "Surface Applied - Black" },
-    { id: 41, type: "Surface Applied - Brick Red" },
-    { id: 42, type: "Surface Applied - Buff Tan" },
-    { id: 43, type: "Surface Applied - Cappuccino" },
-    { id: 44, type: "Surface Applied - Chestnut" },
-    { id: 45, type: "Surface Applied - Copper Brown" },
-    { id: 46, type: "Surface Applied - Cream Beige" },
-    { id: 47, type: "Surface Applied - Dark Gray" },
-    { id: 48, type: "Surface Applied - Desert Tan" },
-    { id: 49, type: "Surface Applied - Dover Blue" },
-    { id: 50, type: "Surface Applied - Dusty Rose" },
-    { id: 51, type: "Surface Applied - Federal Yellow" },
-    { id: 52, type: "Surface Applied - French Gray" },
-    { id: 53, type: "Surface Applied - Golden Sandstone" },
-    { id: 54, type: "Surface Applied - Light Gray" },
-    { id: 55, type: "Surface Applied - Medium Gray" },
-    { id: 56, type: "Surface Applied - Nutmeg" },
-    { id: 57, type: "Surface Applied - Oyster White" },
-    { id: 58, type: "Surface Applied - Pecan" },
-    { id: 59, type: "Surface Applied - Pecos Sand" },
-    { id: 60, type: "Surface Applied - Pool Blue" },
-    { id: 61, type: "Surface Applied - Quarry Red" },
-    { id: 62, type: "Surface Applied - Saddle Brown" },
-    { id: 63, type: "Surface Applied - Sandstone" },
-    { id: 64, type: "Surface Applied - Sandy Buff" },
-    { id: 65, type: "Surface Applied - Slate Green" },
-    { id: 66, type: "Surface Applied - Smokey Beige" },
-    { id: 67, type: "Surface Applied - Smokey Blue" },
-    { id: 68, type: "Surface Applied - Stone Gray" },
-    { id: 69, type: "Surface Applied - Summer Beige" },
-    { id: 70, type: "Surface Applied - Sun Buff" },
-    { id: 71, type: "Surface Applied - Sunbaked Clay" },
-    { id: 72, type: "Surface Applied - Terra Cotta" },
-    { id: 73, type: "Surface Applied - Tile Red" },
-    { id: 74, type: "Surface Applied - Walnut" },
-    { id: 75, type: "Surface Applied - White" }
-  ],
+
   vals: [
     {
       id: 0,
@@ -6589,53 +6189,95 @@ export const db = {
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] }, // approach13
     { type: [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }] } // permit
   ],
-  // sealant: [
-  //   { id: 0, type: "Glossy " },
-  //   { id: 1, type: "Matte " },
-  //   { id: 2, type: "Epoxy " }
-  // ],
+  sealant: [
+    { id: 0, type: "Glossy", cost: 1.5 },
+    { id: 1, type: "Matte", cost: 1.5 },
+    { id: 2, type: "Epoxy", cost: 4.75 }
+  ],
   seals: [
     {
       id: 0,
       quant: 0,
       sealTypes: [
-        { id: 0, type: "Glossy " },
-        { id: 1, type: "Glossy " }
+        { id: 0, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 },
+        { id: 1, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 1,
       quant: 0,
       sealTypes: [
-        { id: 0, type: "Glossy " },
-        { id: 1, type: "Glossy " }
+        { id: 0, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 },
+        { id: 1, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 2,
       quant: 0,
       sealTypes: [
-        { id: 0, type: "Glossy " },
-        { id: 1, type: "Glossy " }
+        { id: 0, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 },
+        { id: 1, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 3,
       quant: 0,
       sealTypes: [
-        { id: 0, type: "Glossy " },
-        { id: 1, type: "Glossy " }
+        { id: 0, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 },
+        { id: 1, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 4,
       quant: 0,
       sealTypes: [
-        { id: 0, type: "Glossy " },
-        { id: 1, type: "Glossy " }
+        { id: 0, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 },
+        { id: 1, type: "Glossy", sealId: 0, totals: 0, totalsCont: 0 }
       ]
     }
   ],
+  // aggra: [
+  //   {
+  //     id: 0,
+  //     quant: 0,
+  //     types: [
+  //       { id: 0, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 },
+  //       { id: 1, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 }
+  //     ]
+  //   },
+  //   {
+  //     id: 1,
+  //     quant: 0,
+  //     types: [
+  //       { id: 0, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 },
+  //       { id: 1, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 }
+  //     ]
+  //   },
+  //   {
+  //     id: 2,
+  //     quant: 0,
+  //     sealTypes: [
+  //       { id: 0, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 },
+  //       { id: 1, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 }
+  //     ]
+  //   },
+  //   {
+  //     id: 3,
+  //     quant: 0,
+  //     sealTypes: [
+  //       { id: 0, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 },
+  //       { id: 1, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 }
+  //     ]
+  //   },
+  //   {
+  //     id: 4,
+  //     quant: 0,
+  //     sealTypes: [
+  //       { id: 0, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 },
+  //       { id: 1, type: '1/2" Pami Pebble', aggraId: 0, totals: 0, totalsCont: 0 }
+  //     ]
+  //   }
+  // ],
   exposedAggregate: [
     {
       id: 0,
@@ -6755,9 +6397,9 @@ export const db = {
       perTonWTax: 138.05
     }
   ],
-  underlayment: [
-    { id: 0, type: "Geotex - Mirafi 500x", pricePSQF: 3.25 },
-    { id: 1, type: "Geotex - Mirafi 500x", pricePSQF: 3.25 }
+  underlayments: [
+    { id: 0, type: "Geotex - Mirafi 500x", cost: 3.25 },
+    { id: 1, type: "10 mil Stego Vapor Barrier", cost: 2.0 }
     // { id: 1, type: "10 mil Stego Vapor Barrier", pricePSQF: 2.0 }
   ],
   underlay: [
@@ -6765,40 +6407,100 @@ export const db = {
       id: 0,
       quant: 0,
       types: [
-        { id: 0, type: "Geotex - Mirafi 500x" },
-        { id: 1, type: "Geotex - Mirafi 500x" }
+        {
+          id: 0,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 1,
       quant: 0,
       types: [
-        { id: 0, type: "Geotex - Mirafi 500x" },
-        { id: 1, type: "Geotex - Mirafi 500x" }
+        {
+          id: 0,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 2,
       quant: 0,
       types: [
-        { id: 0, type: "Geotex - Mirafi 500x" },
-        { id: 1, type: "Geotex - Mirafi 500x" }
+        {
+          id: 0,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 3,
       quant: 0,
       types: [
-        { id: 0, type: "Geotex - Mirafi 500x" },
-        { id: 1, type: "Geotex - Mirafi 500x" }
+        {
+          id: 0,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 4,
       quant: 0,
       types: [
-        { id: 0, type: "Geotex - Mirafi 500x" },
-        { id: 1, type: "Geotex - Mirafi 500x" }
+        {
+          id: 0,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Geotex - Mirafi 500x",
+          underId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     }
   ],
@@ -6874,55 +6576,230 @@ export const db = {
       id: 0,
       quant: 0,
       options: [
-        { id: 0, drainSize: 0 },
-        { id: 1, drainSize: 0 },
-        { id: 2, drainSize: 0 },
-        { id: 3, drainSize: 0 },
-        { id: 4, drainSize: 0 }
+        {
+          id: 0,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 2,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 3,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 4,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 1,
       quant: 0,
       options: [
-        { id: 0, drainSize: 0 },
-        { id: 1, drainSize: 0 },
-        { id: 2, drainSize: 0 },
-        { id: 3, drainSize: 0 },
-        { id: 4, drainSize: 0 }
+        {
+          id: 0,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 2,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 3,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 4,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 2,
       quant: 0,
       options: [
-        { id: 0, drainSize: 0 },
-        { id: 1, drainSize: 0 },
-        { id: 2, drainSize: 0 },
-        { id: 3, drainSize: 0 },
-        { id: 4, drainSize: 0 }
+        {
+          id: 0,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 2,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 3,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 4,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 3,
       quant: 0,
       options: [
-        { id: 0, drainSize: 0 },
-        { id: 1, drainSize: 0 },
-        { id: 2, drainSize: 0 },
-        { id: 3, drainSize: 0 },
-        { id: 4, drainSize: 0 }
+        {
+          id: 0,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 2,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 3,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 4,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     },
     {
       id: 4,
       quant: 0,
       options: [
-        { id: 0, drainSize: 0 },
-        { id: 1, drainSize: 0 },
-        { id: 2, drainSize: 0 },
-        { id: 3, drainSize: 0 },
-        { id: 4, drainSize: 0 }
+        {
+          id: 0,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 1,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 2,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 3,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        },
+        {
+          id: 4,
+          type: "Drain Pipe",
+          drainSize: 0,
+          drainId: 0,
+          totals: 0,
+          totalsCont: 0
+        }
       ]
     }
   ],
@@ -6931,45 +6808,45 @@ export const db = {
       id: 0,
       quant: 0,
       options: [
-        { id: 0, cost: 0 },
-        { id: 1, cost: 0 },
-        { id: 2, cost: 0 }
+        { id: 0, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 1, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 2, descrip: "", cost: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 1,
       quant: 0,
       options: [
-        { id: 0, cost: 0 },
-        { id: 1, cost: 0 },
-        { id: 2, cost: 0 }
+        { id: 0, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 1, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 2, descrip: "", cost: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 2,
       quant: 0,
       options: [
-        { id: 0, cost: 0 },
-        { id: 1, cost: 0 },
-        { id: 2, cost: 0 }
+        { id: 0, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 1, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 2, descrip: "", cost: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 3,
       quant: 0,
       options: [
-        { id: 0, cost: 0 },
-        { id: 1, cost: 0 },
-        { id: 2, cost: 0 }
+        { id: 0, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 1, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 2, descrip: "", cost: 0, totals: 0, totalsCont: 0 }
       ]
     },
     {
       id: 4,
       quant: 0,
       options: [
-        { id: 0, cost: 0 },
-        { id: 1, cost: 0 },
-        { id: 2, cost: 0 }
+        { id: 0, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 1, descrip: "", cost: 0, totals: 0, totalsCont: 0 },
+        { id: 2, descrip: "", cost: 0, totals: 0, totalsCont: 0 }
       ]
     }
   ],
@@ -7014,7 +6891,864 @@ export const db = {
         { id: 1, total: 0 }
       ]
     }
-  ]
+  ],
+  theStains: [
+    {
+      id: 0,
+      color: "Adobe",
+      category: "Premium",
+      pounds: 4,
+      twofive: 90.0,
+      threeoh: 99.0,
+      threefive: 108.0,
+      fouroh: 117.0,
+      fourfive: 126.0,
+      surfaceApplied: 200.0,
+      davisColor: 61078,
+      solomonColor: "Desert Tan",
+      colorCode: 350
+    },
+    {
+      id: 1,
+      color: "Baja Red",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 160,
+      solomonColor: "Antique Cork",
+      colorCode: 1050
+    },
+    {
+      id: 2,
+      color: "Bayou",
+      category: "Standard",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 6130,
+      solomonColor: "Sandstone",
+      colorCode: 325
+    },
+    {
+      id: 3,
+      color: "Brick Red",
+      category: "Premium",
+      pounds: 4,
+      twofive: 90.0,
+      threeoh: 99.0,
+      threefive: 108.0,
+      fouroh: 117.0,
+      fourfive: 126.0,
+      surfaceApplied: 200.0,
+      davisColor: 160,
+      solomonColor: "Sunbaked Clay",
+      colorCode: 515
+    },
+    {
+      id: 4,
+      color: "Canyon",
+      category: "Subtle",
+      pounds: 0.5,
+      twofive: 11.3,
+      threeoh: 12.38,
+      threefive: 13.5,
+      fouroh: 14.63,
+      fourfive: 15.75,
+      surfaceApplied: 65.0,
+      davisColor: 160,
+      solomonColor: "Oyster White",
+      colorCode: 250
+    },
+    {
+      id: 5,
+      color: "Cocoa",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 6130,
+      solomonColor: "Sun Buff",
+      colorCode: 1090
+    },
+    {
+      id: 6,
+      color: "Cobblestone",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 860,
+      solomonColor: "Light Gray",
+      colorCode: 600
+    },
+    {
+      id: 7,
+      color: "Dark Gray",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 8084,
+      solomonColor: "Medium Gray",
+      colorCode: 200
+    },
+    {
+      id: 8,
+      color: "Dune",
+      category: "Subtle",
+      pounds: 0.5,
+      twofive: 11.25,
+      threeoh: 12.38,
+      threefive: 13.5,
+      fouroh: 14.63,
+      fourfive: 15.75,
+      surfaceApplied: 65.0,
+      davisColor: 6058,
+      solomonColor: "Sandstone",
+      colorCode: 325
+    },
+    {
+      id: 9,
+      color: "Flagstone Brown",
+      category: "Premium",
+      pounds: 3,
+      twofive: 67.5,
+      threeoh: 72.6,
+      threefive: 81.0,
+      fouroh: 87.75,
+      fourfive: 94.5,
+      surfaceApplied: 200.0,
+      davisColor: 641,
+      solomonColor: "Pecos Sand",
+      colorCode: 1055
+    },
+    {
+      id: 10,
+      color: "Graphite",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 8084,
+      solomonColor: "Dark Gray",
+      colorCode: 100
+    },
+    {
+      id: 11,
+      color: "Green Slate",
+      category: "Premium",
+      pounds: 3,
+      twofive: 124.5,
+      threeoh: 136.5,
+      threefive: 148.5,
+      fouroh: 160.0,
+      fourfive: 172.5,
+      surfaceApplied: 200.0,
+      davisColor: 3685,
+      solomonColor: "Slate Green",
+      colorCode: 825
+    },
+    {
+      id: 12,
+      color: "Harvest Gold",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 5084,
+      solomonColor: "Federal Yellow",
+      colorCode: 3100
+    },
+    {
+      id: 13,
+      color: "Kailua",
+      category: "Premium",
+      pounds: 4,
+      twofive: 90.0,
+      threeoh: 99.0,
+      threefive: 108.0,
+      fouroh: 117.0,
+      fourfive: 126.0,
+      surfaceApplied: 200.0,
+      davisColor: 677,
+      solomonColor: "Nutmeg",
+      colorCode: 300
+    },
+    {
+      id: 14,
+      color: "Light Gray",
+      category: "Subtle",
+      pounds: 0.5,
+      twofive: 11.25,
+      threeoh: 12.38,
+      threefive: 13.5,
+      fouroh: 14.63,
+      fourfive: 15.75,
+      surfaceApplied: 65.0,
+      davisColor: 8084,
+      solomonColor: "Light Gray",
+      colorCode: 600
+    },
+    {
+      id: 15,
+      color: "Mesa Buff",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 5447,
+      solomonColor: "Federal Yellow",
+      colorCode: 3100
+    },
+    {
+      id: 16,
+      color: "Mesquite",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 677,
+      solomonColor: "Sandstone",
+      colorCode: 325
+    },
+    {
+      id: 17,
+      color: "Mocha",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 6058,
+      solomonColor: "Sandy Buff",
+      colorCode: 1070
+    },
+    {
+      id: 18,
+      color: "Omaha Tan",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 5084,
+      solomonColor: "Cappuccino",
+      colorCode: 735
+    },
+    {
+      id: 19,
+      color: "Outback",
+      category: "Subtle",
+      pounds: 0.5,
+      twofive: 11.25,
+      threeoh: 12.38,
+      threefive: 13.5,
+      fouroh: 14.63,
+      fourfive: 15.75,
+      surfaceApplied: 65.0,
+      davisColor: 677,
+      solomonColor: "Ash White",
+      colorCode: 1030
+    },
+    {
+      id: 20,
+      color: "Palomino",
+      category: "Premium",
+      pounds: 3,
+      twofive: 67.5,
+      threeoh: 72.6,
+      threefive: 81.0,
+      fouroh: 87.75,
+      fourfive: 94.5,
+      surfaceApplied: 200.0,
+      davisColor: 5447,
+      solomonColor: "Federal Yellow",
+      colorCode: 3100
+    },
+    {
+      id: 21,
+      color: "Pebble",
+      category: "Subtle",
+      pounds: 0.5,
+      twofive: 11.25,
+      threeoh: 12.38,
+      threefive: 13.5,
+      fouroh: 14.63,
+      fourfive: 15.75,
+      surfaceApplied: 65.0,
+      davisColor: 641,
+      solomonColor: "Sandstone",
+      colorCode: 325
+    },
+    {
+      id: 22,
+      color: "Pewter",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 860,
+      solomonColor: "Light Gray",
+      colorCode: 600
+    },
+    {
+      id: 23,
+      color: "Rustic Brown",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 6058,
+      solomonColor: "Buff Tan",
+      colorCode: 375
+    },
+    {
+      id: 24,
+      color: "Salmon",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 10134,
+      solomonColor: "Sunaked Clay",
+      colorCode: 515
+    },
+    {
+      id: 25,
+      color: "San Diego Buff",
+      category: "Standard",
+      pounds: 1.5,
+      twofive: 33.75,
+      threeoh: 37.13,
+      threefive: 40.5,
+      fouroh: 43.88,
+      fourfive: 47.25,
+      surfaceApplied: 65.0,
+      davisColor: 5237,
+      solomonColor: "Golden Sandstone",
+      colorCode: 320
+    },
+    {
+      id: 26,
+      color: "Sandstone",
+      category: "Subtle",
+      pounds: 0.75,
+      twofive: 16.9,
+      threeoh: 18.59,
+      threefive: 20.28,
+      fouroh: 21.97,
+      fourfive: 23.66,
+      surfaceApplied: 65.0,
+      davisColor: 5237,
+      solomonColor: "Golden Sandstone",
+      colorCode: 320
+    },
+    {
+      id: 27,
+      color: "Santa Fe",
+      category: "Subtle",
+      pounds: 0.75,
+      twofive: 16.9,
+      threeoh: 18.59,
+      threefive: 20.28,
+      fouroh: 21.97,
+      fourfive: 23.66,
+      surfaceApplied: 65.0,
+      davisColor: 1117,
+      solomonColor: "Antique Rose",
+      colorCode: 1020
+    },
+    {
+      id: 28,
+      color: "Sangria",
+      category: "Standard",
+      pounds: 1.5,
+      twofive: 33.75,
+      threeoh: 37.13,
+      threefive: 40.5,
+      fouroh: 43.88,
+      fourfive: 47.25,
+      surfaceApplied: 65.0,
+      davisColor: 1117,
+      solomonColor: "Antique Cork",
+      colorCode: 1050
+    },
+    {
+      id: 29,
+      color: "Sequoia Sand",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 641,
+      solomonColor: "Sandy Buff",
+      colorCode: 1070
+    },
+    {
+      id: 30,
+      color: "Silver Smoke",
+      category: "Subtle",
+      pounds: 0.25,
+      twofive: 5.62,
+      threeoh: 6.18,
+      threefive: 6.75,
+      fouroh: 7.31,
+      fourfive: 7.87,
+      surfaceApplied: 65.0,
+      davisColor: 8084,
+      solomonColor: "Medium Gray",
+      colorCode: 200
+    },
+    {
+      id: 31,
+      color: "Sierra",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 61078,
+      solomonColor: "Sun Buff",
+      colorCode: 1090
+    },
+    {
+      id: 32,
+      color: "Southern Blush",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 10134,
+      solomonColor: "Sandy Buff",
+      colorCode: 1070
+    },
+    {
+      id: 33,
+      color: "Spanish Gold",
+      category: "Premium",
+      pounds: 3,
+      twofive: 67.5,
+      threeoh: 72.6,
+      threefive: 81.0,
+      fouroh: 87.75,
+      fourfive: 94.5,
+      surfaceApplied: 200.0,
+      davisColor: 5084,
+      solomonColor: "",
+      colorCode: null
+    },
+    {
+      id: 34,
+      color: "Sunset Rose",
+      category: "Subtle",
+      pounds: 1,
+      twofive: 22.5,
+      threeoh: 24.75,
+      threefive: 27.0,
+      fouroh: 29.25,
+      fourfive: 31.5,
+      surfaceApplied: 65.0,
+      davisColor: 160,
+      solomonColor: "Antique Rose",
+      colorCode: 1020
+    },
+    {
+      id: 35,
+      color: "Taupe",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 677,
+      solomonColor: "Sun Buff",
+      colorCode: 1090
+    },
+    {
+      id: 36,
+      color: "Terra Cotta",
+      category: "Premium",
+      pounds: 4,
+      twofive: 90.0,
+      threeoh: 99.0,
+      threefive: 108.0,
+      fouroh: 117.0,
+      fourfive: 126.0,
+      surfaceApplied: 200.0,
+      davisColor: 10134,
+      solomonColor: "",
+      colorCode: null
+    },
+    {
+      id: 37,
+      color: "Tile Red",
+      category: "Premium",
+      pounds: 3,
+      twofive: 67.5,
+      threeoh: 72.6,
+      threefive: 81.0,
+      fouroh: 87.75,
+      fourfive: 94.5,
+      surfaceApplied: 200.0,
+      davisColor: 117,
+      solomonColor: "Dusty Rose",
+      colorCode: 525
+    },
+    {
+      id: 38,
+      color: "Willow Green",
+      category: "Premium",
+      pounds: 3,
+      twofive: 124.5,
+      threeoh: 136.5,
+      threefive: 148.5,
+      fouroh: 160.0,
+      fourfive: 172.5,
+      surfaceApplied: 200.0,
+      davisColor: 5376,
+      solomonColor: "",
+      colorCode: null
+    },
+    {
+      id: 39,
+      color: "Yosemite Brown",
+      category: "Standard",
+      pounds: 2,
+      twofive: 45.0,
+      threeoh: 49.5,
+      threefive: 54.0,
+      fouroh: 58.5,
+      fourfive: 63.0,
+      surfaceApplied: 65.0,
+      davisColor: 641,
+      solomonColor: "Sandy Buff",
+      colorCode: 1070
+    }
+  ],
+  surfaceStain: [
+    {
+      id: 40,
+      color: "Surface Applied - Black",
+      code: 900,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 41,
+      color: "Surface Applied - Brick Red",
+      code: 550,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 42,
+      color: "Surface Applied - Buff Tan",
+      code: 375,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 43,
+      color: "Surface Applied - Cappuccino",
+      code: 735,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 44,
+      color: "Surface Applied - Chestnut",
+      code: 400,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 45,
+      color: "Surface Applied - Copper Brown",
+      code: 1025,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 46,
+      color: "Surface Applied - Cream Beige",
+      code: 310,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 47,
+      color: "Surface Applied - Dark Gray",
+      code: 100,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 48,
+      color: "Surface Applied - Desert Tan",
+      code: 350,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 49,
+      color: "Surface Applied - Dover Blue",
+      code: 625,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 50,
+      color: "Surface Applied - Dusty Rose",
+      code: 525,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 51,
+      color: "Surface Applied - Federal Yellow",
+      code: 3100,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 52,
+      color: "Surface Applied - French Gray",
+      code: 815,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 53,
+      color: "Surface Applied - Golden Sandstone",
+      code: 320,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 54,
+      color: "Surface Applied - Light Gray",
+      code: 600,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 55,
+      color: "Surface Applied - Medium Gray",
+      code: 200,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 56,
+      color: "Surface Applied - Nutmeg",
+      code: 300,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 57,
+      color: "Surface Applied - Oyster White",
+      code: 250,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 58,
+      color: "Surface Applied - Pecan",
+      code: 1060,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 59,
+      color: "Surface Applied - Pecos Sand",
+      code: 1055,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 60,
+      color: "Surface Applied - Pool Blue",
+      code: 660,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 61,
+      color: "Surface Applied - Quarry Red",
+      code: 1065,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 62,
+      color: "Surface Applied - Saddle Brown",
+      code: 1085,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 63,
+      color: "Surface Applied - Sandstone",
+      code: 325,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 64,
+      color: "Surface Applied - Sandy Buff",
+      code: 1070,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 65,
+      color: "Surface Applied - Slate Green",
+      code: 825,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 66,
+      color: "Surface Applied - Smokey Beige",
+      code: 1010,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 67,
+      color: "Surface Applied - Smokey Blue",
+      code: 650,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 68,
+      color: "Surface Applied - Stone Gray",
+      code: 615,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 69,
+      color: "Surface Applied - Summer Beige",
+      code: 1035,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 70,
+      color: "Surface Applied - Sun Buff",
+      code: 1090,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 71,
+      color: "Surface Applied - Sunbaked Clay",
+      code: 515,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 72,
+      color: "Surface Applied - Terra Cotta",
+      code: 700,
+      cost: 65.0,
+      category: "Standard"
+    },
+    {
+      id: 73,
+      color: "Surface Applied - Tile Red",
+      code: 500,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 74,
+      color: "Surface Applied - Walnut",
+      code: 810,
+      cost: 200.0,
+      category: "Premium"
+    },
+    {
+      id: 75,
+      color: "Surface Applied - White",
+      code: 1000,
+      cost: 200.0,
+      category: "Premium"
+    }
+  ],
+  stainHelp: [{ id: 0 }]
 };
 
 export default {

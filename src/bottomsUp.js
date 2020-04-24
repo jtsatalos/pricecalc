@@ -199,17 +199,17 @@ export default class concrete extends React.Component {
     var cubicFeet = (depth / 12) * sqf;
     var cubicYards = cubicFeet / 27;
     var concCostCont = (cubicYards * psiValue + 200).toFixed(2);
-    // if (isNaN(concCostCont)) {
-    //   db.concreteArea[area-1].concValCont = 0
-    // } else {
-    //   db.concreteArea[area-1].concValCont = concCostCont
-    // }
+    if (isNaN(concCostCont)) {
+      db.concreteArea[area-1].concValCont = 0
+    } else {
+      db.concreteArea[area-1].concValCont = concCostCont
+    }
     var concPriceInput = (concCostCont / margin).toFixed(2);
-    // if (isNaN(concPriceInput)) {
-    //   db.concreteArea[area-1].concVal = 0
-    // } else {
-    //   db.concreteArea[area-1].concVal = concPriceInput
-    // }
+    if (isNaN(concPriceInput)) {
+      db.concreteArea[area-1].concVal = 0
+    } else {
+      db.concreteArea[area-1].concVal = concPriceInput
+    }
     totalCont = +totalCont + +concCostCont;
     totalCust = +totalCust + +concPriceInput;
     db.concreteArea[area-1].totalCont = +db.concreteArea[area-1].totalCont + +concCostCont;
